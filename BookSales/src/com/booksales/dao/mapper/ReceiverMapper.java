@@ -1,9 +1,9 @@
-package com.booksales.dao;
+package com.booksales.dao.mapper;
 
 import com.booksales.model.Receiver;
 import java.util.List;
 
-public interface ReceiverDao {
+public interface ReceiverMapper {
     int deleteByPrimaryKey(Integer receiverid);
 
     int insert(Receiver record);

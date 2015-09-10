@@ -1,9 +1,9 @@
-package com.booksales.dao;
+package com.booksales.dao.mapper;
 
 import com.booksales.model.Review;
 import java.util.List;
 
-public interface ReviewDao {
+public interface ReviewMapper {
     int deleteByPrimaryKey(Integer reviewid);
 
     int insert(Review record);

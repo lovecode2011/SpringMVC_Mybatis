@@ -1,5 +1,13 @@
 package com.booksales.service;
 
-public class IUserService {
+import java.util.List;
+
+import com.booksales.model.User;
+
+public interface IUserService {
+
+	User getUserById(int userId);
+
+	public List<User> getUsers();
 
 }

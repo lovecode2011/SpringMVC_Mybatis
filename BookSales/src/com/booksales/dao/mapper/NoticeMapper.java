@@ -1,9 +1,9 @@
-package com.booksales.dao;
+package com.booksales.dao.mapper;
 
 import com.booksales.model.Notice;
 import java.util.List;
 
-public interface NoticeDao {
+public interface NoticeMapper {
     int deleteByPrimaryKey(Integer noticeid);
 
     int insert(Notice record);

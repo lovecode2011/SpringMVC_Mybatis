@@ -1,9 +1,9 @@
-package com.booksales.dao;
+package com.booksales.dao.mapper;
 
 import com.booksales.model.Classify;
 import java.util.List;
 
-public interface ClassifyDao {
+public interface ClassifyMapper {
     int deleteByPrimaryKey(Integer classifyid);
 
     int insert(Classify record);

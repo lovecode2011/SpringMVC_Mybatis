@@ -1,9 +1,9 @@
-package com.booksales.dao;
+package com.booksales.dao.mapper;
 
 import com.booksales.model.BSCollect;
 import java.util.List;
 
-public interface BSCollectDao {
+public interface BSCollectMapper {
     int deleteByPrimaryKey(Integer collectid);
 
     int insert(BSCollect record);

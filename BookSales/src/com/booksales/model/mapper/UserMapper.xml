@@ -9,10 +9,13 @@
     <result column="Email" property="email" jdbcType="VARCHAR" />
     <result column="IsRoot" property="isroot" jdbcType="CHAR" />
   </resultMap>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bsuser
     where UserId = #{userid,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.booksales.model.User" >
     <selectKey resultType="java.lang.Integer" keyProperty="userid" order="BEFORE" >
       SELECT LAST_INSERT_ID()
@@ -22,7 +25,7 @@
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{credit,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{isroot,jdbcType=CHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.booksales.model.User" >
+  <update id="updateByUserId" parameterType="com.booksales.model.User" >
     update bsuser
     set UserName = #{username,jdbcType=VARCHAR},
       Password = #{password,jdbcType=VARCHAR},
@@ -31,7 +34,7 @@
       IsRoot = #{isroot,jdbcType=CHAR}
     where UserId = #{userid,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select UserId, UserName, Password, Credit, Email, IsRoot
     from bsuser
     where UserId = #{userid,jdbcType=INTEGER}

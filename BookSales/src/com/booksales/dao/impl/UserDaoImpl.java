@@ -2,10 +2,10 @@ package com.booksales.dao.impl;
 
 import java.util.List;
 
-import com.booksales.dao.UserDao;
+import com.booksales.dao.mapper.UserMapper;
 import com.booksales.model.User;
 
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements UserMapper {
 
 	@Override
 	public int deleteByUserId(Integer userid) {

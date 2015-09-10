@@ -2,6 +2,9 @@ package com.booksales.model;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class User implements Serializable {
 	//用户id
     private Integer userid;

@@ -50,5 +50,6 @@
 		<!-- 内存中的最大值 -->
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
-
+	 <context:annotation-config/> <!-- 定义使用注解注入 -->  
+       <context:component-scan base-package="com.booksales"/>
 </beans>

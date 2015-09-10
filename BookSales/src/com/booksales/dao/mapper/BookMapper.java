@@ -1,9 +1,9 @@
-package com.booksales.dao;
+package com.booksales.dao.mapper;
 
 import com.booksales.model.Book;
 import java.util.List;
 
-public interface BookDao {
+public interface BookMapper {
     int deleteByPrimaryKey(Integer bookid);
 
     int insert(Book record);

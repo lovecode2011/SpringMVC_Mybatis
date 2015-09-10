@@ -1,9 +1,9 @@
-package com.booksales.dao;
+package com.booksales.dao.mapper;
 
 import com.booksales.model.User;
 import java.util.List;
 
-public interface UserDao {
+public interface UserMapper {
 	/**
 	 * 根据用户id删除用户信息
 	 * --一般建议不要删除
@@ -11,6 +11,7 @@ public interface UserDao {
 	 * @return
 	 */
     int deleteByUserId(Integer userid);
+    
     /**
      * 添加用户
      * @param user

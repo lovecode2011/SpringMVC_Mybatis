@@ -1,9 +1,9 @@
-package com.booksales.dao;
+package com.booksales.dao.mapper;
 
 import com.booksales.model.Cart;
 import java.util.List;
 
-public interface CartDao {
+public interface CartMapper {
     int deleteByPrimaryKey(Integer cartid);
 
     int insert(Cart record);
