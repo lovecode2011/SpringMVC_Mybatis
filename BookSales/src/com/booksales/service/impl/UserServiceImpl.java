@@ -11,8 +11,16 @@ import com.booksales.service.IUserService;
 
 @Service("userService")
 public class UserServiceImpl implements IUserService {
-	@Autowired
+	
 	private UserMapper userDao;
+	public UserMapper getUserDao() {
+		return userDao;
+	}
+	@Autowired
+	public void setUserDao(UserMapper userDao) {
+		this.userDao = userDao;
+	}
+
 	@Override
 	public User getUserById(int userId) {
 		return userDao.selectByUserId(userId);
