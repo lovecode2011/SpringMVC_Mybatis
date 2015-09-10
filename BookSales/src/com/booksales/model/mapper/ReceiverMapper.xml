@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.booksales.dao.mapper.ReceiverMapper" >
+  <resultMap id="BaseResultMap" type="com.booksales.model.Receiver" >
+    <id column="ReceiverId" property="receiverid" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="ReceiverName" property="receivername" jdbcType="VARCHAR" />
+    <result column="ReceiverTel" property="receivertel" jdbcType="CHAR" />
+    <result column="ReceiverAddress" property="receiveraddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bsreceiver
+    where ReceiverId = #{receiverid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.booksales.model.Receiver" >
+    <selectKey resultType="java.lang.Integer" keyProperty="receiverid" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bsreceiver (ReceiverId, UserId, ReceiverName, 
+      ReceiverTel, ReceiverAddress)
+    values (#{receiverid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{receivername,jdbcType=VARCHAR}, 
+      #{receivertel,jdbcType=CHAR}, #{receiveraddress,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.booksales.model.Receiver" >
+    update bsreceiver
+    set UserId = #{userid,jdbcType=INTEGER},
+      ReceiverName = #{receivername,jdbcType=VARCHAR},
+      ReceiverTel = #{receivertel,jdbcType=CHAR},
+      ReceiverAddress = #{receiveraddress,jdbcType=VARCHAR}
+    where ReceiverId = #{receiverid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ReceiverId, UserId, ReceiverName, ReceiverTel, ReceiverAddress
+    from bsreceiver
+    where ReceiverId = #{receiverid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ReceiverId, UserId, ReceiverName, ReceiverTel, ReceiverAddress
+    from bsreceiver
+  </select>
+</mapper>
