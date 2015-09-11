@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.booksales.dao.BSCollectMapper" >
+  <resultMap id="BaseResultMap" type="com.booksales.model.BSCollect" >
+    <id column="CollectId" property="collectid" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="BookId" property="bookid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bscollect
+    where CollectId = #{collectid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.booksales.model.BSCollect" >
+    <selectKey resultType="java.lang.Integer" keyProperty="collectid" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bscollect (CollectId, UserId, BookId
+      )
+    values (#{collectid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{bookid,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.booksales.model.BSCollect" >
+    update bscollect
+    set UserId = #{userid,jdbcType=INTEGER},
+      BookId = #{bookid,jdbcType=INTEGER}
+    where CollectId = #{collectid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select CollectId, UserId, BookId
+    from bscollect
+    where CollectId = #{collectid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select CollectId, UserId, BookId
+    from bscollect
+  </select>
+</mapper>
