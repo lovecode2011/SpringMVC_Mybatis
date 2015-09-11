@@ -269,3 +269,37 @@ java.lang.IllegalArgumentException
 [INFO][2015-09-11 11:06:37,956][org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping]Mapped URL path [/userController/{id}/showUser.*] onto handler 'userController'
 [INFO][2015-09-11 11:06:37,956][org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping]Mapped URL path [/userController/{id}/showUser/] onto handler 'userController'
 [INFO][2015-09-11 11:06:37,994][org.springframework.web.servlet.DispatcherServlet]FrameworkServlet 'springMvc': initialization completed in 416 ms
+[INFO][2015-09-11 15:57:28,299][org.springframework.web.context.ContextLoader]Root WebApplicationContext: initialization started
+[INFO][2015-09-11 15:57:28,396][org.springframework.web.context.support.XmlWebApplicationContext]Refreshing Root WebApplicationContext: startup date [Fri Sep 11 15:57:28 CST 2015]; root of context hierarchy
+[INFO][2015-09-11 15:57:28,431][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring.xml]
+[INFO][2015-09-11 15:57:28,606][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO][2015-09-11 15:57:28,783][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO][2015-09-11 15:57:28,789][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR][2015-09-11 15:57:29,098][com.alibaba.druid.pool.DruidAbstractDataSource]maxIdle is deprecated
+[INFO][2015-09-11 15:57:29,210][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[INFO][2015-09-11 15:57:30,066][org.springframework.web.context.ContextLoader]Root WebApplicationContext: initialization completed in 1763 ms
+[INFO][2015-09-11 15:57:30,154][org.springframework.web.servlet.DispatcherServlet]FrameworkServlet 'springMvc': initialization started
+[INFO][2015-09-11 15:57:30,158][org.springframework.web.context.support.XmlWebApplicationContext]Refreshing WebApplicationContext for namespace 'springMvc-servlet': startup date [Fri Sep 11 15:57:30 CST 2015]; parent: Root WebApplicationContext
+[INFO][2015-09-11 15:57:30,158][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mvc.xml]
+[INFO][2015-09-11 15:57:30,220][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO][2015-09-11 15:57:30,526][org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping]Mapped URL path [/userController/{id}/showUser] onto handler 'userController'
+[INFO][2015-09-11 15:57:30,527][org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping]Mapped URL path [/userController/{id}/showUser.*] onto handler 'userController'
+[INFO][2015-09-11 15:57:30,527][org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping]Mapped URL path [/userController/{id}/showUser/] onto handler 'userController'
+[INFO][2015-09-11 15:57:30,568][org.springframework.web.servlet.DispatcherServlet]FrameworkServlet 'springMvc': initialization completed in 412 ms
+[INFO][2015-09-11 15:59:54,102][org.springframework.web.context.ContextLoader]Root WebApplicationContext: initialization started
+[INFO][2015-09-11 15:59:54,188][org.springframework.web.context.support.XmlWebApplicationContext]Refreshing Root WebApplicationContext: startup date [Fri Sep 11 15:59:54 CST 2015]; root of context hierarchy
+[INFO][2015-09-11 15:59:54,219][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring.xml]
+[INFO][2015-09-11 15:59:54,422][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO][2015-09-11 15:59:54,610][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO][2015-09-11 15:59:54,625][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR][2015-09-11 15:59:54,907][com.alibaba.druid.pool.DruidAbstractDataSource]maxIdle is deprecated
+[INFO][2015-09-11 15:59:55,016][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+[INFO][2015-09-11 15:59:55,844][org.springframework.web.context.ContextLoader]Root WebApplicationContext: initialization completed in 1742 ms
+[INFO][2015-09-11 15:59:55,938][org.springframework.web.servlet.DispatcherServlet]FrameworkServlet 'springMvc': initialization started
+[INFO][2015-09-11 15:59:55,940][org.springframework.web.context.support.XmlWebApplicationContext]Refreshing WebApplicationContext for namespace 'springMvc-servlet': startup date [Fri Sep 11 15:59:55 CST 2015]; parent: Root WebApplicationContext
+[INFO][2015-09-11 15:59:55,940][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mvc.xml]
+[INFO][2015-09-11 15:59:56,002][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO][2015-09-11 15:59:56,615][org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping]Mapped URL path [/userController/{id}/showUser] onto handler 'userController'
+[INFO][2015-09-11 15:59:56,615][org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping]Mapped URL path [/userController/{id}/showUser.*] onto handler 'userController'
+[INFO][2015-09-11 15:59:56,615][org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping]Mapped URL path [/userController/{id}/showUser/] onto handler 'userController'
+[INFO][2015-09-11 15:59:56,646][org.springframework.web.servlet.DispatcherServlet]FrameworkServlet 'springMvc': initialization completed in 706 ms
