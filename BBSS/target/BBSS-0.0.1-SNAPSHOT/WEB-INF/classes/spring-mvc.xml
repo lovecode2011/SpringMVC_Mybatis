@@ -18,7 +18,9 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<mvc:annotation-driven />
 
 	<!-- 静态资源处理， css， js， imgs -->
-	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/WEB-INF/resources/**" location="/WEB-INF/resources/" />
+	
+	
 	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
 	<bean id="mappingJacksonHttpMessageConverter" 
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
