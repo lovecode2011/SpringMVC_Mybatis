@@ -37,5 +37,16 @@ public class UserController {
 		request.setAttribute("user", u);
 		return "showUser";
 	}
+	
+	@RequestMapping("/showUser")
+	public String showUser() {
+		
+		return "showUser2";
+	}
+	@RequestMapping("/login")
+	public String login() {
+		
+		return "login";
+	}
 
 }
