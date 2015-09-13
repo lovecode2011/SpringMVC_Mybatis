@@ -1,6 +1,6 @@
 package com.booksales.model;
 
-public class BSCollect {
+public class Collect {
     private Integer collectid;
 
     private Integer userid;

@@ -21,15 +21,15 @@ public class Book {
 
     private Long price;
 
-    private Integer instock;
+    private Integer stock;
 
     private Integer sales;
 
-    private Integer bookclassifyid;
+    private Integer bookclassid;
 
     private String isrecommend;
 
-    private String introduction;
+    private String intro;
 
     public Integer getBookid() {
         return bookid;
@@ -103,12 +103,12 @@ public class Book {
         this.price = price;
     }
 
-    public Integer getInstock() {
-        return instock;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setInstock(Integer instock) {
-        this.instock = instock;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Integer getSales() {
@@ -119,12 +119,12 @@ public class Book {
         this.sales = sales;
     }
 
-    public Integer getBookclassifyid() {
-        return bookclassifyid;
+    public Integer getBookclassid() {
+        return bookclassid;
     }
 
-    public void setBookclassifyid(Integer bookclassifyid) {
-        this.bookclassifyid = bookclassifyid;
+    public void setBookclassid(Integer bookclassid) {
+        this.bookclassid = bookclassid;
     }
 
     public String getIsrecommend() {
@@ -135,11 +135,11 @@ public class Book {
         this.isrecommend = isrecommend == null ? null : isrecommend.trim();
     }
 
-    public String getIntroduction() {
-        return introduction;
+    public String getIntro() {
+        return intro;
     }
 
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
+    public void setIntro(String intro) {
+        this.intro = intro == null ? null : intro.trim();
     }
 }

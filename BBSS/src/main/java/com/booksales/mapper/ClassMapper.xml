@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.booksales.dao.ClassMapper" >
+  <resultMap id="BaseResultMap" type="com.booksales.model.Class" >
+    <id column="ClassId" property="classid" jdbcType="INTEGER" />
+    <result column="ClassName" property="classname" jdbcType="VARCHAR" />
+    <result column="ClassFatherId" property="classfatherid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bsclass
+    where ClassId = #{classid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.booksales.model.Class" >
+    insert into bsclass (ClassId, ClassName, ClassFatherId
+      )
+    values (#{classid,jdbcType=INTEGER}, #{classname,jdbcType=VARCHAR}, #{classfatherid,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.booksales.model.Class" >
+    update bsclass
+    set ClassName = #{classname,jdbcType=VARCHAR},
+      ClassFatherId = #{classfatherid,jdbcType=INTEGER}
+    where ClassId = #{classid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ClassId, ClassName, ClassFatherId
+    from bsclass
+    where ClassId = #{classid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ClassId, ClassName, ClassFatherId
+    from bsclass
+  </select>
+</mapper>

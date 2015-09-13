@@ -7,7 +7,7 @@ public class Order {
 
     private Integer userid;
 
-    private Long totalamount;
+    private Long sum;
 
     private Integer receiverid;
 
@@ -15,7 +15,7 @@ public class Order {
 
     private String logisticsstates;
 
-    private String payment;
+    private String payway;
 
     private Date ordertime;
 
@@ -35,12 +35,12 @@ public class Order {
         this.userid = userid;
     }
 
-    public Long getTotalamount() {
-        return totalamount;
+    public Long getSum() {
+        return sum;
     }
 
-    public void setTotalamount(Long totalamount) {
-        this.totalamount = totalamount;
+    public void setSum(Long sum) {
+        this.sum = sum;
     }
 
     public Integer getReceiverid() {
@@ -67,12 +67,12 @@ public class Order {
         this.logisticsstates = logisticsstates == null ? null : logisticsstates.trim();
     }
 
-    public String getPayment() {
-        return payment;
+    public String getPayway() {
+        return payway;
     }
 
-    public void setPayment(String payment) {
-        this.payment = payment == null ? null : payment.trim();
+    public void setPayway(String payway) {
+        this.payway = payway == null ? null : payway.trim();
     }
 
     public Date getOrdertime() {

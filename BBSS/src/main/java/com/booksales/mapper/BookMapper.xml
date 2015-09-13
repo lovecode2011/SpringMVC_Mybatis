@@ -11,11 +11,11 @@
     <result column="Picture" property="picture" jdbcType="VARCHAR" />
     <result column="Repertory" property="repertory" jdbcType="CHAR" />
     <result column="Price" property="price" jdbcType="DECIMAL" />
-    <result column="InStock" property="instock" jdbcType="INTEGER" />
+    <result column="Stock" property="stock" jdbcType="INTEGER" />
     <result column="Sales" property="sales" jdbcType="INTEGER" />
-    <result column="BookClassifyId" property="bookclassifyid" jdbcType="INTEGER" />
+    <result column="BookClassId" property="bookclassid" jdbcType="INTEGER" />
     <result column="IsRecommend" property="isrecommend" jdbcType="CHAR" />
-    <result column="Introduction" property="introduction" jdbcType="LONGVARCHAR" />
+    <result column="Intro" property="intro" jdbcType="LONGVARCHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bsbook
@@ -28,13 +28,13 @@
     insert into bsbook (BookId, BookName, Author, 
       Publish, ISBN, PublishDate, 
       Picture, Repertory, Price, 
-      InStock, Sales, BookClassifyId, 
-      IsRecommend, Introduction)
+      Stock, Sales, BookClassId, 
+      IsRecommend, Intro)
     values (#{bookid,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
       #{publish,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{publishdate,jdbcType=TIMESTAMP}, 
       #{picture,jdbcType=VARCHAR}, #{repertory,jdbcType=CHAR}, #{price,jdbcType=DECIMAL}, 
-      #{instock,jdbcType=INTEGER}, #{sales,jdbcType=INTEGER}, #{bookclassifyid,jdbcType=INTEGER}, 
-      #{isrecommend,jdbcType=CHAR}, #{introduction,jdbcType=LONGVARCHAR})
+      #{stock,jdbcType=INTEGER}, #{sales,jdbcType=INTEGER}, #{bookclassid,jdbcType=INTEGER}, 
+      #{isrecommend,jdbcType=CHAR}, #{intro,jdbcType=LONGVARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.booksales.model.Book" >
     update bsbook
@@ -46,22 +46,22 @@
       Picture = #{picture,jdbcType=VARCHAR},
       Repertory = #{repertory,jdbcType=CHAR},
       Price = #{price,jdbcType=DECIMAL},
-      InStock = #{instock,jdbcType=INTEGER},
+      Stock = #{stock,jdbcType=INTEGER},
       Sales = #{sales,jdbcType=INTEGER},
-      BookClassifyId = #{bookclassifyid,jdbcType=INTEGER},
+      BookClassId = #{bookclassid,jdbcType=INTEGER},
       IsRecommend = #{isrecommend,jdbcType=CHAR},
-      Introduction = #{introduction,jdbcType=LONGVARCHAR}
+      Intro = #{intro,jdbcType=LONGVARCHAR}
     where BookId = #{bookid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture, Repertory, 
-    Price, InStock, Sales, BookClassifyId, IsRecommend, Introduction
+    Price, Stock, Sales, BookClassId, IsRecommend, Intro
     from bsbook
     where BookId = #{bookid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture, Repertory, 
-    Price, InStock, Sales, BookClassifyId, IsRecommend, Introduction
+    Price, Stock, Sales, BookClassId, IsRecommend, Intro
     from bsbook
   </select>
 </mapper>
