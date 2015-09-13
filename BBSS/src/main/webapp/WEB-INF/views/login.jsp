@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>页面标题</title>
+    <title>登录</title>
     <!-- Bootstrap -->
     <link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/Font-Awesome/css/bootstrap.min.css">
@@ -52,7 +52,7 @@
     
     #loginForm img {
         width: 80px;
-        height: 40px;
+        height: 35px;
     }
 
     #footer{
@@ -70,31 +70,27 @@
                 <img alt="Bootstrap Image Preview" src="<%=request.getContextPath()%>/resources/images/01.jpg" class="img-rounded" />
             </div>
             <div class="col-md-6">
-                <form id="loginForm">
+                <form id="loginForm" action="login" method="post">
                     <div class="input-group">
                         <span class="input-group-btn">
                           <button class="btn btn-default" type="button">邮箱</button>
                         </span>
-                        <input type="text" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" placeholder="Email" name="email">
                     </div>
                     <!-- /input-group -->
                     <div class="input-group">
                         <span class="input-group-btn">
                            <button class="btn btn-default" type="button">密码</button>
                         </span>
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
                     </div>
                     <!-- /input-group -->
                     <div class="input-group" id="imgview" >
-                        <div class="col-md-6"> 
+                        <div class="col-md-8"> 
                       
                         <input type="text" class="form-control pull-left " placeholder="验证码"></div>
-                        <div class="col-md-3"> <img alt="Bootstrap Image Preview" src="images/01.jpg" class="img-rounded" /></div>
-                        <div class="col-md-2"><a href="#" class="btn btn-link btn-sm " role="button">更新图片</a></div>
-                      
-                        
-                       
-                        
+                        <!-- <img  align="middle" title="看不清，请点我"  /> -->
+                        <div class="col-md-4"> <img alt="验证图片" src="<%=request.getContextPath()%>/VerifyCodeServlet" class="img-rounded" onclick="javascript:refresh(this);" onmouseover="mouseover(this)"/></div>
                     </div>
                     <div class="checkbox">
                         <label>
@@ -117,9 +113,19 @@
     </div>
 
     <div  class="text-center" id="footer"><span >Copyright (C) BookSales 2004-2012, All Rights Reserved</span><span>  |   </span><span>BY<a href="#" class="btn btn-link btn-xs " role="button">软件实训小组</a></span></div>
-    <script src="js/jquery.min.js"></script>
+    <script>  
+    function refresh(obj){  
+         obj.src = "<%=request.getContextPath()%>/VerifyCodeServlet?" + Math.random();  
+    }  
+      
+    function mouseover(obj){  
+        obj.style.cursor = "pointer";  
+    }  
+</script>
+    
+    <script src="jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+  
 </body>
 
 </html>
