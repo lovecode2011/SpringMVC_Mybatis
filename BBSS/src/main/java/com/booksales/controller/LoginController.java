@@ -22,8 +22,21 @@ public class LoginController {
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login2(HttpServletRequest request) {
-            String username = request.getParameter("email").trim();
-            System.out.println(username);
+            String email = request.getParameter("email").trim();
+            String password = request.getParameter("password").trim();
+            String verifycode = (String)request.getSession().getAttribute("validateCode");
+            String checkcode = request.getParameter("checkcode").trim();
+            
+            String checkbox =request.getParameter("checkbox");
+            System.out.println(verifycode);
+            System.out.println(email);
+            System.out.println(password);
+            System.out.println(checkcode);
+            if(checkbox==null){
+            	checkbox="off";
+            }
+            System.out.println(checkbox);
+           
         return "showUser2";
     }
 

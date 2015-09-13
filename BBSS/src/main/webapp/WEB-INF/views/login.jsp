@@ -88,13 +88,13 @@
                     <div class="input-group" id="imgview" >
                         <div class="col-md-8"> 
                       
-                        <input type="text" class="form-control pull-left " placeholder="验证码"></div>
+                        <input type="text" class="form-control pull-left " placeholder="验证码" name="checkcode"></div>
                         <!-- <img  align="middle" title="看不清，请点我"  /> -->
                         <div class="col-md-4"> <img alt="验证图片" src="<%=request.getContextPath()%>/VerifyCodeServlet" class="img-rounded" onclick="javascript:refresh(this);" onmouseover="mouseover(this)"/></div>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> 记住密码
+                            <input type="checkbox" name ="checkbox"   > 记住密码
                         </label>
                        
                         <label class="pull-right">
@@ -123,8 +123,8 @@
     }  
 </script>
     
-    <script src="jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
   
 </body>
 
