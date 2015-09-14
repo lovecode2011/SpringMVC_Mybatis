@@ -86,11 +86,19 @@
                     </div>
                     <!-- /input-group -->
                     <div class="input-group" id="imgview" >
-                        <div class="col-md-8"> 
+                        
+                      <div class="col-md-8"> 
+                         
                       
-                        <input type="text" class="form-control pull-left " placeholder="验证码" name="checkcode"></div>
+                        <input type="text" class="form-control pull-left " placeholder="验证码" name="checkcode">
+                        </div>
+                        
                         <!-- <img  align="middle" title="看不清，请点我"  /> -->
-                        <div class="col-md-4"> <img alt="验证图片" src="<%=request.getContextPath()%>/VerifyCodeServlet" class="img-rounded" onclick="javascript:refresh(this);" onmouseover="mouseover(this)"/></div>
+                       <div class="col-md-4"> 
+                        
+                         <img alt="验证图片" src="<%=request.getContextPath()%>/VerifyCodeServlet" class="img-rounded  " onclick="javascript:refresh(this);" onmouseover="mouseover(this)"/>
+                       </div> 
+                        
                     </div>
                     <div class="checkbox">
                         <label>

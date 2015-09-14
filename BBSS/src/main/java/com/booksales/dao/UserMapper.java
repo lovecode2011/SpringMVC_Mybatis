@@ -1,6 +1,7 @@
 package com.booksales.dao;
 
 import com.booksales.model.User;
+
 import java.util.List;
 
 public interface UserMapper {
@@ -13,4 +14,6 @@ public interface UserMapper {
     List<User> selectAll();
 
     int updateByPrimaryKey(User record);
+    
+    User loginSelectPassword(String email);
 }

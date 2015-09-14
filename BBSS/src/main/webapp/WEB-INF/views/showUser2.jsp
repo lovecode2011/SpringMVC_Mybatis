@@ -5,6 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>你算什么男人。
+<body>
+
+传值成功
 </body>
 </html>
