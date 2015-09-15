@@ -8,5 +8,7 @@
 </head>
 <body>
 <a href="login">登陆</a>
+<a href="register">注册</a>
+
 </body>
 </html>

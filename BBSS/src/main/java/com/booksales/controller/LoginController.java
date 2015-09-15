@@ -8,14 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -42,6 +40,7 @@ public class LoginController {
 		logger.info("用户登录");
 		return "login";
 	}
+	
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login2(HttpServletRequest request,
@@ -89,6 +88,23 @@ public class LoginController {
 			response.addCookie(nameCookie);
 			response.addCookie(pwdCookie);
 		}
+		return "showUser";
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register() {
+		logger.info("用户注册");
+		return "register";
+	}
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String register2(User user,Model model) throws JsonGenerationException, JsonMappingException, IOException {
+		
+		
+		logger.info("用户注册开始");
+		userService.register(user);
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(user));
+		
 		return "showUser";
 	}
 

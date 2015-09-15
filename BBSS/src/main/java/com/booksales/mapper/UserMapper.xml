@@ -30,6 +30,17 @@
       #{credit,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{isroot,jdbcType=CHAR})
   </insert>
   
+  <!-- 插入用户    User-->
+  <insert id="insert2" parameterType="com.booksales.model.User" >
+    <selectKey resultType="java.lang.Integer" keyProperty="userid" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bsuser (UserName, Password, 
+      Email)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+     #{email,jdbcType=VARCHAR})
+  </insert>
+  
   
   <!-- 根据用户id 更新用户信息 -->
   <update id="updateByPrimaryKey" parameterType="com.booksales.model.User" >

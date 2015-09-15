@@ -41,6 +41,12 @@ public class UserServiceImpl implements UserServiceI {
 			
 	}
 
+	@Override
+	public void register(User user) {
+		userMapper.insert2(user);
+		
+	}
+
 
 	
 
