@@ -5,6 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>用户名：${user.username}
+<body>用户页面
 </body>
 </html>

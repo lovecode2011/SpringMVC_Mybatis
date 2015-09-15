@@ -6,7 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-传值成功
+欢迎来到管理员页面
 </body>
 </html>

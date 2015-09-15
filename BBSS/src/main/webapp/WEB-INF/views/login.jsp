@@ -75,14 +75,14 @@
                         <span class="input-group-btn">
                           <button class="btn btn-default" type="button">邮箱</button>
                         </span>
-                        <input type="text" class="form-control" placeholder="Email" name="email">
+                        <input type="text" class="form-control" placeholder="Email" name="email" value="${cookie.email.value}">
                     </div>
                     <!-- /input-group -->
                     <div class="input-group">
                         <span class="input-group-btn">
                            <button class="btn btn-default" type="button">密码</button>
                         </span>
-                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <input type="password" class="form-control" placeholder="Password" name="password" value="${cookie.password.value}">
                     </div>
                     <!-- /input-group -->
                     <div class="input-group" id="imgview" >
