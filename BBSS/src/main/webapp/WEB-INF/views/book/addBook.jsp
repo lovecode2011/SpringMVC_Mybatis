@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-<title>登录</title>
+<title>添加图书</title>
 <!-- Bootstrap -->
 <link
 	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
@@ -26,6 +26,138 @@
 </head>
 
 <body>
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>AddBook</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="bookname">图书名</label>  
+  <div class="col-md-4">
+  <input id="bookname" name="bookname" type="text" placeholder="图书名称" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="author">图书作者</label>  
+  <div class="col-md-4">
+  <input id="author" name="author" type="text" placeholder="图书作者" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="publish">出版社</label>  
+  <div class="col-md-4">
+  <input id="publish" name="publish" type="text" placeholder="出版社" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="isbn">ISBN</label>  
+  <div class="col-md-4">
+  <input id="isbn" name="isbn" type="text" placeholder="ISBN" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="publishdate">出版时间</label>  
+  <div class="col-md-4">
+  <input id="publishdate" name="publishdate" type="text" placeholder="出版时间" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="repertory">图书仓库</label>
+  <div class="col-md-4">
+    <select id="repertory" name="repertory" class="form-control">
+      <option value="1">武汉</option>
+      <option value="2">广州</option>
+      <option value="3">北京</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="bookclassid">图书分类</label>
+  <div class="col-md-4">
+    <select id="bookclassid" name="bookclassid" class="form-control">
+      <option value="1">计算机</option>
+      <option value="2">自然学科</option>
+      <option value="3">java</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="price">图书价格</label>  
+  <div class="col-md-4">
+  <input id="price" name="price" type="text" placeholder="10.0" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="stock">库存量</label>  
+  <div class="col-md-4">
+  <input id="stock" name="stock" type="text" placeholder="1" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="picture">图书封面</label>
+  <div class="col-md-4">
+    <input id="picture" name="picture" class="input-file" type="file">
+  </div>
+</div>
+
+<!-- Multiple Checkboxes -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="isrecommend">是否推荐</label>
+  <div class="col-md-4">
+  <div class="checkbox">
+    <label for="isrecommend-0">
+      <input type="checkbox" name="isrecommend" id="isrecommend-0" value="1">
+      墙裂推荐
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="intro">图书简介</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="intro" name="intro">这是一本怎么样的书！！</textarea>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="">提交</label>
+  <div class="col-md-4">
+    <button id="" name="" class="btn btn-primary">确定</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
 
 
 

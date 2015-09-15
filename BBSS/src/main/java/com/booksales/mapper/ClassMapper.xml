@@ -22,11 +22,17 @@
       ClassFatherId = #{classfatherid,jdbcType=INTEGER}
     where ClassId = #{classid,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByKey" resultMap="BaseResultMap" parameterType="com.booksales.model.Class" >
     select ClassId, ClassName, ClassFatherId
     from bsclass
-    where ClassId = #{classid,jdbcType=INTEGER}
+    where ClassFatherId = #{classid,jdbcType=INTEGER}
   </select>
+  
+ <select id="selectByFatherKey" resultMap="BaseResultMap" >
+  select ClassId, ClassName, ClassFatherId
+    from bsclass where ClassFatherId =0
+ </select>
+  
   <select id="selectAll" resultMap="BaseResultMap" >
     select ClassId, ClassName, ClassFatherId
     from bsclass

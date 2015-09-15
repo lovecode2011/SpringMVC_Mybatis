@@ -27,8 +27,10 @@ public class UserServiceImpl implements UserServiceI {
 		Integer i = Integer.parseInt(id);
 		return userMapper.selectByPrimaryKey(i);
 	}
-
-	@Override
+	
+	/**
+	 * 根据传入的email，password，返回user对象
+	 */
 	public User login(String email,String password) {
 		User result=null;
 		logger.info(result);
@@ -41,7 +43,9 @@ public class UserServiceImpl implements UserServiceI {
 			
 	}
 
-	@Override
+	/**
+	 * 用户注册
+	 */
 	public void register(User user) {
 		userMapper.insert2(user);
 		

@@ -10,5 +10,8 @@
 <a href="login">登陆</a>
 <a href="register">注册</a>
 
+<a href="addBook">添加图书</a>
+<a href="addClassify">添加分类</a>
+
 </body>
 </html>

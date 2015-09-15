@@ -102,7 +102,9 @@ body {
 							<label class="col-md-4 control-label" for="password"></label>
 							<div class="col-md-8">
 								<div class="input-group">
-									<span class="input-group-addon">密码</span> <input id="password"
+									<span class="input-group-addon">密码</span> 
+									
+									<input id="password"
 										name="password" class="form-control" placeholder="请输入密码"
 										type="password">
 								</div>
@@ -115,9 +117,12 @@ body {
 							<label class="col-md-4 control-label" for="repassword"></label>
 							<div class="col-md-8">
 								<div class="input-group">
-									<span class="input-group-addon">密码</span> <input
+									<span class="input-group-addon">密码</span> 
+									
+									<input
 										id="repassword" name="repassword" class="form-control"
 										placeholder="请输入重复密码" type="password">
+									
 								</div>
 
 							</div>
@@ -132,7 +137,7 @@ body {
 								<button  name="register" class="btn btn-primary">注册</button>
 							</div>
 							<div class="col-md-4">
-								<button  name="login" class="btn btn-primary pull-right">登陆</button>
+							<a href="login" class="btn btn-success  active pull-right" role="button">登陆</a>
 							</div>
 						</div>
 
