@@ -2,144 +2,146 @@ package com.booksales.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Book {
-    private Integer bookid;
+	private Integer bookid;
 
-    private String bookname;
+	private String bookname;
 
-    private String author;
+	private String author;
 
-    private String publish;
+	private String publish;
 
-    private String isbn;
+	private String isbn;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date publishdate;
 
-    private Date publishdate;
+	private String picture;
 
-    private String picture;
+	private String repertory;
 
-    private String repertory;
+	private Integer price;
 
-    private Long price;
+	private Integer stock;
 
-    private Integer stock;
+	private Integer sales;
 
-    private Integer sales;
+	private Integer bookclassid;
 
-    private Integer bookclassid;
+	private String isrecommend;
 
-    private String isrecommend;
+	private String intro;
 
-    private String intro;
+	public Integer getBookid() {
+		return bookid;
+	}
 
-    public Integer getBookid() {
-        return bookid;
-    }
+	public void setBookid(Integer bookid) {
+		this.bookid = bookid;
+	}
 
-    public void setBookid(Integer bookid) {
-        this.bookid = bookid;
-    }
+	public String getBookname() {
+		return bookname;
+	}
 
-    public String getBookname() {
-        return bookname;
-    }
+	public void setBookname(String bookname) {
+		this.bookname = bookname == null ? null : bookname.trim();
+	}
 
-    public void setBookname(String bookname) {
-        this.bookname = bookname == null ? null : bookname.trim();
-    }
+	public String getAuthor() {
+		return author;
+	}
 
-    public String getAuthor() {
-        return author;
-    }
+	public void setAuthor(String author) {
+		this.author = author == null ? null : author.trim();
+	}
 
-    public void setAuthor(String author) {
-        this.author = author == null ? null : author.trim();
-    }
+	public String getPublish() {
+		return publish;
+	}
 
-    public String getPublish() {
-        return publish;
-    }
+	public void setPublish(String publish) {
+		this.publish = publish == null ? null : publish.trim();
+	}
 
-    public void setPublish(String publish) {
-        this.publish = publish == null ? null : publish.trim();
-    }
+	public String getIsbn() {
+		return isbn;
+	}
 
-    public String getIsbn() {
-        return isbn;
-    }
+	public void setIsbn(String isbn) {
+		this.isbn = isbn == null ? null : isbn.trim();
+	}
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn == null ? null : isbn.trim();
-    }
+	// public Date getPublishdate() {
+	// return publishdate;
+	// }
+	//
+	// public void setPublishdate(Date publishdate) {
+	// this.publishdate = publishdate;
+	// }
 
-    public Date getPublishdate() {
-        return publishdate;
-    }
+	public String getPicture() {
+		return picture;
+	}
 
-    public void setPublishdate(Date publishdate) {
-        this.publishdate = publishdate;
-    }
+	public void setPicture(String picture) {
+		this.picture = picture == null ? null : picture.trim();
+	}
 
-    public String getPicture() {
-        return picture;
-    }
+	public String getRepertory() {
+		return repertory;
+	}
 
-    public void setPicture(String picture) {
-        this.picture = picture == null ? null : picture.trim();
-    }
+	public void setRepertory(String repertory) {
+		this.repertory = repertory == null ? null : repertory.trim();
+	}
 
-    public String getRepertory() {
-        return repertory;
-    }
+	public Integer getPrice() {
+		return price;
+	}
 
-    public void setRepertory(String repertory) {
-        this.repertory = repertory == null ? null : repertory.trim();
-    }
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
 
-    public Long getPrice() {
-        return price;
-    }
+	public Integer getStock() {
+		return stock;
+	}
 
-    public void setPrice(Long price) {
-        this.price = price;
-    }
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
 
-    public Integer getStock() {
-        return stock;
-    }
+	public Integer getSales() {
+		return sales;
+	}
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
+	public void setSales(Integer sales) {
+		this.sales = sales;
+	}
 
-    public Integer getSales() {
-        return sales;
-    }
+	public Integer getBookclassid() {
+		return bookclassid;
+	}
 
-    public void setSales(Integer sales) {
-        this.sales = sales;
-    }
+	public void setBookclassid(Integer bookclassid) {
+		this.bookclassid = bookclassid;
+	}
 
-    public Integer getBookclassid() {
-        return bookclassid;
-    }
+	public String getIsrecommend() {
+		return isrecommend;
+	}
 
-    public void setBookclassid(Integer bookclassid) {
-        this.bookclassid = bookclassid;
-    }
+	public void setIsrecommend(String isrecommend) {
+		this.isrecommend = isrecommend == null ? null : isrecommend.trim();
+	}
 
-    public String getIsrecommend() {
-        return isrecommend;
-    }
+	public String getIntro() {
+		return intro;
+	}
 
-    public void setIsrecommend(String isrecommend) {
-        this.isrecommend = isrecommend == null ? null : isrecommend.trim();
-    }
-
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro == null ? null : intro.trim();
-    }
+	public void setIntro(String intro) {
+		this.intro = intro == null ? null : intro.trim();
+	}
 }

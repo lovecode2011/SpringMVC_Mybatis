@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.booksales.dao.CartMapper" >
+  <resultMap id="BaseResultMap" type="com.booksales.model.Cart" >
+    <id column="CartId" property="cartid" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="BookId" property="bookid" jdbcType="INTEGER" />
+    <result column="BookName" property="bookname" jdbcType="VARCHAR" />
+    <result column="BookNum" property="booknum" jdbcType="INTEGER" />
+    <result column="Amount" property="amount" jdbcType="DECIMAL" />
+    <result column="OrderId" property="orderid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bscart
+    where CartId = #{cartid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.booksales.model.Cart" >
+    <selectKey resultType="java.lang.Integer" keyProperty="cartid" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bscart (CartId, UserId, UserName, 
+      BookId, BookName, BookNum, 
+      Amount, OrderId)
+    values (#{cartid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{bookid,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, #{booknum,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DECIMAL}, #{orderid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.booksales.model.Cart" >
+    update bscart
+    set UserId = #{userid,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      BookId = #{bookid,jdbcType=INTEGER},
+      BookName = #{bookname,jdbcType=VARCHAR},
+      BookNum = #{booknum,jdbcType=INTEGER},
+      Amount = #{amount,jdbcType=DECIMAL},
+      OrderId = #{orderid,jdbcType=INTEGER}
+    where CartId = #{cartid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
+    from bscart
+    where CartId = #{cartid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
+    from bscart
+  </select>
+</mapper>

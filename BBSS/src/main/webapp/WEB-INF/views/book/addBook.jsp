@@ -26,138 +26,147 @@
 </head>
 
 <body>
-<form class="form-horizontal">
-<fieldset>
+	<form class="form-horizontal" id="addBook" action="addBook" method="post"
+		enctype="multipart/form-data">
+		<fieldset>
 
-<!-- Form Name -->
-<legend>AddBook</legend>
+			<!-- Form Name -->
+			<legend>AddBook</legend>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="bookname">图书名</label>  
-  <div class="col-md-4">
-  <input id="bookname" name="bookname" type="text" placeholder="图书名称" class="form-control input-md">
-    
-  </div>
-</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="bookname">图书名</label>
+				<div class="col-md-4">
+					<input id="bookname" name="bookname" type="text" placeholder="图书名称"
+						class="form-control input-md">
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="author">图书作者</label>  
-  <div class="col-md-4">
-  <input id="author" name="author" type="text" placeholder="图书作者" class="form-control input-md">
-    
-  </div>
-</div>
+				</div>
+			</div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="publish">出版社</label>  
-  <div class="col-md-4">
-  <input id="publish" name="publish" type="text" placeholder="出版社" class="form-control input-md">
-    
-  </div>
-</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="author">图书作者</label>
+				<div class="col-md-4">
+					<input id="author" name="author" type="text" placeholder="图书作者"
+						class="form-control input-md">
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="isbn">ISBN</label>  
-  <div class="col-md-4">
-  <input id="isbn" name="isbn" type="text" placeholder="ISBN" class="form-control input-md">
-    
-  </div>
-</div>
+				</div>
+			</div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="publishdate">出版时间</label>  
-  <div class="col-md-4">
-  <input id="publishdate" name="publishdate" type="text" placeholder="出版时间" class="form-control input-md">
-    
-  </div>
-</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="publish">出版社</label>
+				<div class="col-md-4">
+					<input id="publish" name="publish" type="text" placeholder="出版社"
+						class="form-control input-md">
 
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="repertory">图书仓库</label>
-  <div class="col-md-4">
-    <select id="repertory" name="repertory" class="form-control">
-      <option value="1">武汉</option>
-      <option value="2">广州</option>
-      <option value="3">北京</option>
-    </select>
-  </div>
-</div>
+				</div>
+			</div>
 
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="bookclassid">图书分类</label>
-  <div class="col-md-4">
-    <select id="bookclassid" name="bookclassid" class="form-control">
-      <option value="1">计算机</option>
-      <option value="2">自然学科</option>
-      <option value="3">java</option>
-    </select>
-  </div>
-</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="isbn">ISBN</label>
+				<div class="col-md-4">
+					<input id="isbn" name="isbn" type="text" placeholder="ISBN"
+						class="form-control input-md">
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="price">图书价格</label>  
-  <div class="col-md-4">
-  <input id="price" name="price" type="text" placeholder="10.0" class="form-control input-md">
-    
-  </div>
-</div>
+				</div>
+			</div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="stock">库存量</label>  
-  <div class="col-md-4">
-  <input id="stock" name="stock" type="text" placeholder="1" class="form-control input-md">
-    
-  </div>
-</div>
+			<!-- Text input-->
+			  <div class="form-group">
+				<label class="col-md-4 control-label" for="publishdate" >出版时间</label>
+				<div class="col-md-4">
+					<input id="publishdate" name="publishdate" type="text"
+						placeholder="出版时间" class="form-control input-md" value="2012-01-12">
+						<form:input path="birthday"/>
 
-<!-- File Button --> 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="picture">图书封面</label>
-  <div class="col-md-4">
-    <input id="picture" name="picture" class="input-file" type="file">
-  </div>
-</div>
+				</div>
+			</div> 
 
-<!-- Multiple Checkboxes -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="isrecommend">是否推荐</label>
-  <div class="col-md-4">
-  <div class="checkbox">
-    <label for="isrecommend-0">
-      <input type="checkbox" name="isrecommend" id="isrecommend-0" value="1">
-      墙裂推荐
-    </label>
-	</div>
-  </div>
-</div>
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="repertory">图书仓库</label>
+				<div class="col-md-4">
+					<select id="repertory" name="repertory" class="form-control">
+						<option value="武汉">武汉</option>
+						<option value="广州">广州</option>
+						<option value="北京">北京</option>
+					</select>
+				</div>
+			</div>
 
-<!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="intro">图书简介</label>
-  <div class="col-md-4">                     
-    <textarea class="form-control" id="intro" name="intro">这是一本怎么样的书！！</textarea>
-  </div>
-</div>
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="bookclassid">图书分类</label>
+				<div class="col-md-4">
+					<select id="bookclassid" name="bookclassid" class="form-control">
+						<option value="1">计算机</option>
+						<option value="2">自然学科</option>
+						<option value="3">java</option>
+					</select>
+				</div>
+			</div>
 
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="">提交</label>
-  <div class="col-md-4">
-    <button id="" name="" class="btn btn-primary">确定</button>
-  </div>
-</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="price">图书价格</label>
+				<div class="col-md-4">
+					<input id="price" name="price" type="text" placeholder="10.0"
+						class="form-control input-md">
 
-</fieldset>
-</form>
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="stock">库存量</label>
+				<div class="col-md-4">
+					<input id="stock" name="stock" type="text" placeholder="1"
+						class="form-control input-md">
+
+				</div>
+			</div>
+
+			<!-- File Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="picture">图书封面</label>
+				<div class="col-md-4">
+					<input id="picture" name="picture" class="input-file" type="file">
+				</div>
+			</div>
+
+			<!-- Multiple Checkboxes -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="isrecommend">是否推荐</label>
+				<div class="col-md-4">
+					<div class="checkbox">
+						<label for="isrecommend"> <input type="checkbox"
+							name="isrecommend" id="isrecommend" value="ture"> 墙裂推荐
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- Textarea -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="intro">图书简介</label>
+				<div class="col-md-4">
+					<textarea class="form-control" id="intro" name="intro">这是一本怎么样的书！！</textarea>
+				</div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group">
+
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<button class="btn btn-primary">添加</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
 
 
 
@@ -166,8 +175,7 @@
 		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-	<script>  
-
+	<script>
 		$(document).ready(function() {
 			$("#register").validate({
 				rules : {
@@ -185,8 +193,8 @@
 						minlength : 1,
 						maxlength : 12
 					},
-					"repassword":{
-						equalTo:"#password"
+					"repassword" : {
+						equalTo : "#password"
 					}
 				},
 				messages : {
@@ -198,13 +206,14 @@
 						required : '请输入密码',
 						minlength : "密码最短为2位",
 						maxlength : "密码最长为10位"
-					},username : {
+					},
+					username : {
 						required : "请输入昵称",
 						minlength : "昵称最短长度为1位",
 						maxlength : "昵称最长长度为12位"
 					},
-					"repassword":{
-						equalTo:"两次输入的密码不一致"
+					"repassword" : {
+						equalTo : "两次输入的密码不一致"
 					}
 
 				}

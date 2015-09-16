@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.booksales.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.booksales.model.Order" >
+    <id column="OrderId" property="orderid" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="Sum" property="sum" jdbcType="DECIMAL" />
+    <result column="ReceiverId" property="receiverid" jdbcType="INTEGER" />
+    <result column="OrderStates" property="orderstates" jdbcType="CHAR" />
+    <result column="LogisticsStates" property="logisticsstates" jdbcType="CHAR" />
+    <result column="PayWay" property="payway" jdbcType="CHAR" />
+    <result column="OrderTime" property="ordertime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bsorder
+    where OrderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.booksales.model.Order" >
+    <selectKey resultType="java.lang.Integer" keyProperty="orderid" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bsorder (OrderId, UserId, Sum, 
+      ReceiverId, OrderStates, LogisticsStates, 
+      PayWay, OrderTime)
+    values (#{orderid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{sum,jdbcType=DECIMAL}, 
+      #{receiverid,jdbcType=INTEGER}, #{orderstates,jdbcType=CHAR}, #{logisticsstates,jdbcType=CHAR}, 
+      #{payway,jdbcType=CHAR}, #{ordertime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.booksales.model.Order" >
+    update bsorder
+    set UserId = #{userid,jdbcType=INTEGER},
+      Sum = #{sum,jdbcType=DECIMAL},
+      ReceiverId = #{receiverid,jdbcType=INTEGER},
+      OrderStates = #{orderstates,jdbcType=CHAR},
+      LogisticsStates = #{logisticsstates,jdbcType=CHAR},
+      PayWay = #{payway,jdbcType=CHAR},
+      OrderTime = #{ordertime,jdbcType=TIMESTAMP}
+    where OrderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select OrderId, UserId, Sum, ReceiverId, OrderStates, LogisticsStates, PayWay, OrderTime
+    from bsorder
+    where OrderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select OrderId, UserId, Sum, ReceiverId, OrderStates, LogisticsStates, PayWay, OrderTime
+    from bsorder
+  </select>
+</mapper>
