@@ -27,15 +27,24 @@
       ClassFatherId = #{classfatherid,jdbcType=INTEGER}
     where ClassId = #{classid,jdbcType=INTEGER}
   </update>
+  
+  
   <select id="selectByKey" resultMap="BaseResultMap" parameterType="com.booksales.model.Class" >
     select ClassId, ClassName, ClassFatherId
     from bsclass
     where ClassFatherId = #{classid,jdbcType=INTEGER}
   </select>
-  
+  <!-- 查询所有的父类 id=0 -->
  <select id="selectByFatherKey" resultMap="BaseResultMap" >
   select ClassId, ClassName, ClassFatherId
     from bsclass where ClassFatherId =0
+ </select>
+ <!-- 根据父类id查询其子类的集合 -->
+ <select id="selectSubClassByFatherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  select ClassId, ClassName, ClassFatherId
+    from bsclass
+    where ClassFatherId = #{classid,jdbcType=INTEGER}
+ 
  </select>
   
   <select id="selectAll" resultMap="BaseResultMap" >

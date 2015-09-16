@@ -12,6 +12,7 @@
 
 <a href="addBook">添加图书</a>
 <a href="addClassify">添加分类</a>
+<a href="addSubClassify">添加级联分类</a>
 
 </body>
 </html>

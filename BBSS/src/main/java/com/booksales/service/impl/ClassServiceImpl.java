@@ -39,4 +39,17 @@ public class ClassServiceImpl implements ClassServiceI {
 		return i;
 	}
 
+
+
+	@Override
+	public List<Class> selectByFatherId(String fatherid) {
+		Integer id= Integer.parseInt(fatherid);
+		List<Class> classlist=	classMapper.selectSubClassByFatherId(id);
+		
+		return classlist;
+	}
+
+
+
+
 }

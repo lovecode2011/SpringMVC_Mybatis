@@ -1,6 +1,7 @@
 package com.booksales.dao;
 
 import com.booksales.model.Class;
+
 import java.util.List;
 
 public interface ClassMapper {
@@ -25,6 +26,12 @@ public interface ClassMapper {
     
 
     int updateByPrimaryKey(Class record);
+    /**
+     * 根据父类id查询其子类的list 集合
+     * @param id
+     * @return List<Class>
+     */
+	List<Class> selectSubClassByFatherId(Integer classid);
 
 	
 }

@@ -14,8 +14,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.booksales.model.Class;
 import com.booksales.service.ClassServiceI;
@@ -63,7 +65,40 @@ public class ClassifyController {
 	}
 	
 	
+	@RequestMapping(value = "/addSubClassify", method = RequestMethod.GET)
+	public String addSubClassify(Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		
+		logger.info("GET-----查询所有根分类-----");
+		List<Class> classMapperList = classService.SelectFatherId();
+		model.addAttribute("classList", classMapperList);
+		
+		//json格式输出classMapperList
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(classMapperList));
+		
+		return "classify/addSubClassify";
+	}
 	
+	@RequestMapping(value = "/addSubClassify", method = RequestMethod.POST)
+	public String addSubClassify2(Model model,Class clazz) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("POST----添加分类-----");
+		
+		classService.addClassify(clazz);
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(clazz));
+		return "showUser";
+	}
 	
-	
+	@RequestMapping(value = "/selectByFatherId", method = RequestMethod.POST)
+	@ResponseBody 
+	public List<Class> selectByFatherId(HttpServletRequest request,
+			HttpServletResponse respons) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("POST-----查询子类开始-----");
+		String fatherid = request.getParameter("fatherid");
+		logger.info("传入的id为："+fatherid);
+		List<Class> clist=	classService.selectByFatherId(fatherid);
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(clist));
+		return clist;
+	}
 }
