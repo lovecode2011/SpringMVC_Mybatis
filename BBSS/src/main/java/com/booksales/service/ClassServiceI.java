@@ -11,6 +11,11 @@ public interface ClassServiceI {
 	 */
 	List<Class> SelectFatherId();
 	
+	/**
+	 * 添加分类
+	 * @param clazz
+	 * @return
+	 */
 	int addClassify(Class clazz);
 	
 	/**

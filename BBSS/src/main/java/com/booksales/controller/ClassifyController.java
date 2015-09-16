@@ -36,7 +36,14 @@ public class ClassifyController {
 		this.classService = classService;
 	}
 
-
+	/**
+	 * 查看所有根分类
+	 * @param model
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/addClassify", method = RequestMethod.GET)
 	public String addClassify(Model model) throws JsonGenerationException, JsonMappingException, IOException{
 		
@@ -50,25 +57,39 @@ public class ClassifyController {
 		
 		return "classify/addClassify";
 	}
-	
+	/**
+	 * 传入 Class，添加到二级分类
+	 * @param model
+	 * @param clazz
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/addClassify", method = RequestMethod.POST)
 	public String addClassify2(Model model,Class clazz) throws JsonGenerationException, JsonMappingException, IOException{
-		
+		logger.info("POST----添加二级分类-----");
 		classService.addClassify(clazz);
-	//logger.info("POST-----查询所有根分类-----");
-		//List<Class> classMapperList = classService.SelectFatherId();
 		ObjectMapper mapper = new ObjectMapper();
-	//	logger.info(mapper.writeValueAsString(classMapperList));
 		logger.info(mapper.writeValueAsString(clazz));
-	//model.addAttribute("classList", classMapperList);
+		
+		logger.info("POST----添加二级分类成功-----");
 		return "showUser";
 	}
 	
-	
+	/**
+	 * 添加第三级目录时的第一步：查询第一级目录，第二步：查询父类目录下子目录
+	 * 				
+	 * @param model
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/addSubClassify", method = RequestMethod.GET)
 	public String addSubClassify(Model model) throws JsonGenerationException, JsonMappingException, IOException{
 		
-		logger.info("GET-----查询所有根分类-----");
+		logger.info("GET-----查询所有根分类=》添加三级目录-----");
 		List<Class> classMapperList = classService.SelectFatherId();
 		model.addAttribute("classList", classMapperList);
 		
@@ -78,22 +99,60 @@ public class ClassifyController {
 		
 		return "classify/addSubClassify";
 	}
-	
+	/**
+	 * 传入Class， 添加到第三层目录
+	 * @param model
+	 * @param clazz
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/addSubClassify", method = RequestMethod.POST)
-	public String addSubClassify2(Model model,Class clazz) throws JsonGenerationException, JsonMappingException, IOException{
-		logger.info("POST----添加分类-----");
+	public String addSubClassify2(HttpServletRequest request,
+			HttpServletResponse respons) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("POST----添加三级分类-----");
+		logger.info("firstid===》"+request.getParameter("classfatherid"));
+		logger.info("secondid===》"+request.getParameter("classSubid"));
+		logger.info("classname===》"+request.getParameter("classname"));
 		
-		classService.addClassify(clazz);
+		Integer firstid = Integer.parseInt(request.getParameter("classfatherid"));
+		Integer secondid = Integer.parseInt(request.getParameter("classSubid"));
+		String classname = request.getParameter("classname");
+		
+		
+		
+		
+		Class clazz =new Class();
+		//如果第二级菜单不为空。则将不进行
+		if(secondid!=null){
+			clazz.setClassfatherid(secondid);
+			clazz.setClassname(classname);
+			classService.addClassify(clazz);
+		}
+		
+		
 		ObjectMapper mapper = new ObjectMapper();
 		logger.info(mapper.writeValueAsString(clazz));
+		
+		logger.info("POST----添加三级分类成功-----");
 		return "showUser";
 	}
 	
+	/**
+	 * 根据传入的父类分类的id，查询该父类的所有的子分类。
+	 * @param request
+	 * @param respons
+	 * @return   返回子分类的List的json
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/selectByFatherId", method = RequestMethod.POST)
 	@ResponseBody 
 	public List<Class> selectByFatherId(HttpServletRequest request,
 			HttpServletResponse respons) throws JsonGenerationException, JsonMappingException, IOException{
-		logger.info("POST-----查询子类开始-----");
+		logger.info("POST-----根据父类id查询子类开始-----");
 		String fatherid = request.getParameter("fatherid");
 		logger.info("传入的id为："+fatherid);
 		List<Class> clist=	classService.selectByFatherId(fatherid);
