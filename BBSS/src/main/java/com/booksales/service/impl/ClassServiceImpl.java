@@ -31,4 +31,12 @@ public class ClassServiceImpl implements ClassServiceI {
 		return classlist;
 	}
 
+
+
+	@Override
+	public int addClassify(Class clazz) {
+		int i =classMapper.insert(clazz);
+		return i;
+	}
+
 }

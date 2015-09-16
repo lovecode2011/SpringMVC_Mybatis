@@ -9,4 +9,6 @@ public interface ClassServiceI {
 	 * @return 父类的list
 	 */
 	List<Class> SelectFatherId();
+	
+	int addClassify(Class clazz);
 }

@@ -6,7 +6,11 @@ import java.util.List;
 public interface ClassMapper {
 	
     int deleteByPrimaryKey(Integer classid);
-
+    /**
+     * 添加图书分类
+     * @param record
+     * @return
+     */
     int insert(Class record);
 
     Class selectByPrimaryKey(Integer classid);
@@ -21,4 +25,6 @@ public interface ClassMapper {
     
 
     int updateByPrimaryKey(Class record);
+
+	
 }

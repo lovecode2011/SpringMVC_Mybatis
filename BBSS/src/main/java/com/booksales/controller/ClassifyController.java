@@ -3,6 +3,9 @@ package com.booksales.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.JsonGenerationException;
@@ -35,12 +38,28 @@ public class ClassifyController {
 	@RequestMapping(value = "/addClassify", method = RequestMethod.GET)
 	public String addClassify(Model model) throws JsonGenerationException, JsonMappingException, IOException{
 		
-		logger.info("-----查询所有根分类-----");
+		logger.info("GET-----查询所有根分类-----");
 		List<Class> classMapperList = classService.SelectFatherId();
+		model.addAttribute("classList", classMapperList);
+		
+		//json格式输出classMapperList
 		ObjectMapper mapper = new ObjectMapper();
 		logger.info(mapper.writeValueAsString(classMapperList));
-		model.addAttribute("classList", classMapperList);
+		
 		return "classify/addClassify";
+	}
+	
+	@RequestMapping(value = "/addClassify", method = RequestMethod.POST)
+	public String addClassify2(Model model,Class clazz) throws JsonGenerationException, JsonMappingException, IOException{
+		
+		classService.addClassify(clazz);
+	//logger.info("POST-----查询所有根分类-----");
+		//List<Class> classMapperList = classService.SelectFatherId();
+		ObjectMapper mapper = new ObjectMapper();
+	//	logger.info(mapper.writeValueAsString(classMapperList));
+		logger.info(mapper.writeValueAsString(clazz));
+	//model.addAttribute("classList", classMapperList);
+		return "showUser";
 	}
 	
 	

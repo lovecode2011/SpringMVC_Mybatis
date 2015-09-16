@@ -6,16 +6,21 @@
     <result column="ClassName" property="classname" jdbcType="VARCHAR" />
     <result column="ClassFatherId" property="classfatherid" jdbcType="INTEGER" />
   </resultMap>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bsclass
     where ClassId = #{classid,jdbcType=INTEGER}
   </delete>
+  <!-- 添加图书分类 -->
   <insert id="insert" parameterType="com.booksales.model.Class" >
-    insert into bsclass (ClassId, ClassName, ClassFatherId
+    insert into bsclass ( ClassName, ClassFatherId
       )
-    values (#{classid,jdbcType=INTEGER}, #{classname,jdbcType=VARCHAR}, #{classfatherid,jdbcType=INTEGER}
+    values (#{classname,jdbcType=VARCHAR}, #{classfatherid,jdbcType=INTEGER}
       )
   </insert>
+  
+  
   <update id="updateByPrimaryKey" parameterType="com.booksales.model.Class" >
     update bsclass
     set ClassName = #{classname,jdbcType=VARCHAR},

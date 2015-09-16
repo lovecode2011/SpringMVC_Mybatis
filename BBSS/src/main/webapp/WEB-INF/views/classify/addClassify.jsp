@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -26,43 +27,48 @@
 </head>
 
 <body>
-<form class="form-horizontal">
-<fieldset>
-<c:if test="${classList!=NULL}">
+	<form class="form-horizontal" id="addClassify" action="addClassify" method="post">
+		<fieldset>
 
-<p>gkgegogo</p>
-</c:if>
-<!-- Form Name -->
-<legend>AddClass</legend>
+			<!-- Form Name -->
+			<legend>AddClass</legend>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="classname">图书分类</label>  
-  <div class="col-md-4">
-  <input id="classname" name="classname" type="text" placeholder="图书分类" class="form-control input-md">
-  </div>
-</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="classname">图书分类</label>
+				<div class="col-md-4">
+					<input id="classname" name="classname" type="text"
+						placeholder="图书分类" class="form-control input-md">
+				</div>
+			</div>
 
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="classfatherid">图书父类</label>
-  <div class="col-md-4">
-    <select id="classfatherid" name="classfatherid" class="form-control">
-      <option value="1">自然学科</option>
-    </select>
-  </div>
-</div>
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="classfatherid">图书父类</label>
+				<div class="col-md-4">
+					<select id="classfatherid" name="classfatherid"
+						class="form-control">
+						<c:if test="${classList!=NULL}">
+							<c:forEach var="c" items="${classList}" varStatus="clist">
+								<option value="${c.classid}">${c.classname}</option>
+							</c:forEach>
+						</c:if>
 
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for=""></label>
-  <div class="col-md-4">
-    <button id="" name="" class="btn btn-primary">确定</button>
-  </div>
-</div>
+					</select>
+				</div>
+			</div>
 
-</fieldset>
-</form>
+			<!-- Button -->
+						<div class="form-group">
+					
+							<div class="col-md-4">
+							</div>
+							<div class="col-md-4">
+								<button   class="btn btn-primary">添加</button>
+							</div>
+						</div>
+		</fieldset>
+	</form>
 
 
 
@@ -71,8 +77,7 @@
 		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-	<script>  
-
+	<script>
 		$(document).ready(function() {
 			$("#register").validate({
 				rules : {
@@ -90,8 +95,8 @@
 						minlength : 1,
 						maxlength : 12
 					},
-					"repassword":{
-						equalTo:"#password"
+					"repassword" : {
+						equalTo : "#password"
 					}
 				},
 				messages : {
@@ -103,13 +108,14 @@
 						required : '请输入密码',
 						minlength : "密码最短为2位",
 						maxlength : "密码最长为10位"
-					},username : {
+					},
+					username : {
 						required : "请输入昵称",
 						minlength : "昵称最短长度为1位",
 						maxlength : "昵称最长长度为12位"
 					},
-					"repassword":{
-						equalTo:"两次输入的密码不一致"
+					"repassword" : {
+						equalTo : "两次输入的密码不一致"
 					}
 
 				}
