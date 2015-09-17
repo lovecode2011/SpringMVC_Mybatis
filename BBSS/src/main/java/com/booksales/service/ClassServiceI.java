@@ -18,11 +18,15 @@ public interface ClassServiceI {
 	 */
 	int addClassify(Class clazz);
 	
+	
+	
 	/**
 	 * 根据父类id 查询子类分类
 	 * @param fatherid
 	 * @return 返回 子类的List
 	 */
 	List<Class> selectByFatherId(String fatherid);
+
+	void delelte(int i);
 
 }

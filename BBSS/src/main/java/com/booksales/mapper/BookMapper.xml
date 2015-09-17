@@ -7,7 +7,7 @@
     <result column="Author" property="author" jdbcType="VARCHAR" />
     <result column="Publish" property="publish" jdbcType="VARCHAR" />
     <result column="ISBN" property="isbn" jdbcType="VARCHAR" />
-    <result column="PublishDate" property="publishdate" jdbcType="TIMESTAMP" />
+    <result column="PublishDate" property="publishdate" jdbcType="VARCHAR" />
     <result column="Picture" property="picture" jdbcType="VARCHAR" />
     <result column="Repertory" property="repertory" jdbcType="CHAR" />
     <result column="Price" property="price" jdbcType="DECIMAL" />
@@ -17,25 +17,32 @@
     <result column="IsRecommend" property="isrecommend" jdbcType="CHAR" />
     <result column="Intro" property="intro" jdbcType="LONGVARCHAR" />
   </resultMap>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bsbook
-    where BookId = #{bookid,jdbcType=INTEGER}
+    where BookId = 1
   </delete>
+  
+  
+  
+  <!-- 添加图书到数据库 -->
   <insert id="insert" parameterType="com.booksales.model.Book" >
     <selectKey resultType="java.lang.Integer" keyProperty="bookid" order="BEFORE" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into bsbook (BookId, BookName, Author, 
+    insert into bsbook ( BookName, Author, 
       Publish, ISBN, PublishDate, 
       Picture, Repertory, Price, 
-      Stock, Sales, BookClassId, 
+      Stock,  BookClassId, 
       IsRecommend, Intro)
-    values (#{bookid,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
-      #{publish,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{publishdate,jdbcType=TIMESTAMP}, 
+    values (#{bookname,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{publish,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{publishdate,jdbcType=VARCHAR}, 
       #{picture,jdbcType=VARCHAR}, #{repertory,jdbcType=CHAR}, #{price,jdbcType=DECIMAL}, 
-      #{stock,jdbcType=INTEGER}, #{sales,jdbcType=INTEGER}, #{bookclassid,jdbcType=INTEGER}, 
+      #{stock,jdbcType=INTEGER},  #{bookclassid,jdbcType=INTEGER}, 
       #{isrecommend,jdbcType=CHAR}, #{intro,jdbcType=LONGVARCHAR})
   </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.booksales.model.Book" >
     update bsbook
     set BookName = #{bookname,jdbcType=VARCHAR},

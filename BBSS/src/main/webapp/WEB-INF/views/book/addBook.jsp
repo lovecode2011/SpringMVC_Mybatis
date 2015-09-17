@@ -142,7 +142,7 @@
 				<div class="col-md-4">
 					<div class="checkbox">
 						<label for="isrecommend"> <input type="checkbox"
-							name="isrecommend" id="isrecommend" value="ture"> 墙裂推荐
+							name="isrecommend" id="isrecommend" value="1"> 墙裂推荐
 						</label>
 					</div>
 				</div>

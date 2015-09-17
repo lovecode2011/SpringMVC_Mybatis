@@ -80,7 +80,7 @@ public class BookController {
 			@RequestParam("author")String author,
 			@RequestParam("publish")String publish,
 			@RequestParam("isbn")String isbn,
-			@RequestParam("publishdate")Date publishdate,
+			@RequestParam("publishdate")String publishdate,
 			@RequestParam("repertory")String repertory,
 			@RequestParam("price")Integer price,
 			@RequestParam("stock")Integer stock,
@@ -99,12 +99,7 @@ public class BookController {
 		 if(file!=null&&fileName!=null&&fileName.length()>0){
 				newFileName = UUID.randomUUID()+fileName.substring(fileName.lastIndexOf("."));
 				File newFile = new File(path+newFileName);
-				try {
 					file.transferTo(newFile);
-				} catch (IllegalStateException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			
 				logger.info("上传成功");
 		 }
@@ -117,9 +112,10 @@ public class BookController {
 		book.setIsbn(isbn);
 		
 		if(isrecommend==null){
-			isrecommend="false";
+			isrecommend="0";
 		}
 		logger.info(isrecommend);
+		book.setPublishdate(publishdate);
 		book.setIsrecommend(isrecommend);
 		book.setPicture(newFileName);
 		book.setPrice(price);
@@ -129,9 +125,14 @@ public class BookController {
 		
 		//book.setSales(sales);
 		book.setStock(stock);
-		
 		ObjectMapper mapper = new ObjectMapper();
 		logger.info(mapper.writeValueAsString(book));
+		
+		System.out.println(book);
+		
+		
+		bookService.addBook(book);
+		
 		
 		return "showUser";
 	}

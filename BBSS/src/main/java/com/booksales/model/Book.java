@@ -14,8 +14,7 @@ public class Book {
 	private String publish;
 
 	private String isbn;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date publishdate;
+	private String publishdate;
 
 	private String picture;
 
@@ -73,13 +72,14 @@ public class Book {
 		this.isbn = isbn == null ? null : isbn.trim();
 	}
 
-	// public Date getPublishdate() {
-	// return publishdate;
-	// }
-	//
-	// public void setPublishdate(Date publishdate) {
-	// this.publishdate = publishdate;
-	// }
+
+	public String getPublishdate() {
+		return publishdate;
+	}
+
+	public void setPublishdate(String publishdate) {
+		this.publishdate = publishdate;
+	}
 
 	public String getPicture() {
 		return picture;

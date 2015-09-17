@@ -15,7 +15,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<context:component-scan base-package="com.booksales.controller" />
 	
 	<!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
-	<mvc:annotation-driven conversion-service="conversionService" />
+	<mvc:annotation-driven  />
 
 	<!-- 静态资源处理， css， js， imgs -->
 	<mvc:resources mapping="resources/**" location="resources/" />
@@ -30,14 +30,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 			</list>
 		</property>
 	</bean>
-	<!-- 配置自定义类型转换器 -->
-<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-	<property name="converters">
-		<list>
-			<bean class="com.booksales.common.CustomDateConverter"></bean>
-		</list>
-	</property>
-</bean>
 	
 
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->

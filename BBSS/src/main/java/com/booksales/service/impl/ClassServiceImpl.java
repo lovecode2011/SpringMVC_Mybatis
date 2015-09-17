@@ -50,5 +50,13 @@ public class ClassServiceImpl implements ClassServiceI {
 
 
 
+	@Override
+	public void delelte(int i) {
+		classMapper.deleteByPrimaryKey(i);
+		
+	}
+
+
+
 
 }
