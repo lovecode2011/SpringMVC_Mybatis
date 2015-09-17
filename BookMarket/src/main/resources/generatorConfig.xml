@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>
+	<properties resource="database.properties"/>
+	  
+    <!-- 数据库驱动包位置 -->  
+    <classPathEntry location="F:\.m2\repository\mysql\mysql-connector-java\5.1.36\mysql-connector-java-5.1.36.jar" />
+    
+    <context id="DB2Tables" targetRuntime="MyBatis3">  
+        <commentGenerator>  
+            <property name="suppressAllComments" value="true" />  
+        </commentGenerator>
+          
+        <!-- 数据库链接URL、用户名、密码 -->  
+         <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}">  
+        </jdbcConnection> 
+         
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false" />  
+        </javaTypeResolver>  
+        
+        <!-- 生成模型的包名和位置 -->  
+        <javaModelGenerator targetPackage="com.houselease.model" targetProject="F:\jee-workspace\houselease\src\main\java">  
+            <property name="enableSubPackages" value="true" />  
+            <property name="trimStrings" value="true" />  
+        </javaModelGenerator> 
+         
+        <!-- 生成的映射文件包名和位置 -->  
+        <sqlMapGenerator targetPackage="com.houselease.mapping" targetProject="F:\jee-workspace\houselease\src\main\resources">  
+            <property name="enableSubPackages" value="true" />  
+        </sqlMapGenerator>
+          
+        <!-- 生成DAO的包名和位置 -->  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.houselease.dao" targetProject="F:\jee-workspace\houselease\src\main\java">  
+            <property name="enableSubPackages" value="true" />  
+        </javaClientGenerator>
+          
+        <!-- 配置表信息 -->  
+        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table tableName="house" domainObjectName="House" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table tableName="customer" domainObjectName="Customer" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+      
+    </context>  
+</generatorConfiguration>  

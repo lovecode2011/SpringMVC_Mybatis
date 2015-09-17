@@ -19,7 +19,7 @@
   </resultMap>
   
   
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey"  parameterType="java.lang.Integer" >
     delete from bsbook
     where BookId = 1
   </delete>
