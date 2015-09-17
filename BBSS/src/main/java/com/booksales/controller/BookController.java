@@ -65,12 +65,10 @@ public class BookController {
 			setValue(date);
 		}
 	}
-	
-
-	
 	@RequestMapping( value="/addBook",method = RequestMethod.GET)
 	public String addBook(){
 		logger.info("GET----添加图书----");
+		logger.info(deleteBook(5));
 		return "book/addBook";
 	}
 	
@@ -121,19 +119,12 @@ public class BookController {
 		book.setPrice(price);
 		book.setPublish(publish);
 		book.setRepertory(repertory);
-		
-		
 		//book.setSales(sales);
 		book.setStock(stock);
 		ObjectMapper mapper = new ObjectMapper();
 		logger.info(mapper.writeValueAsString(book));
-		
 		System.out.println(book);
-		
-		
 		bookService.addBook(book);
-		
-		
 		return "showUser";
 	}
 	/**
@@ -142,7 +133,6 @@ public class BookController {
 	 */
 	@RequestMapping( value="/addPicture",method = RequestMethod.GET)
 	public String addPicture(){
-		
 		logger.info("GET-----文件上传-----");
 		return "book/addPicture";
 	}
@@ -153,14 +143,10 @@ public class BookController {
 	 */
 	@RequestMapping( value="/addPicture",method = RequestMethod.POST)
 	public String addPicture2(MultipartFile picture){
-		
 		logger.info("POST---文件上传开始---");
-		
 			 String fileName = picture.getOriginalFilename();
-			 
 				logger.info("原文件名"+fileName);
 				String path = "O:\\picc\\";
-				
 				String newFileName = UUID.randomUUID()+fileName.substring(fileName.lastIndexOf("."));
 				logger.info(newFileName);
 				File newFile = new File(path+newFileName);
@@ -172,8 +158,14 @@ public class BookController {
 					e.printStackTrace();
 				}
 				logger.info("上传成功");
-			
 		return "showUser";
+	}
+	
+	public int deleteBook(Integer id){
+		 int i = bookService.delete(id);
+		 
+		return i;
+		
 	}
 
 }

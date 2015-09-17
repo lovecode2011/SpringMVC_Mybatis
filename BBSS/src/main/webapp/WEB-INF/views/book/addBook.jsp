@@ -167,9 +167,6 @@
 
 		</fieldset>
 	</form>
-
-
-
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
@@ -177,45 +174,76 @@
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			$("#register").validate({
+			$("#addBook").validate({
 				rules : {
-					email : {
-						required : true,
-						email : true
-					},
-					password : {
+					bookname : {
 						required : true,
 						minlength : 2,
 						maxlength : 10
 					},
-					username : {
+					author : {
 						required : true,
-						minlength : 1,
-						maxlength : 12
+						minlength : 2,
+						maxlength : 10
 					},
-					"repassword" : {
-						equalTo : "#password"
+					publish : {
+						required : true,
+						minlength : 2,
+						maxlength : 20
+					},
+					isbn: {
+						required : true,
+						minlength : 6,
+						maxlength : 15
+					},
+					publishDate: {
+						required : true,
+					},
+					intro:{
+						required : true,
+						minlength : 12,
+						maxlength : 1000
+					},
+					price:{
+						required:true,
+					},staock:{
+						required:true,
 					}
 				},
 				messages : {
-					email : {
-						required : '请输入电子邮件',
-						email : '请检查电子邮件的格式'
+					bookname : {
+						required : "请输入图书名称",
+						minlength : "图书名称最短为两个字",
+						maxlength : "图书名称最长为10个字"
 					},
-					password : {
-						required : '请输入密码',
-						minlength : "密码最短为2位",
-						maxlength : "密码最长为10位"
+					author : {
+						required : "请输入作者",
+						minlength : "作者名称最短为两个字",
+						maxlength : "作者名称最长为10个字"
 					},
-					username : {
-						required : "请输入昵称",
-						minlength : "昵称最短长度为1位",
-						maxlength : "昵称最长长度为12位"
+					publish : {
+						required : "请输入出版社",
+						minlength : "出版社名称最短为两个字",
+						maxlength : "出版社名称最长为20个字"
 					},
-					"repassword" : {
-						equalTo : "两次输入的密码不一致"
+					isbn: {
+						required : "请输入ISBN",
+						minlength : "ISBN最短为6",
+						maxlength : "ISBN最长为15"
+					},
+					publishDate: {
+						required : "请选择出版时间",
+					},
+					intro:{
+						required : "请输入简介",
+						minlength : "简介最短为12个字",
+						maxlength : "简介最长为1000个字"
+					},
+					price:{
+						required:"请输入价格",
+					},staock:{
+						required:"请输入库存",
 					}
-
 				}
 			});
 		});
