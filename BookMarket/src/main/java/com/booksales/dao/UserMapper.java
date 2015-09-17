@@ -2,7 +2,9 @@ package com.booksales.dao;
 
 import com.booksales.model.User;
 import com.booksales.model.UserExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -27,4 +29,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+	void insert2(User user);
+
+	User loginSelectPassword(String email);
 }

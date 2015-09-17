@@ -2,7 +2,9 @@ package com.booksales.dao;
 
 import com.booksales.model.Class;
 import com.booksales.model.ClassExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ClassMapper {
@@ -27,4 +29,8 @@ public interface ClassMapper {
     int updateByPrimaryKeySelective(Class record);
 
     int updateByPrimaryKey(Class record);
+
+	List<Class> selectByFatherKey();
+
+	List<Class> selectSubClassByFatherId(Integer id);
 }
