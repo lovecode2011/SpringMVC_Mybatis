@@ -13,6 +13,7 @@ import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -34,10 +35,9 @@ import com.sun.media.jfxmedia.logging.Logger;
 
 @Controller
 @RequestMapping()
-
 public class BookController {
-	
-	private BookServiceI bookService;
+	@Autowired
+	BookServiceI bookService;
 	
 	private static Log logger = LogFactory.getLog(BookController.class);	
 	

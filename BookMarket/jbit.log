@@ -2166,3 +2166,18 @@ Caused by: java.io.FileNotFoundException: class path resource [jdbc.properties] 
 2015-09-17 17:39:27 AbstractHandlerMethodMapping.java DEBUG Did not find handler method for [/login]
 2015-09-17 17:39:27 DispatcherServlet.java WARN No mapping found for HTTP request with URI [/BookMarket/login] in DispatcherServlet with name 'BookMarket'
 2015-09-17 17:39:27 FrameworkServlet.java DEBUG Successfully completed request
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG PooledDataSource forcefully closed/removed all connections.
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG PooledDataSource forcefully closed/removed all connections.
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG PooledDataSource forcefully closed/removed all connections.
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG PooledDataSource forcefully closed/removed all connections.
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG Opening JDBC Connection
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG Created connection 1525037790.
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@5ae63ade]
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG ==>  Preparing: insert into bsbook (BookId, BookName, Author, Publish, ISBN, PublishDate, Picture, Repertory, Price, Stock, Sales, BookClassId, IsRecommend, Intro) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG ==> Parameters: null, bookname(String), ergnognr(String), bookname(String), 35435(String), 2011-11-11(String), null, null, 33(Long), 43(Integer), null, 34(Integer), null, null
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG <==    Updates: 1
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG Committing JDBC Connection [com.mysql.jdbc.JDBC4Connection@5ae63ade]
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@5ae63ade]
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@5ae63ade]
+2015-09-17 22:21:38 JakartaCommonsLoggingImpl.java DEBUG Returned connection 1525037790 to pool.
