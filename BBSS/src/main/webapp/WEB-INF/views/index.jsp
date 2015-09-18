@@ -11,10 +11,12 @@
 <a href="register">注册</a>
 
 <a href="addBook">添加图书</a>
+<a href="listBook">图书列表</a>
+<a href="addClassifyOne">添加一级分类</a>
 <a href="addClassify">添加二级分类</a>
 <a href="addSubClassify">添加三级分类</a>
 <a href="addPicture">添加图片</a>
 <a href="addReceiver">添加收货地址</a>
-<a href="listBook">图书列表</a>
+
 </body>
 </html>

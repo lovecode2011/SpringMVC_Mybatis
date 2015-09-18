@@ -70,4 +70,11 @@ public class ClassServiceImpl implements ClassServiceI {
 	public List<Class> selectClassThree(Integer bookid) {
 		return classMapper.selectSubClassByFatherId(bookid);
 	}
+
+	@Override
+	public int addClassifyOne(Class clazz) {
+		clazz.setClassfatherid(0);
+		return classMapper.insert(clazz);
+	}
+
 }

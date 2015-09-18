@@ -46,5 +46,10 @@ public interface ClassServiceI {
 	 * @return  第三层目录下的book对象的集合
 	 */
 	List<Class> selectClassThree(Integer id);
+    /**
+     * 添加一级目录，，一级目录的fatherid默认为0
+     * @return
+     */
+	int addClassifyOne(Class clazz);
 
 }

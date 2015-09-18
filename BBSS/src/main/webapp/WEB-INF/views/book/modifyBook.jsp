@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -37,7 +38,7 @@
 				<label class="col-md-4 control-label" for="author">图书作者</label>
 				<div class="col-md-4">
 					<input id="author" name="author" type="text" placeholder="图书作者"
-						class="form-control input-md">
+						class="form-control input-md" value="${book.author}">
 
 				</div>
 			</div>
@@ -47,7 +48,7 @@
 				<label class="col-md-4 control-label" for="publish">出版社</label>
 				<div class="col-md-4">
 					<input id="publish" name="publish" type="text" placeholder="出版社"
-						class="form-control input-md">
+						class="form-control input-md" value="${book.publish}">
 
 				</div>
 			</div>
@@ -57,7 +58,7 @@
 				<label class="col-md-4 control-label" for="isbn">ISBN</label>
 				<div class="col-md-4">
 					<input id="isbn" name="isbn" type="text" placeholder="ISBN"
-						class="form-control input-md">
+						class="form-control input-md" value="${book.isbn}">
 
 				</div>
 			</div>
@@ -67,7 +68,7 @@
 				<label class="col-md-4 control-label" for="publishdate" >出版时间</label>
 				<div class="col-md-4">
 					<input id="publishdate" name="publishdate" type="text"
-						placeholder="出版时间" class="form-control input-md" data-position="right" readonly>
+						placeholder="出版时间" class="form-control input-md" data-position="right" readonly value="${book.publishdate}">
 				</div>
 			</div> 
 
@@ -75,7 +76,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="repertory">图书仓库</label>
 				<div class="col-md-4">
-					<select id="repertory" name="repertory" class="form-control">
+					<select id="repertory" name="repertory" class="form-control" value="${book.repertory }">
 						<option value="武汉">武汉</option>
 						<option value="广州">广州</option>
 						<option value="北京">北京</option>
@@ -99,8 +100,8 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="price">图书价格</label>
 				<div class="col-md-4">
-					<input id="price" name="price" type="text" placeholder="10.0"
-						class="form-control input-md">
+					<input id="price" name="price" type="text" placeholder="price"
+						class="form-control input-md" value="${book.price}">
 
 				</div>
 			</div>
@@ -110,7 +111,7 @@
 				<label class="col-md-4 control-label" for="stock">库存量</label>
 				<div class="col-md-4">
 					<input id="stock" name="stock" type="text" placeholder="1"
-						class="form-control input-md">
+						class="form-control input-md" value="${book.stock }">
 
 				</div>
 			</div>
@@ -118,14 +119,26 @@
 			<!-- File Button -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="picture">图书封面</label>
+				<c:if test="${book.picture!=NULL}">
+					<div class="col-md-2">
+					<img alt="图书封面" src="http://wwhahapic.tunnel.mobi/${book.picture }" width="200px" height="150px">
+				</div>
+				<div class="col-md-3">
+					<input id="picture" name="picture" class="input-file" type="file">
+				</div>
+				</c:if>
+				<c:if test="${book.picture==NULL}">
 				<div class="col-md-4">
 					<input id="picture" name="picture" class="input-file" type="file">
 				</div>
+				</c:if>
+				
 			</div>
 
 			<!-- Multiple Checkboxes -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="isrecommend">是否推荐</label>
+				<c:if test="${book.isrecommend==0}">
 				<div class="col-md-4">
 					<div class="checkbox">
 						<label for="isrecommend"> <input type="checkbox"
@@ -133,13 +146,23 @@
 						</label>
 					</div>
 				</div>
+				</c:if>
+				<c:if test="${book.isrecommend==1}">
+				<div class="col-md-4">
+					<div class="checkbox">
+						<label for="isrecommend"> <input type="checkbox"
+							name="isrecommend" id="isrecommend" value="1" checked="checked"> 墙裂推荐
+						</label>
+					</div>
+				</div>
+				</c:if>
 			</div>
 
 			<!-- Textarea -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="intro">图书简介</label>
 				<div class="col-md-4">
-					<textarea class="form-control" id="intro" name="intro">这是一本怎么样的书！！</textarea>
+					<textarea class="form-control" id="intro" name="intro"> ${book.intro } </textarea>
 				</div>
 			</div>
 
@@ -148,7 +171,7 @@
 
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<button class="btn btn-primary">添加</button>
+					<button class="btn btn-primary">修改</button>
 				</div>
 			</div>
 
@@ -160,12 +183,13 @@
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.min.js"></script>
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.languages.js">
 	 
-	 $('#publishdate').cxCalendar({language: 'zh-cn',});
+	 
 	 </script>
 
 	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 	<script> 
+	$('#publishdate').cxCalendar({language: 'zh-cn',});
 		$(document).ready(function() {
 			$("#addBook").validate({
 				rules : {

@@ -48,7 +48,7 @@
                        	 
                        	 <td>${b.publishdate}</td>
                        	 <td>${b.isbn}</td>
-                       	 <td><img alt="" src="http://localhost:88/${b.picture}" width="100px" height="80px"></td>
+                       	 <td><img alt="" src="http://wwhahapic.tunnel.mobi/${b.picture}" width="100px" height="80px"></td>
                        	 <td>${b.repertory}</td>
                        	 <td>${b.price}</td>
                        	 <td>${b.stock}</td>

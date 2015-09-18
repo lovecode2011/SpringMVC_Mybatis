@@ -203,4 +203,20 @@ public class ClassifyController {
 		logger.info(mapper.writeValueAsString(classThreelist));
 		return classThreelist;
 	}
+	@RequestMapping(value = "/addClassifyOne", method = RequestMethod.GET)
+	public String addClassifyOne(Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("GET-----添加一级分类-----");
+		return "classify/addClassifyOne";
+	}
+	@RequestMapping(value = "/addClassifyOne", method = RequestMethod.POST)
+	public String addClassifyOne2(Model model,Class clazz) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("POST----添加一级分类-----");
+		int i =classService.addClassifyOne(clazz);
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(clazz));
+		if(i==1){
+			logger.info("POST----添加一级分类成功-----");
+		}
+		return "showUser";
+	}
 }

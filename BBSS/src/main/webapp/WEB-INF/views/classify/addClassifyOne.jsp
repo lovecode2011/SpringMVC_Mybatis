@@ -22,10 +22,8 @@
 	<form class="form-horizontal" id="addClassifyOne" action="addClassifyOne"
 		method="post">
 		<fieldset>
-
 			<!-- Form Name -->
 			<legend>addClassifyOne</legend>
-
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="classname">一级图书目录</label>
