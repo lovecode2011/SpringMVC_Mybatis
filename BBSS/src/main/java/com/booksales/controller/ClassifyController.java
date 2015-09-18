@@ -1,6 +1,7 @@
 package com.booksales.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.booksales.common.model.ClassifyJson;
+import com.booksales.common.model.S;
 import com.booksales.model.Class;
 import com.booksales.service.ClassServiceI;
 
@@ -218,5 +221,64 @@ public class ClassifyController {
 			logger.info("POST----添加一级分类成功-----");
 		}
 		return "showUser";
+	}
+	@RequestMapping(value = "/classifyJson")
+	@ResponseBody 
+	public List<ClassifyJson> classifyJson() throws JsonGenerationException, JsonMappingException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+		//第一层目录
+		List<Class> c1list=classService.selectClassOne();
+		
+		logger.info("第一层"+mapper.writeValueAsString(c1list));
+		//要生成的第一层对象
+		List<ClassifyJson> cj1list = new ArrayList<ClassifyJson>(c1list.size());
+		//第一层json对象
+		
+		//用cj遍历c1list，并把cj放入cj1list
+		logger.info("==================================================");
+		for(Class c:c1list){
+			ClassifyJson cj=new ClassifyJson();
+			//cj获取名字
+			cj.setN(c.getClassname());
+			//第二层目录
+			List<Class> c2list =classService.selectClassTwo(c.getClassid());
+			
+			logger.info("第二层"+mapper.writeValueAsString(c2list));
+			//要生成的第二层对象
+			List<S> s1 = new ArrayList<S>(c2list.size());
+			//第二层json对象
+			
+			//用s遍历c2list,并将s加入到cj
+			logger.info("==================================================");
+			for(Class cc:c2list){
+				S s = new S();
+				s.setN(cc.getClassname());
+				//第三层
+				List<Class> c3list = classService.selectClassThree(cc.getClassid());
+				
+				logger.info("第三层"+mapper.writeValueAsString(c3list));
+				//要生成的第三层对象
+				List<S> s2 = new ArrayList<S>(c3list.size());
+				//第三层json对象
+				
+				logger.info("==================================================");
+				for(Class ccc :c3list){
+					S ss = new S();
+					ss.setN(ccc.getClassname());
+					s2.add(ss);
+				}
+				s.setS(s2);
+				s1.add(s);
+			}
+			cj.setS(s1);
+			cj1list.add(cj);
+		}
+		
+		
+		
+		logger.info("json"+mapper.writeValueAsString(cj1list));
+		
+		return cj1list;
+		
 	}
 }
