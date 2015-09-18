@@ -26,6 +26,7 @@ public interface ClassMapper {
     
 
     int updateByPrimaryKey(Class record);
+   
     /**
      * 根据父类id查询其子类的list 集合
      * @param id

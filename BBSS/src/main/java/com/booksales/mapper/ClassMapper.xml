@@ -39,6 +39,7 @@
   select ClassId, ClassName, ClassFatherId
     from bsclass where ClassFatherId =0
  </select>
+ 
  <!-- 根据父类id查询其子类的集合 -->
  <select id="selectSubClassByFatherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
   select ClassId, ClassName, ClassFatherId

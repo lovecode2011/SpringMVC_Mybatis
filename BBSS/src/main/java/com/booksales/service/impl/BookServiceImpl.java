@@ -35,4 +35,9 @@ public class BookServiceImpl implements BookServiceI {
 		return bookMapper.selectAll();
 	}
 
+	@Override
+	public Book selectBook(Integer id) {
+		return bookMapper.selectByPrimaryKey(id);
+	}
+
 }

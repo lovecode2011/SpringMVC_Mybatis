@@ -19,6 +19,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                    	<th>图书编号</th>
                         <th>图书名称</th>
                         <th>图书作者</th>
                         <th>图书出版社</th>
@@ -40,13 +41,14 @@
                 <c:if test="${booklist!=NULL}">
 							<c:forEach var="b" items="${booklist}" varStatus="blist">
 							<tr>
+							<td>${b.bookid}</td>
                         	<td>${b.bookname}</td>
                        	 <td>${b.author}</td>
                        	 <td>${b.publish}</td>
                        	 
                        	 <td>${b.publishdate}</td>
                        	 <td>${b.isbn}</td>
-                       	 <td><img alt="" src="http://localhost:88/${b.picture}"></td>
+                       	 <td><img alt="" src="http://localhost:88/${b.picture}" width="100px" height="80px"></td>
                        	 <td>${b.repertory}</td>
                        	 <td>${b.price}</td>
                        	 <td>${b.stock}</td>

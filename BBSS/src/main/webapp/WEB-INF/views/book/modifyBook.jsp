@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="zh-CN">
 
 <head>
@@ -10,6 +12,7 @@
 <title>添加图书</title>
 <!-- Bootstrap -->
 <link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery.cxcalendar.css">
 
 </head>
@@ -18,17 +21,14 @@
 	<form class="form-horizontal" id="addBook" action="addBook" method="post"
 		enctype="multipart/form-data">
 		<fieldset>
-
 			<!-- Form Name -->
-			<legend>AddBook</legend>
-
+			<legend>ModifyBook</legend>
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="bookname">图书名</label>
 				<div class="col-md-4">
 					<input id="bookname" name="bookname" type="text" placeholder="图书名称"
-						class="form-control input-md">
-
+						class="form-control input-md" value="${book.bookname }">
 				</div>
 			</div>
 
@@ -68,8 +68,6 @@
 				<div class="col-md-4">
 					<input id="publishdate" name="publishdate" type="text"
 						placeholder="出版时间" class="form-control input-md" data-position="right" readonly>
-						
-
 				</div>
 			</div> 
 
@@ -88,21 +86,11 @@
 			<!-- Select Basic -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="bookclassid">图书分类</label>
-				<div class="col-md-2">
-					<select id="bookOneclassid" name="bookOneclassid" class="form-control" onchange="getTwoClassify()" >
-						  <option value="">一级分类</option>
-					</select>
-				</div>
-				<div class="col-md-2">
-					<select id="bookTwoclassid" name="bookTwoclassid"  
-						class="form-control " onchange="getThreeClassify()">
-						  <option value="">二级分类</option>
-					</select>
-				</div>
-				<div class="col-md-2">
-					<select id="bookThreeclassid" name="bookThreeclassid"  
-						class="form-control ">
-						  <option value="">三级分类</option>
+				<div class="col-md-4">
+					<select id="bookclassid" name="bookclassid" class="form-control">
+						<option value="1">计算机</option>
+						<option value="2">自然学科</option>
+						<option value="3">java</option>
 					</select>
 				</div>
 			</div>
@@ -171,82 +159,13 @@
 	
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.min.js"></script>
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.languages.js">
-	 </script>
-	 <script type="text/javascript">
+	 
 	 $('#publishdate').cxCalendar({language: 'zh-cn',});
 	 </script>
 
 	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 	<script> 
-	$(document).ready(function(){
-		var url = "selectClassOne";
-		$.ajax( {
-			type : "GET",
-			url : url,
-			data : {},
-			dataType : "JSON",
-			success : function(data) {
-				//data为后台返回的Json信息
-				for(var n=0;n<data.length;n++){
-				//	alert(data.length);
-		 		  	var ids=data[n].classid;
-		 		  //	alert(ids);
-					var names=data[n].classname;
-				//	alert(names);
-					$("#bookOneclassid").append("<option  value='"+ids+"'>"+names+"</option>");
-		     		}
-			}
-		})
-		
-	});
-	
-	function getTwoClassify() {
-		$("#bookTwoclassid").empty();//清空
-		var id = document.getElementById("bookOneclassid").value;
-		var url = "selectClassTwo/"+id;
-		$.ajax( {
-			type : "GET",
-			url : url,
-			data : {},
-			dataType : "JSON",
-			success : function(data) {
-				$("#bookTwoclassid").append(" <option >二级分类</option>");
-				//data为后台返回的Json信息
-				for(var n=0;n<data.length;n++){
-				//	alert(data.length);
-		 		  	var ids=data[n].classid;
-		 		  //	alert(ids);
-					var names=data[n].classname;
-				//	alert(names);
-					$("#bookTwoclassid").append("<option  value='"+ids+"'>"+names+"</option>");
-		     		}
-			}
-		})
-	};
-	function getThreeClassify() {
-		$("#bookThreeclassid").empty();//清空
-		var id = document.getElementById("bookTwoclassid").value;
-		var url = "selectClassThree/"+id;
-		$.ajax( {
-			type : "GET",
-			url : url,
-			data : {},
-			dataType : "JSON",
-			success : function(data) {
-				$("#bookThreeclassid").append(" <option >三级分类</option>");
-				//data为后台返回的Json信息
-				for(var n=0;n<data.length;n++){
-				//	alert(data.length);
-		 		  	var ids=data[n].classid;
-		 		  //	alert(ids);
-					var names=data[n].classname;
-				//	alert(names);
-					$("#bookThreeclassid").append("<option  value='"+ids+"'>"+names+"</option>");
-		     		}
-			}
-		})
-	};
 		$(document).ready(function() {
 			$("#addBook").validate({
 				rules : {
@@ -281,15 +200,6 @@
 					price:{
 						required:true,
 					},staock:{
-						required:true,
-					},
-					bookOneclassid:{
-						required:true,
-					},
-					bookTwoclassid:{
-						required:true,
-					},
-					bookThreeclassid:{
 						required:true,
 					}
 				},
@@ -326,15 +236,6 @@
 						required:"请输入价格",
 					},staock:{
 						required:"请输入库存",
-					},
-					bookOneclassid:{
-						required:"请重新选择分类"
-					},
-					bookTwoclassid:{
-						required:"请重新选择分类"
-					},
-					bookThreeclassid:{
-						required:"请重新选择分类"
 					}
 				}
 			});

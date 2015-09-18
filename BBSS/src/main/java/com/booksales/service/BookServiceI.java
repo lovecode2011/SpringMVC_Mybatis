@@ -22,5 +22,11 @@ public interface BookServiceI {
 	 * @return
 	 */
 	List<Book> bookList();
+	/**
+	 * 根据图书编号查询图书
+	 * @param id
+	 * @return Book对象
+	 */
+	Book selectBook(Integer id);
 
 }

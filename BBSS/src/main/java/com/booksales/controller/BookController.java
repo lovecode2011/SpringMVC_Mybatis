@@ -84,7 +84,7 @@ public class BookController {
 			@RequestParam("repertory")String repertory,
 			@RequestParam("price")Integer price,
 			@RequestParam("stock")Integer stock,
-			@RequestParam("bookclassid")Integer bookclassid,
+			@RequestParam("bookThreeclassid")Integer bookclassid,
 			@RequestParam(value="isrecommend",required=false )String isrecommend,
 			@RequestParam("intro")String intro,
 			@RequestParam("picture")MultipartFile file,
@@ -182,13 +182,32 @@ public class BookController {
 	
 	@RequestMapping( value="/deleteBookById/{id}")
 	public String listBook(Model model,@PathVariable Integer id) throws JsonGenerationException, JsonMappingException, IOException{
-		logger.info("-----删除图书-----");
+		logger.info("-----删除图书:id为"+id+"-----");
 		logger.info("传入的id为："+id);
 		int i = bookService.delete(id);
 		
-		ObjectMapper mapper = new ObjectMapper();
+		if(i==1){
+			logger.info("传入的id为："+id+"删除成功");
+		}else{
+			logger.info("传入的id为："+id+"删除失败，该书不存在");
+		}
+		return "redirect:/listBook";
+	}
+	
+	@RequestMapping( value="/modifyBook/{id}",method = RequestMethod.GET)
+	public String modifyBook(Model model,@PathVariable Integer id) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("-----修改图书:id为"+id+"-----");
 		
-		return "showUser";
+		Book book = bookService.selectBook(id);
+		
+		if(book!=null){
+			ObjectMapper mapper = new ObjectMapper();
+			logger.info(mapper.writeValueAsString(book));
+			model.addAttribute(book);
+		}else{
+			logger.info("传入的id为："+id+"修改失败，该书不存在");
+		}
+		return "book/modifyBook";
 	}
 	
 

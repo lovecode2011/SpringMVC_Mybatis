@@ -53,10 +53,21 @@ public class ClassServiceImpl implements ClassServiceI {
 	@Override
 	public void delelte(int i) {
 		classMapper.deleteByPrimaryKey(i);
-		
+	}
+	/**
+	 * 查询第一层目录。故父类id统一为0
+	 */
+	public List<Class> selectClassOne() {
+		Integer bookid = 0;
+		return classMapper.selectSubClassByFatherId(bookid);
+	}
+	
+	public List<Class> selectClassTwo(Integer bookid) {
+		return classMapper.selectSubClassByFatherId(bookid);
 	}
 
-
-
-
+	@Override
+	public List<Class> selectClassThree(Integer bookid) {
+		return classMapper.selectSubClassByFatherId(bookid);
+	}
 }

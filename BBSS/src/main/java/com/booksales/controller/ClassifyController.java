@@ -160,4 +160,47 @@ public class ClassifyController {
 		logger.info(mapper.writeValueAsString(clist));
 		return clist;
 	}
+	/**
+	 * 查找第一层目录，返回第一层目录的json对象
+	 * @param model
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/selectClassOne", method = RequestMethod.GET)
+	@ResponseBody 
+	public List<Class> selectClassOne(Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("GET-----查询第一层分类-----");
+		List<Class> classOnelist=	classService.selectClassOne();
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(classOnelist));
+		return classOnelist;
+	}
+	/**
+	 * 查找第一层目录，返回第一层目录的json对象
+	 * @param model
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/selectClassTwo/{id}", method = RequestMethod.GET)
+	@ResponseBody 
+	public List<Class> selectClassTwo(Model model,@PathVariable Integer id) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("GET-----查询第二层分类-----");
+		List<Class> classTwolist=	classService.selectClassTwo(id);
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(classTwolist));
+		return classTwolist;
+	}
+	@RequestMapping(value = "/selectClassThree/{id}", method = RequestMethod.GET)
+	@ResponseBody 
+	public List<Class> selectClassThree(Model model,@PathVariable Integer id) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("GET-----查询第三层分类-----");
+		List<Class> classThreelist=	classService.selectClassThree(id);
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(classThreelist));
+		return classThreelist;
+	}
 }
