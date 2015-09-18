@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -10,19 +9,10 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>添加图书</title>
 <!-- Bootstrap -->
-<link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery.cxcalendar.css">
+
 </head>
 
 <body>
@@ -78,8 +68,8 @@
 				<label class="col-md-4 control-label" for="publishdate" >出版时间</label>
 				<div class="col-md-4">
 					<input id="publishdate" name="publishdate" type="text"
-						placeholder="出版时间" class="form-control input-md" value="2012-01-12">
-						<form:input path="birthday"/>
+						placeholder="出版时间" class="form-control input-md" data-position="right" readonly>
+						
 
 				</div>
 			</div> 
@@ -167,12 +157,17 @@
 
 		</fieldset>
 	</form>
-	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-	<script>
+
+	 <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
+	
+	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.min.js"></script>
+	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.languages.js"></script>
+	 <Script>
+	 $('#publishdate').cxCalendar({language: 'zh-cn',});
+	 </Script>
+	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	 <script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+	<script> 
 		$(document).ready(function() {
 			$("#addBook").validate({
 				rules : {
