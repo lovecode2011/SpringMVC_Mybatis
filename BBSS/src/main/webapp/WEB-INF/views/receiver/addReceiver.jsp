@@ -20,7 +20,7 @@
 
 <body>
 	<!-- Bootstrap -->
-	<form class="form-horizontal">
+	<form class="form-horizontal"  id="addReceiver" action="addReceiver" method="post">
 		<fieldset>
 
 			<!-- Form Name -->
@@ -48,28 +48,21 @@
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="receivetel">收货人电话</label>
+				<label class="col-md-4 control-label" for="receivertel">收货人电话</label>
 				<div class="col-md-4">
-					<input id="receivetel" name="receivetel" type="text"
+					<input id="receivetel" name="receivertel" type="text"
 						placeholder="收货人电话" class="form-control input-md">
 
 				</div>
 			</div>
 
 			<!-- Select Basic -->
-			<div class="form-group" id="receiveraddress" data-url="classifyJson">
+			<div class="form-group" id="city_china" data-url="<%=request.getContextPath()%>/resources/js/cityData.min.js" >
 				<label class="col-md-4 control-label" for="receiveraddress">收货人地址</label>
-				<div class="col-md-3">
-					<select class="one cxselect" disabled="disabled" name="one"
-						class="form-control"></select>
-				</div>
-				<div class="col-md-3">
-					<select class="two cxselect" disabled="disabled" name="two"
-						class="form-control"></select>
-				</div>
-				<div class="col-md-2">
-					<select class="three cxselect" disabled="disabled" name="three"
-						class="form-control"></select>
+				<div class="col-md-3"  >
+          <p>省份：<select class="province cxselect" disabled="disabled" name="province"></select></p>
+          <p>城市：<select class="city cxselect" disabled="disabled" name="city"></select></p>
+          <p>地区：<select class="area cxselect" disabled="disabled" name="area"></select></p>
 				</div>
 			</div>
 
@@ -103,6 +96,15 @@
 		src="<%=request.getContextPath()%>/resources/js/jquery.cxselect.min.js"></script>
 
 	<script>
+	$('#global_location').cxSelect({
+		  selects: ['country', 'state', 'city', 'region'],
+		  nodata: 'none'
+		});
+	
+	$('#city_china').cxSelect({
+		  selects: ['province', 'city', 'area'],
+		  nodata: 'none'
+		});
 		$('#receiveraddress').cxSelect({
 
 			selects : [ 'one', 'two', 'three' ],

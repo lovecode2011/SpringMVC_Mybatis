@@ -8,10 +8,12 @@
     <result column="ReceiverTel" property="receivertel" jdbcType="CHAR" />
     <result column="ReceiverAddress" property="receiveraddress" jdbcType="VARCHAR" />
   </resultMap>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bsreceiver
     where ReceiverId = #{receiverid,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.booksales.model.Receiver" >
     <selectKey resultType="java.lang.Integer" keyProperty="receiverid" order="BEFORE" >
       SELECT LAST_INSERT_ID()
@@ -21,6 +23,8 @@
     values (#{receiverid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{receivername,jdbcType=VARCHAR}, 
       #{receivertel,jdbcType=CHAR}, #{receiveraddress,jdbcType=VARCHAR})
   </insert>
+  
+  
   <update id="updateByPrimaryKey" parameterType="com.booksales.model.Receiver" >
     update bsreceiver
     set UserId = #{userid,jdbcType=INTEGER},

@@ -112,22 +112,7 @@ public class LoginController {
 		return "showUser";
 	}
 	
-	@RequestMapping(value = "/addReceiver", method = RequestMethod.GET)
-	public String addReceiver() {
-		logger.info("用户注册");
-		return "receiver/addReceiver";
-	}
-	@RequestMapping(value = "/addReceiver", method = RequestMethod.POST)
-	public String addReceiver2(User user,Model model) throws JsonGenerationException, JsonMappingException, IOException {
-		
-		
-		logger.info("用户注册开始");
-		userService.register(user);
-		ObjectMapper mapper = new ObjectMapper();
-		logger.info(mapper.writeValueAsString(user));
-		
-		return "showUser";
-	}
+	
 	
 	@RequestMapping(value = "/GetDateJson", method = RequestMethod.GET)
 	@ResponseBody
