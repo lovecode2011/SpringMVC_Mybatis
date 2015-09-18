@@ -1,5 +1,7 @@
 package com.booksales.service.impl;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,16 @@ public class BookServiceImpl implements BookServiceI {
 		return i;
 
 	}
-
+	
 	@Override
 	public int delete(int i) {
 		return bookMapper.deleteByPrimaryKey(i);
+	}
+
+	@Override
+	public List<Book> bookList() {
+		
+		return bookMapper.selectAll();
 	}
 
 }

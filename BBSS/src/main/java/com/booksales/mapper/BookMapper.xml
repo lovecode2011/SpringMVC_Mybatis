@@ -21,7 +21,7 @@
   
   <delete id="deleteByPrimaryKey"  parameterType="java.lang.Integer" >
     delete from bsbook
-    where BookId = 1
+    where BookId = #{bookname,jdbcType=VARCHAR}
   </delete>
   
   

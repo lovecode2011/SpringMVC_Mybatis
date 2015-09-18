@@ -14,6 +14,7 @@
 <a href="addClassify">添加分类</a>
 <a href="addSubClassify">添加级联分类</a>
 <a href="addPicture">添加图片</a>
-
+<a href="addReceiver">添加收货地址</a>
+<a href="listBook">图书列表</a>
 </body>
 </html>

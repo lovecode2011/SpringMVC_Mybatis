@@ -161,10 +161,11 @@
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
 	
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.min.js"></script>
-	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.languages.js"></script>
-	 <Script>
+	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.languages.js">
+	 
 	 $('#publishdate').cxCalendar({language: 'zh-cn',});
-	 </Script>
+	 </script>
+
 	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 	<script> 

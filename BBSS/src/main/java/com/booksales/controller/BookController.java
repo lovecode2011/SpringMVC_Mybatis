@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.logging.Log;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -167,5 +169,27 @@ public class BookController {
 		return i;
 		
 	}
+	@RequestMapping( value="/listBook",method = RequestMethod.GET)
+	public String listBook(Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("GET-----图书列表-----");
+		
+		List<Book> booklist = bookService.bookList();
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(booklist));
+		model.addAttribute("booklist", booklist);
+		return "book/listBook";
+	}
+	
+	@RequestMapping( value="/deleteBookById/{id}")
+	public String listBook(Model model,@PathVariable Integer id) throws JsonGenerationException, JsonMappingException, IOException{
+		logger.info("-----删除图书-----");
+		logger.info("传入的id为："+id);
+		int i = bookService.delete(id);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		return "showUser";
+	}
+	
 
 }

@@ -1,5 +1,8 @@
 package com.booksales.controller;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javax.servlet.http.Cookie;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.booksales.model.User;
 import com.booksales.service.UserServiceI;
@@ -106,6 +110,57 @@ public class LoginController {
 		logger.info(mapper.writeValueAsString(user));
 		
 		return "showUser";
+	}
+	
+	@RequestMapping(value = "/addReceiver", method = RequestMethod.GET)
+	public String addReceiver() {
+		logger.info("用户注册");
+		return "receiver/addReceiver";
+	}
+	@RequestMapping(value = "/addReceiver", method = RequestMethod.POST)
+	public String addReceiver2(User user,Model model) throws JsonGenerationException, JsonMappingException, IOException {
+		
+		
+		logger.info("用户注册开始");
+		userService.register(user);
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(user));
+		
+		return "showUser";
+	}
+	
+	@RequestMapping(value = "/GetDateJson", method = RequestMethod.GET)
+	@ResponseBody
+	public String GetDateJson(){
+		
+		FileReader fr = null;
+		try {
+			fr = new FileReader("O:\\picc\\Json\\globalData.min.json");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 String datajson= new String();
+        //可以换成工程目录下的其他文本文件
+        BufferedReader br=new BufferedReader(fr);
+        try {
+			while(br.readLine()!=null){
+			     datajson=br.readLine();
+			    System.out.println(datajson);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        try {
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return datajson;
+		
 	}
 
 }
