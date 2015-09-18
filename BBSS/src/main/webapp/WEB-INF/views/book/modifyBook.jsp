@@ -120,14 +120,14 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="picture">图书封面</label>
 				<c:if test="${book.picture!=NULL}">
-					<div class="col-md-2">
+					<div class="col-md-3">
 					<img alt="图书封面" src="http://wwhahapic.tunnel.mobi/${book.picture }" width="200px" height="150px">
 				</div>
 				<div class="col-md-3">
 					<input id="picture" name="picture" class="input-file" type="file">
 				</div>
 				</c:if>
-				<c:if test="${book.picture==NULL}">
+				<c:if test="book.picture==NULL">
 				<div class="col-md-4">
 					<input id="picture" name="picture" class="input-file" type="file">
 				</div>

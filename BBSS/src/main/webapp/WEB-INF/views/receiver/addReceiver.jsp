@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -20,50 +20,40 @@
 		<div class="inwrap">
 			<h1>jQuery cxSelect 多级联动下拉菜单</h1>
 			<h2>全球主要国家城市联动</h2>
-
 			<div class="example">
-				
-					<p>
-						所在地区： <select class="country cxselect" data-first-title="选择国家"
-							disabled="disabled"></select> <select class="state cxselect"
-							disabled="disabled"></select> <select class="city cxselect"
-							disabled="disabled"></select> <select class="region cxselect"
-							disabled="disabled"></select>
-					</p>
-				</fieldset>
-			</div>
+        <fieldset id="global_location" data-url="<%=request.getContextPath()%>/resources/js/globalData.min.js">
+          <p>所在地区：
+            <select class="country cxselect" data-first-title="选择国家" disabled="disabled"></select>
+            <select class="state cxselect" disabled="disabled"></select>
+            <select class="city cxselect" disabled="disabled"></select>
+            <select class="region cxselect" disabled="disabled"></select>
+          </p>
+        </fieldset>
+        
+         <fieldset id="city_china" data-url="<%=request.getContextPath()%>/resources/js/cityData.min.js">
+          <legend>默认</legend>
+          <p>省份：<select class="province cxselect" disabled="disabled" name="province"></select></p>
+          <p>城市：<select class="city cxselect" disabled="disabled" name="city"></select></p>
+          <p>地区：<select class="area cxselect" disabled="disabled" name="area"></select></p>
+        </fieldset>
+      </div>
 		</div>
 	</div>
-
-	<script src="<%=request.getContextPath()%>/resources/js/jjj.js"></script>
+	 <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
 	<script
 		src="<%=request.getContextPath()%>/resources/js/jquery.cxselect.min.js"></script>
 
 	<script>
-	$.cxSelect.defaults.url = 'js/cityData.min.json';
+	
 	$('#global_location').cxSelect({
-		selects : [ 'country', 'state', 'city', 'region' ],
-		nodata : 'none'
-	});
-	/**
-	$(document).ready(function(){
-		var url = "GetDateJson";
-		$.ajax( {
-			type : "GET",
-			url : url,
-			data : {},
-			dataType : "JSON",
-			success : function(data) {
-				$('#global_location').cxSelect({
-					selects : [ 'country', 'state', 'city', 'region' ],
-					nodata : 'none'
-				});
-			}
-		})
-		
-	})
-	**/
-		
+		  selects: ['country', 'state', 'city', 'region'],
+		  nodata: 'none'
+		});
+	
+	$('#city_china').cxSelect({
+		  selects: ['province', 'city', 'area'],
+		  nodata: 'none'
+		});
 	</script>
 </body>
 
