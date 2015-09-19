@@ -46,8 +46,8 @@ public class UserServiceImpl implements UserServiceI {
 	/**
 	 * 用户注册
 	 */
-	public void register(User user) {
-		userMapper.insert2(user);
+	public int register(User user) {
+		return userMapper.insert2(user);
 		
 	}
 

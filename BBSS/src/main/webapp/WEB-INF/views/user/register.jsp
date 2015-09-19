@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -45,7 +46,7 @@ body {
 }
 
 #register {
-	padding-top: 40px;
+	padding-top: 20px;
 	padding-left: 20px;
 }
 
@@ -53,9 +54,12 @@ body {
 	padding-top: 10px;
 }
 
-
 #footer {
 	padding-top: 50px;
+}
+#alert{
+width: 70%;
+margin-left: 160px;
 }
 </style>
 </head>
@@ -69,14 +73,22 @@ body {
 					class="img-rounded" />
 			</div>
 			<div class="col-md-8">
-				<form class="form-horizontal" id="register" action="register" method="post">
+			<c:if test="${register==1 }">
+			<div class="alert alert-success" role="alert" id="alert">注册成功！</div>			
+			</c:if>
+				
+
+
+				<form class="form-horizontal" id="register" action="register"
+					method="post">
 					<fieldset>
 						<!-- Prepended text-->
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="username"></label>
 							<div class="col-md-8">
 								<div class="input-group">
-									<span class="input-group-addon">昵称</span> <input id="username"
+									<span class="input-group-addon">昵称</span> 
+									<input id="username"
 										name="username" class="form-control" placeholder="请输入昵称"
 										type="text">
 								</div>
@@ -102,9 +114,7 @@ body {
 							<label class="col-md-4 control-label" for="password"></label>
 							<div class="col-md-8">
 								<div class="input-group">
-									<span class="input-group-addon">密码</span> 
-									
-									<input id="password"
+									<span class="input-group-addon">密码</span> <input id="password"
 										name="password" class="form-control" placeholder="请输入密码"
 										type="password">
 								</div>
@@ -117,12 +127,10 @@ body {
 							<label class="col-md-4 control-label" for="repassword"></label>
 							<div class="col-md-8">
 								<div class="input-group">
-									<span class="input-group-addon">密码</span> 
-									
-									<input
+									<span class="input-group-addon">密码</span> <input
 										id="repassword" name="repassword" class="form-control"
 										placeholder="请输入重复密码" type="password">
-									
+
 								</div>
 
 							</div>
@@ -130,14 +138,14 @@ body {
 
 						<!-- Button -->
 						<div class="form-group">
-					
+
+							<div class="col-md-4"></div>
 							<div class="col-md-4">
+								<button name="register" class="btn btn-primary">注册</button>
 							</div>
 							<div class="col-md-4">
-								<button  name="register" class="btn btn-primary">注册</button>
-							</div>
-							<div class="col-md-4">
-							<a href="login" class="btn btn-success  active pull-right" role="button">登陆</a>
+								<a href="login" class="btn btn-success  active pull-right"
+									role="button">登陆</a>
 							</div>
 						</div>
 

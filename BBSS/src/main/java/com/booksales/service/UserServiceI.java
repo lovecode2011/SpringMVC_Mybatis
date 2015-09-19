@@ -15,6 +15,7 @@ public interface UserServiceI {
 	/**
 	 * 用户注册
 	 * @param user
+	 * @return 
 	 */
-	void register(User user);
+	int register(User user);
 }

@@ -3,8 +3,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>用户登录后的页面</title>
 </head>
-<body>用户页面
+<body>
+欢迎你：${user.username}
+<a href="addReceiver">添加收货地址</a>
 </body>
 </html>
