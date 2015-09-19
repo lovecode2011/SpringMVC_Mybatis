@@ -25,13 +25,20 @@
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+<style>
+#box{
+width:80%;
+padding-top: 100px;
+}
 
+</style>
 <body>
-	<form class="form-horizontal" id="addClassify" action="addClassify" method="post">
+<div class="center-block" id="box" >
+	<form class="form-horizontal" id="addClassifyThree" action="addClassifyThree" method="post">
 		<fieldset>
 
 			<!-- Form Name -->
-			<legend>AddClass</legend>
+			<legend>AddSubClassify</legend>
 
 			<!-- Text input-->
 			<div class="form-group">
@@ -46,14 +53,25 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="classfatherid">图书父类</label>
 				<div class="col-md-4">
-					<select id="classfatherid" name="classfatherid"
-						class="form-control">
+					<select id="classfatherid" name="classfatherid"  
+						class="form-control " onchange="getSubClassify()">
 						<c:if test="${classList!=NULL}">
 							<c:forEach var="c" items="${classList}" varStatus="clist">
 								<option value="${c.classid}">${c.classname}</option>
 							</c:forEach>
 						</c:if>
-
+					</select>
+				</div>
+				<div class="col-md-4">
+					<select id="classSubid" name="classSubid"
+						class="form-control" >
+						<!-- 
+						<c:if test="${classSubList!=NULL}">
+							<c:forEach var="c" items="${classSubList}" varStatus="clist">
+								<option value="${c.classid}">${c.classname}</option>
+							</c:forEach>
+						</c:if>
+						 -->
 					</select>
 				</div>
 			</div>
@@ -70,7 +88,7 @@
 		</fieldset>
 	</form>
 
-
+</div>
 
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
 	<script
@@ -78,19 +96,59 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	<script>
+	
+	function getSubClassify() {
+		$("#classSubid").empty();//清空
+		var fatherid = document.getElementById("classfatherid").value;
+		var url = "selectByFatherId?fatherid=" + fatherid;
+		$.ajax( {
+			type : "POST",
+			url : url,
+			data : {},
+			dataType : "JSON",
+			success : function(data) {
+				//data为后台返回的Json信息
+				for(var n=0;n<data.length;n++){
+				//	alert(data.length);
+		 		  	var ids=data[n].classid;
+		 		  //	alert(ids);
+					var names=data[n].classname;
+				//	alert(names);
+					$("#classSubid").append("<option  value='"+ids+"'>"+names+"</option>");
+		     		}
+			}
+		})
+	};
+	$(document).ready(function(){
+		
+		var url = "selectByFatherId?fatherid=" + 1;
+		$.ajax( {
+			type : "POST",
+			url : url,
+			data : {},
+			dataType : "JSON",
+			success : function(data) {
+				//data为后台返回的Json信息
+				for(var n=0;n<data.length;n++){
+				//	alert(data.length);
+		 		  	var ids=data[n].classid;
+		 		  //	alert(ids);
+					var names=data[n].classname;
+				//	alert(names);
+					$("#classSubid").append("<option  value='"+ids+"'>"+names+"</option>");
+		     		}
+			}
+		})
+		
+	})
+	
 		$(document).ready(function() {
-			$("#register").validate({
+			$("#addSubClassify").validate({
 				rules : {
-					email : {
+					classSubid : {
 						required : true,
-						email : true
 					},
-					password : {
-						required : true,
-						minlength : 2,
-						maxlength : 10
-					},
-					username : {
+					classname : {
 						required : true,
 						minlength : 1,
 						maxlength : 12
@@ -100,24 +158,14 @@
 					}
 				},
 				messages : {
-					email : {
-						required : '请输入电子邮件',
-						email : '请检查电子邮件的格式'
+					classSubid : {
+						required : '该根目录下没有二级目录，请重新选择',
 					},
-					password : {
-						required : '请输入密码',
-						minlength : "密码最短为2位",
-						maxlength : "密码最长为10位"
+					classname : {
+						required : "请输入分类名称",
+						minlength : "分类最短长度为1位",
+						maxlength : "分类最长长度为12位"
 					},
-					username : {
-						required : "请输入昵称",
-						minlength : "昵称最短长度为1位",
-						maxlength : "昵称最长长度为12位"
-					},
-					"repassword" : {
-						equalTo : "两次输入的密码不一致"
-					}
-
 				}
 			});
 		});

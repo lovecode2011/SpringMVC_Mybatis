@@ -13,8 +13,15 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery.cxcalendar.css">
 
 </head>
+<style>
+#box{
+width:80%;
+padding-top: 20px;
+}
 
+</style>
 <body>
+<div class="center-block" id="box" >
 	<form class="form-horizontal" id="addBook" action="addBook" method="post"
 		enctype="multipart/form-data">
 		<fieldset>
@@ -84,7 +91,32 @@
 					</select>
 				</div>
 			</div>
-
+			<!-- Select Basic -->
+			<!--   比较耗时
+			<div class="form-group" id="classifyjson"
+				data-url="classifyJson">
+				<label class="col-md-3 control-label"
+					for="receiveraddress">图书分类</label>
+					<div class="col-md-3">
+							<select id="one " name="one"  
+							class="form-control one cxselect " disabled="disabled">
+									<option >省份</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+							<select id="two" name="two"  
+							class="form-control two cxselect " disabled="disabled">
+									<option >省份</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+							<select id="three " name="three"  
+							class="form-control three cxselect " disabled="disabled">
+									<option >省份</option>
+						</select>
+					</div>
+			</div>
+			-->
 			<!-- Select Basic -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="bookclassid">图书分类</label>
@@ -166,7 +198,7 @@
 
 		</fieldset>
 	</form>
-
+</div>
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
 	
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.min.js"></script>
@@ -178,6 +210,17 @@
 
 	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+		<script
+		src="<%=request.getContextPath()%>/resources/js/jquery.cxselect.min.js"></script>
+	<script>
+	
+		$('#classifyjson').cxSelect({
+
+			selects : [ 'one', 'two', 'three' ],
+			nodata : 'none'
+		});
+	</script>
+	
 	<script> 
 	$(document).ready(function(){
 		var url = "selectClassOne";

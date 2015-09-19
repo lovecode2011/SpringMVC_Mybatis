@@ -17,9 +17,16 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
 </head>
+<style>
+#box{
+width:80%;
+padding-top: 100px;
+}
 
+</style>
 <body>
-	<form class="form-horizontal" id="addClassifyOne" action="addClassifyOne"
+<div class="center-block" id="box" >
+	<form class="form-horizontal " id="addClassifyOne" action="addClassifyOne"
 		method="post">
 		<fieldset>
 			<!-- Form Name -->
@@ -41,6 +48,7 @@
 			</div>
 		</fieldset>
 	</form>
+	</div>
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>

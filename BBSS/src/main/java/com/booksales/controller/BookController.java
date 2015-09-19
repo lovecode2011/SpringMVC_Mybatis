@@ -68,7 +68,7 @@ public class BookController {
 		}
 	}
 	@RequestMapping( value="/addBook",method = RequestMethod.GET)
-	public String addBook(){
+	public String addBook(Model model){
 		logger.info("GET----添加图书----");
 		logger.info(deleteBook(5));
 		return "book/addBook";
@@ -127,7 +127,7 @@ public class BookController {
 		logger.info(mapper.writeValueAsString(book));
 		System.out.println(book);
 		bookService.addBook(book);
-		return "showUser";
+		return "user/showAdmin";
 	}
 	/**
 	 * 测试：上传单个文件

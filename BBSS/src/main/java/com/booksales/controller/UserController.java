@@ -43,11 +43,12 @@ public class UserController {
 	@RequestMapping()
 	public String showHome() {
 		
-		return "index";
+		return "user/login";
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String login(Model model) {
 		logger.info("用户登录");
+		
 		return "user/login";
 	}
 	

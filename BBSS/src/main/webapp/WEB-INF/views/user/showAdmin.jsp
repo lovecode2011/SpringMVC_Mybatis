@@ -13,11 +13,7 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
-<style>
-#city_china select{
 
-}
-</style>
 </head>
 <body>
 	<div class="navbar navbar-default" role="navigation">
@@ -29,20 +25,14 @@
 			<li class="dropdown"><a href="##" data-toggle="dropdown"
 				class="dropdown-toggle">分类管理<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="##">添加一级分类</a></li>
-					<li><a href="##">添加二级分类</a></li>
-					<li><a href="##">添加三级分类</a></li>
-				</ul></li>
-			<li class="dropdown"><a href="##" data-toggle="dropdown"
-				class="dropdown-toggle">用户管理<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="##">添加用户</a></li>
-					<li><a href="##">删除用户</a></li>
+					<li><a href="addClassifyOne">添加一级分类</a></li>
+					<li><a href="addClassifyTwo">添加二级分类</a></li>
+					<li><a href="addClassifyThree">添加三级分类</a></li>
 				</ul></li>
 			<li class="dropdown"><a href="##" data-toggle="dropdown"
 				class="dropdown-toggle">图书管理<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="##">添加图书</a></li>
+					<li><a href="addBook">添加图书</a></li>
 					<li><a href="##">删除图书</a></li>
 				</ul></li>
 			<li><a href="##">关于我们</a></li>
