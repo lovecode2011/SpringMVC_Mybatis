@@ -1,6 +1,7 @@
 package com.booksales.dao;
 
 import com.booksales.model.Receiver;
+
 import java.util.List;
 
 public interface ReceiverMapper {
@@ -13,4 +14,10 @@ public interface ReceiverMapper {
     List<Receiver> selectAll();
 
     int updateByPrimaryKey(Receiver record);
+    /**
+     * 根据用户id查用户所有的收货表
+     * @param userid
+     * @return
+     */
+	List<Receiver> selectUserReceiver(Integer userid);
 }

@@ -1,5 +1,7 @@
 package com.booksales.service;
 
+import java.util.List;
+
 import com.booksales.model.User;
 
 public interface UserServiceI {
@@ -18,4 +20,10 @@ public interface UserServiceI {
 	 * @return 
 	 */
 	int register(User user);
+	
+	/**
+	 * 查询所有的user
+	 * @return
+	 */
+	List<User> userList();
 }

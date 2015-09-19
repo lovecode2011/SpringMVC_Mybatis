@@ -1,6 +1,7 @@
 package com.booksales.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,6 +11,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,9 +39,9 @@ public class ReceiverController {
 			@RequestParam("userid")String userid,
 			@RequestParam("receivername")String receivername,
 			@RequestParam("receivertel")String receivertel,
-			@RequestParam("province")String province,
-			@RequestParam("city")String city,
-			@RequestParam("area")String area,
+			@RequestParam(value="province", required=false)String province,
+			@RequestParam(value="city",required=false)String city,
+			@RequestParam(value="area",required=false)String area,
 			@RequestParam("receiveraddress2")String receiveraddress2,
 			Model model) throws JsonGenerationException, JsonMappingException, IOException {
 		
@@ -52,7 +54,7 @@ public class ReceiverController {
 		String receiveraddress = province+city+area+receiveraddress2;
 		receiver.setReceiveraddress(receiveraddress);
 		
-	 int i=	receiverService.addReceiver(receiver);
+		int i=	receiverService.addReceiver(receiver);
 		
 		logger.info(userid);
 		logger.info(receivername);
@@ -61,8 +63,12 @@ public class ReceiverController {
 		logger.info(city);
 		logger.info(area);
 		logger.info(receiveraddress2);
-		
-		
 		return "showUser";
+	}
+	@RequestMapping(value = "/listUserReceiver/{userid}", method = RequestMethod.GET)
+	public String listUserReceiver( @PathVariable Integer userid,Model model){
+		List<Receiver> receiverlist = receiverService.SelectReceiverByUserId(userid);
+		model.addAttribute("receiverlist", receiverlist);
+		return "receiver/listReceiver";
 	}
 }

@@ -38,6 +38,14 @@
     from bsreceiver
     where ReceiverId = #{receiverid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectUserReceiver" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select ReceiverId, UserId, ReceiverName, ReceiverTel, ReceiverAddress
+    from bsreceiver
+    where UserId = #{userid,jdbcType=INTEGER}
+  
+  </select>
+  
   <select id="selectAll" resultMap="BaseResultMap" >
     select ReceiverId, UserId, ReceiverName, ReceiverTel, ReceiverAddress
     from bsreceiver

@@ -1,8 +1,5 @@
 package com.booksales.controller;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -17,11 +14,14 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.booksales.model.Book;
 import com.booksales.model.User;
@@ -30,11 +30,11 @@ import com.booksales.service.UserServiceI;
 
 @Controller
 @RequestMapping()
-public class LoginController {
+public class UserController {
 	private UserServiceI userService;
 	@Autowired
 	BookServiceI bookService;
-	private static Log logger = LogFactory.getLog(LoginController.class);
+	private static Log logger = LogFactory.getLog(UserController.class);
 
 	@Autowired
 	public void setUserService(UserServiceI userService) {
@@ -98,6 +98,8 @@ public class LoginController {
 				httpSession.setAttribute("admin", u);
 				List<Book> booklist = bookService.bookList();
 				httpSession.setAttribute("booklist", booklist);
+				List<User> userlist =userService.userList();
+				httpSession.setAttribute("userlist", userlist);
 				return "user/showAdmin";
 			}
 			else{
@@ -132,39 +134,4 @@ public class LoginController {
 	}
 	
 	
-	
-	@RequestMapping(value = "/GetDateJson", method = RequestMethod.GET)
-	@ResponseBody
-	public String GetDateJson(){
-		
-		FileReader fr = null;
-		try {
-			fr = new FileReader("O:\\picc\\Json\\globalData.min.json");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 String datajson= new String();
-        //可以换成工程目录下的其他文本文件
-        BufferedReader br=new BufferedReader(fr);
-        try {
-			while(br.readLine()!=null){
-			     datajson=br.readLine();
-			    System.out.println(datajson);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        try {
-			br.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return datajson;
-		
-	}
-
 }

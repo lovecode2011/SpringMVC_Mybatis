@@ -15,7 +15,7 @@
 </head>
 
 <body>
-			<h1>带边框的表格</h1>
+			<h1>图书列表</h1>
             <table class="table table-bordered">
                 <thead>
                     <tr>

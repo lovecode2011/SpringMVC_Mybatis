@@ -1,10 +1,12 @@
 package com.booksales.service.impl;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.booksales.controller.LoginController;
+import com.booksales.controller.UserController;
 import com.booksales.dao.UserMapper;
 import com.booksales.model.User;
 import com.booksales.service.UserServiceI;
@@ -33,7 +35,6 @@ public class UserServiceImpl implements UserServiceI {
 	 */
 	public User login(String email,String password) {
 		User result=null;
-		logger.info(result);
 	  User user=userMapper.loginSelectPassword(email);
 		logger.info(user);
 		if(password.equals(user.getPassword())){
@@ -48,7 +49,11 @@ public class UserServiceImpl implements UserServiceI {
 	 */
 	public int register(User user) {
 		return userMapper.insert2(user);
+	}
+	@Override
+	public List<User> userList() {
 		
+		return userMapper.selectAll();
 	}
 
 
