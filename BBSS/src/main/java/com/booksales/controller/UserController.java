@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.ibatis.annotations.Param;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -40,11 +41,20 @@ public class UserController {
 	public void setUserService(UserServiceI userService) {
 		this.userService = userService;
 	}
+	/**
+	 * 首页跳转
+	 * @return
+	 */
 	@RequestMapping()
 	public String showHome() {
 		
 		return "user/login";
 	}
+	/**
+	 * 登陆
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
 		logger.info("用户登录");
@@ -97,25 +107,34 @@ public class UserController {
 			
 			if("1".equals(u.getIsroot())){
 				httpSession.setAttribute("admin", u);
-				
-				
-				return "forward:showAdmin";
+				return "forward:bookPage";
 			}
 			else{
 				httpSession.setAttribute("user", u);
 				return "user/showUser";
 			}
 		}
-		
-		
-		return "showUser";
+		return "error/error";
 	}
 	
+	/**
+	 * 用户注册
+	 * @return
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register() {
 		logger.info("用户注册");
 		return "user/register";
 	}
+	/**
+	 * 用户注册
+	 * @param user
+	 * @param model
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register2(User user,Model model) throws JsonGenerationException, JsonMappingException, IOException {
 		
@@ -128,17 +147,26 @@ public class UserController {
 		if(i==1){
 			model.addAttribute("register", i);
 		}
-		
 		return "user/register";
 	}
 	
-	
-	
-	@RequestMapping(value = "/showAdmin")
-	public String showAdmin(
+	/**
+	 * 图书分页处理类
+	 * @param pageNum
+	 * @param pageSize
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/bookPage")
+	public String bookPage(
 			@RequestParam(value="pageNum",required=false,defaultValue="1")String pageNum,
 			@RequestParam(value="pageSize",required=false,defaultValue="5")String pageSize,
 			HttpServletRequest request,Model model) throws JsonGenerationException, JsonMappingException, IOException{
+			
 		ObjectMapper mapper = new ObjectMapper();
 		int PNum = Integer.parseInt(pageNum);
 			System.out.println(PNum);
@@ -149,12 +177,32 @@ public class UserController {
 			 booklist = bookService.bookpage();
 		logger.info(mapper.writeValueAsString(booklist));
 		request.setAttribute("booklist", booklist);
-		List<User> userlist =userService.userList();
-		request.setAttribute("userlist", userlist);
 		
-		return "user/showAdmin";
+		return "forward:showAdmin";
 		
 	}
+	/**
+	 * 显示管理员页面
+	 * @param model
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/showAdmin")
+	public String showAdmin(
+			Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		List<User> userlist =userService.userList();
+		model.addAttribute("userlist", userlist);
+		return "user/showAdmin";
+	}
+	@RequestMapping(value = "/modifyBook/{userid}")
+	public String modifyUser(@PathVariable String userid,Model model){
+		User user = userService.getUserById(userid);
+		model.addAttribute("user", user);
+		return "user/modifyUser";
+	}
+	
 	
 	
 }

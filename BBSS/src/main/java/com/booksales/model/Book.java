@@ -14,6 +14,7 @@ public class Book {
 	private String publish;
 
 	private String isbn;
+	
 	private String publishdate;
 
 	private String picture;

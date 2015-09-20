@@ -72,4 +72,10 @@ public class BookServiceImpl implements BookServiceI {
 		return page;
 	}
 
+	@Override
+	public int updateBook(Book book) {
+		
+	return bookMapper.updateByPrimaryKey(book);
+	}
+
 }

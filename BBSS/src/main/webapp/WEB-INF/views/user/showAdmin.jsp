@@ -89,7 +89,7 @@
 										<td>${b.stock}</td>
 										<td>${b.sales}</td>
 										<td>${b.bookclassid}</td>
-										<td><a href="modifyBook/${b.bookid}"
+										<td><a href="Book/${b.bookid}"
 											class="btn btn-warning  btn-sm" role="button">修改</a> <a
 											href="deleteBookById/${b.bookid}"
 											class="btn btn-danger  btn-sm" role="button">删除</a></td>
@@ -108,18 +108,18 @@
 							<nav>
 								<ul class="pagination pagination-sm">
 									<li><a
-										href="${pageContext.request.contextPath}/showAdmin?pageNum=${booklist.prePage}&pageSize=${booklist.pageSize}"><span>&laquo;</span> </a></li>
+										href="${pageContext.request.contextPath}/bookPage?pageNum=${booklist.prePage}&pageSize=${booklist.pageSize}"><span>&laquo;</span> </a></li>
 									<c:forEach items="${booklist.navigatepageNums}" var="nav">
 										<c:if test="${nav == booklist.pageNum}">
 											<li><a href="##">${nav}</a></li>
 										</c:if>
 										<c:if test="${nav != booklist.pageNum}">
 											<li><a
-												href="${pageContext.request.contextPath}/showAdmin?pageNum=${nav}&pageSize=${booklist.pageSize}">${nav}</a></li>
+												href="${pageContext.request.contextPath}/bookPage?pageNum=${nav}&pageSize=${booklist.pageSize}">${nav}</a></li>
 										</c:if>
 									</c:forEach>
 									<li><a
-										href="${pageContext.request.contextPath}/showAdmin?pageNum=${booklist.nextPage}&pageSize=${booklist.pageSize}">
+										href="${pageContext.request.contextPath}/bookPage?pageNum=${booklist.nextPage}&pageSize=${booklist.pageSize}">
 											<span aria-hidden="true">&raquo;</span>
 									</a></li>
 								</ul>

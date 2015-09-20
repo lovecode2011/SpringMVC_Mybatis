@@ -45,7 +45,13 @@ public interface BookServiceI {
 	 * @return Book对象
 	 */
 	Book selectBook(Integer id);
-	PageInfo<Book> bookpage2(HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException;
+	/**
+	 * 修改图书
+	 * @param book
+	 * @return
+	 */
+	int updateBook(Book book);
+	
 	
 
 }
