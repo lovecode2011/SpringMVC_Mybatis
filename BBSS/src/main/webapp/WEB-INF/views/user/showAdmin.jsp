@@ -116,6 +116,7 @@
 								<th>用户名称</th>
 								<th>用户邮箱</th>
 								<th>用户密码</th>
+								<th>用户积分</th>
 								<th>收货地址</th>
 								<th>操作</th>
 
@@ -129,6 +130,7 @@
 										<td>${u.username}</td>
 										<td>${u.email}</td>
 										<td>${u.password}</td>
+											<td>${u.credit}</td>
 										<td>
 											<!-- Button trigger modal -->
 											<button type="button" class="btn btn-primary btn-sm"
@@ -155,6 +157,7 @@
 																		<label class="col-md-3 control-label"
 																			for="receivername">收货人姓名</label>
 																		<div class="col-md-4">
+																		<input id="userid" type="hidden" name="userid" value="${u.userid }">
 																			<input id="receivername" name="receivername"
 																				type="text" placeholder="收货人姓名"
 																				class="form-control input-md">

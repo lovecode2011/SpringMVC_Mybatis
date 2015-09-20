@@ -1,8 +1,12 @@
 package com.booksales.service.impl;
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +14,8 @@ import com.booksales.controller.UserController;
 import com.booksales.dao.UserMapper;
 import com.booksales.model.User;
 import com.booksales.service.UserServiceI;
-
+import com.booksales.util.AESUtil;
+  
 @Service("userService")
 public class UserServiceImpl implements UserServiceI {
 	
@@ -32,12 +37,22 @@ public class UserServiceImpl implements UserServiceI {
 	
 	/**
 	 * 根据传入的email，password，返回user对象
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonGenerationException 
 	 */
-	public User login(String email,String password) {
+	public User login(String email,String password) throws JsonGenerationException, JsonMappingException, IOException {
 		User result=null;
-	  User user=userMapper.loginSelectPassword(email);
-		logger.info(user);
-		if(password.equals(user.getPassword())){
+		User user=userMapper.loginSelectPassword(email);
+		String pwd = user.getPassword();
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info(mapper.writeValueAsString(user));
+		
+		String s = AESUtil.AESdecrypt(pwd);
+		
+		System.out.println(s);
+		
+		if(password.equals(s)){
 			result = user;
 		}
 		return result;
@@ -48,6 +63,11 @@ public class UserServiceImpl implements UserServiceI {
 	 * 用户注册
 	 */
 	public int register(User user) {
+		
+		String pass = user.getPassword();
+		pass= AESUtil.AESencrypt(pass);
+		user.setPassword(pass);
+		user.setIsroot("0");
 		return userMapper.insert2(user);
 	}
 	@Override

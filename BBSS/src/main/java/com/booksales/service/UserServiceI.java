@@ -1,6 +1,10 @@
 package com.booksales.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 
 import com.booksales.model.User;
 
@@ -12,8 +16,11 @@ public interface UserServiceI {
 	 * @param email
 	 * @param password
 	 * @return
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonGenerationException 
 	 */
-	User login(String email,String password);
+	User login(String email,String password) throws JsonGenerationException, JsonMappingException, IOException;
 	/**
 	 * 用户注册
 	 * @param user
