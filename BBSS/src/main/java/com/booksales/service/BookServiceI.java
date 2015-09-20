@@ -1,8 +1,15 @@
 package com.booksales.service;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+
 import com.booksales.model.Book;
+import com.github.pagehelper.PageInfo;
 
 public interface BookServiceI {
 	/**
@@ -22,11 +29,23 @@ public interface BookServiceI {
 	 * @return
 	 */
 	List<Book> bookList();
+	
+	/**
+	 * 分页查询
+	 * @param request 
+	 * @return
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonGenerationException 
+	 */
+	PageInfo<Book> bookpage() throws JsonGenerationException, JsonMappingException, IOException;
 	/**
 	 * 根据图书编号查询图书
 	 * @param id
 	 * @return Book对象
 	 */
 	Book selectBook(Integer id);
+	PageInfo<Book> bookpage2(HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException;
+	
 
 }

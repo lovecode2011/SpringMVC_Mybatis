@@ -74,18 +74,18 @@
 
 		<!-- mybatis核心包 -->
 		<dependency>
-	<groupId>org.mybatis</groupId>
-	<artifactId>mybatis</artifactId>
-	<version>3.2.8</version>
-</dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.8</version>
+		</dependency>
 
 
 		<!-- mybatis/spring包 -->
 		<dependency>
-	<groupId>org.mybatis</groupId>
-	<artifactId>mybatis-spring</artifactId>
-	<version>1.2.2</version>
-</dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
 
 
 		<dependency>
@@ -104,13 +104,13 @@
 			<artifactId>druid</artifactId>
 			<version>0.2.9</version>
 		</dependency>
-		
-		 <!-- dbcp -->
-  <dependency>
-	<groupId>org.apache.commons</groupId>
-	<artifactId>commons-dbcp2</artifactId>
-	<version>2.1.1</version>
-  </dependency>
+
+		<!-- dbcp -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -166,6 +166,17 @@
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.3</version>
+		</dependency>
+		<!-- 分页插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>0.9.1</version>
 		</dependency>
 	</dependencies>
 	<build>

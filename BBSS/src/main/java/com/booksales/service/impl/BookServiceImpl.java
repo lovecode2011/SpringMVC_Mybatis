@@ -1,15 +1,23 @@
 package com.booksales.service.impl;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.booksales.dao.BookMapper;
 import com.booksales.model.Book;
 import com.booksales.service.BookServiceI;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service("bookService")
 public class BookServiceImpl implements BookServiceI {
@@ -38,6 +46,30 @@ public class BookServiceImpl implements BookServiceI {
 	@Override
 	public Book selectBook(Integer id) {
 		return bookMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public PageInfo<Book> bookpage() throws JsonGenerationException, JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		List<Book> booklist= bookMapper.selectAll();
+	System.out.println("----------------------------");
+		logger.info(mapper.writeValueAsString(booklist));
+		PageInfo<Book> page = new PageInfo<Book>(booklist);
+		System.out.println("----------------------------");
+		logger.info(mapper.writeValueAsString(page));
+		return page;
+	}
+	
+	public PageInfo<Book> bookpage2(HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		PageHelper.startPage(request);
+		List<Book> booklist= bookMapper.selectAll();
+	System.out.println("----------------------------");
+		logger.info(mapper.writeValueAsString(booklist));
+		PageInfo<Book> page = new PageInfo<Book>(booklist);
+		System.out.println("----------------------------");
+		logger.info(mapper.writeValueAsString(page));
+		return page;
 	}
 
 }

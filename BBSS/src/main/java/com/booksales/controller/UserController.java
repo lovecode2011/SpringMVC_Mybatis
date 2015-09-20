@@ -14,19 +14,19 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.booksales.model.Book;
 import com.booksales.model.User;
 import com.booksales.service.BookServiceI;
 import com.booksales.service.UserServiceI;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping()
@@ -97,11 +97,9 @@ public class UserController {
 			
 			if("1".equals(u.getIsroot())){
 				httpSession.setAttribute("admin", u);
-				List<Book> booklist = bookService.bookList();
-				httpSession.setAttribute("booklist", booklist);
-				List<User> userlist =userService.userList();
-				httpSession.setAttribute("userlist", userlist);
-				return "user/showAdmin";
+				
+				
+				return "forward:showAdmin";
 			}
 			else{
 				httpSession.setAttribute("user", u);
@@ -132,6 +130,30 @@ public class UserController {
 		}
 		
 		return "user/register";
+	}
+	
+	
+	
+	@RequestMapping(value = "/showAdmin")
+	public String showAdmin(
+			@RequestParam(value="pageNum",required=false,defaultValue="1")String pageNum,
+			@RequestParam(value="pageSize",required=false,defaultValue="5")String pageSize,
+			HttpServletRequest request,Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+		int PNum = Integer.parseInt(pageNum);
+			System.out.println(PNum);
+		int PSize =Integer.parseInt(pageSize);
+			System.out.println(PSize);
+		PageHelper.startPage(PNum,PSize);
+		PageInfo<Book> booklist = new PageInfo<Book>();
+			 booklist = bookService.bookpage();
+		logger.info(mapper.writeValueAsString(booklist));
+		request.setAttribute("booklist", booklist);
+		List<User> userlist =userService.userList();
+		request.setAttribute("userlist", userlist);
+		
+		return "user/showAdmin";
+		
 	}
 	
 	

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -13,7 +13,6 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
-
 </head>
 <body>
 	<div class="navbar navbar-default" role="navigation">
@@ -45,10 +44,11 @@
 		<div class="col-xs-3 col-md-2">
 			<ul class="nav nav-pills nav-stacked" style="max-width: 260px;">
 				<li class="active"><a href="#"> <span
-						class="badge pull-right">${fn:length(booklist)} </span>图书列表
+						class="badge pull-right">${fn:length(booklist.list)} </span>图书列表
 				</a></li>
-				<li><a href="#userpanel"> <span
-						class="badge pull-right">${fn:length(userlist)} </span>用户列表</a></li>
+				<li><a href="#userpanel"> <span class="badge pull-right">${fn:length(userlist)}
+					</span>用户列表
+				</a></li>
 				<li><a href="#"> <span class="badge pull-right">3</span>
 						订单列表
 				</a></li>
@@ -77,7 +77,7 @@
 						</thead>
 						<tbody>
 							<c:if test="${booklist!=NULL}">
-								<c:forEach var="b" items="${booklist}" varStatus="blist">
+								<c:forEach var="b" items="${booklist.list}" varStatus="blist">
 									<tr>
 										<td>${b.bookid}</td>
 										<td>${b.bookname}</td>
@@ -100,7 +100,33 @@
 							</c:if>
 
 						</tbody>
+
 					</table>
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<nav>
+								<ul class="pagination pagination-sm">
+									<li><a
+										href="${pageContext.request.contextPath}/showAdmin?pageNum=${booklist.prePage}&pageSize=${booklist.pageSize}"><span>&laquo;</span> </a></li>
+									<c:forEach items="${booklist.navigatepageNums}" var="nav">
+										<c:if test="${nav == booklist.pageNum}">
+											<li><a href="##">${nav}</a></li>
+										</c:if>
+										<c:if test="${nav != booklist.pageNum}">
+											<li><a
+												href="${pageContext.request.contextPath}/showAdmin?pageNum=${nav}&pageSize=${booklist.pageSize}">${nav}</a></li>
+										</c:if>
+									</c:forEach>
+									<li><a
+										href="${pageContext.request.contextPath}/showAdmin?pageNum=${booklist.nextPage}&pageSize=${booklist.pageSize}">
+											<span aria-hidden="true">&raquo;</span>
+									</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+
 				</div>
 				<div class="panel-footer">
 					<a href="listBook" class="btn btn-primary  btn-xs" role="button">查看详情</a>
@@ -130,7 +156,7 @@
 										<td>${u.username}</td>
 										<td>${u.email}</td>
 										<td>${u.password}</td>
-											<td>${u.credit}</td>
+										<td>${u.credit}</td>
 										<td>
 											<!-- Button trigger modal -->
 											<button type="button" class="btn btn-primary btn-sm"
@@ -157,10 +183,10 @@
 																		<label class="col-md-3 control-label"
 																			for="receivername">收货人姓名</label>
 																		<div class="col-md-4">
-																		<input id="userid" type="hidden" name="userid" value="${u.userid }">
-																			<input id="receivername" name="receivername"
-																				type="text" placeholder="收货人姓名"
-																				class="form-control input-md">
+																			<input id="userid" type="hidden" name="userid"
+																				value="${u.userid }"> <input
+																				id="receivername" name="receivername" type="text"
+																				placeholder="收货人姓名" class="form-control input-md">
 
 																		</div>
 																	</div>
@@ -181,24 +207,27 @@
 																		data-url="<%=request.getContextPath()%>/resources/js/cityData.min.js">
 																		<label class="col-md-3 control-label"
 																			for="receiveraddress">收货人地址</label>
-																			<div class="col-md-3">
-																					<select id="province " name="province"  
-																					class="form-control province cxselect " disabled="disabled">
-																							<option >省份</option>
-																				</select>
-																			</div>
-																			<div class="col-md-3">
-																					<select id="city " name="city"  
-																					class="form-control city cxselect " disabled="disabled">
-																							<option >省份</option>
-																				</select>
-																			</div>
-																			<div class="col-md-3">
-																					<select id="area " name="area"  
-																					class="form-control area cxselect " disabled="disabled">
-																							<option >省份</option>
-																				</select>
-																			</div>
+																		<div class="col-md-3">
+																			<select id="province " name="province"
+																				class="form-control province cxselect "
+																				disabled="disabled">
+																				<option>省份</option>
+																			</select>
+																		</div>
+																		<div class="col-md-3">
+																			<select id="city " name="city"
+																				class="form-control city cxselect "
+																				disabled="disabled">
+																				<option>省份</option>
+																			</select>
+																		</div>
+																		<div class="col-md-3">
+																			<select id="area " name="area"
+																				class="form-control area cxselect "
+																				disabled="disabled">
+																				<option>省份</option>
+																			</select>
+																		</div>
 																	</div>
 
 
@@ -223,11 +252,10 @@
 																</fieldset>
 															</form>
 														</div>
-														
+
 													</div>
 												</div>
-											</div> <a
-											href="listUserReceiver/${u.userid}"
+											</div> <a href="listUserReceiver/${u.userid}"
 											class="btn btn-info  btn-sm" role="button">查看</a>
 										</td>
 										<td><a href="modifyBook/${b.bookid}"
@@ -244,38 +272,37 @@
 					<a href="##" class="btn btn-primary  btn-xs" role="button">查看详情</a>
 				</div>
 			</div>
-			 <div class="panel panel-info">
-        <div class="panel-heading">分类列表</div>
-        <div class="panel-body">
-        	<!-- Select Basic -->
-			<div class="form-group" id="receiveraddress"
-				data-url="classifyJson">
-				<label class="col-md-3 control-label"
-					for="receiveraddress">图书分类</label>
-					<div class="col-md-3">
-							<select id="one " name="one"  
-							class="form-control one cxselect " disabled="disabled">
-									<option >省份</option>
-						</select>
+			<div class="panel panel-info">
+				<div class="panel-heading">分类列表</div>
+				<div class="panel-body">
+					<!-- Select Basic -->
+					<div class="form-group" id="receiveraddress"
+						data-url="classifyJson">
+						<label class="col-md-3 control-label" for="receiveraddress">图书分类</label>
+						<div class="col-md-3">
+							<select id="one " name="one" class="form-control one cxselect "
+								disabled="disabled">
+								<option>省份</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<select id="two" name="two" class="form-control two cxselect "
+								disabled="disabled">
+								<option>省份</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<select id="three " name="three"
+								class="form-control three cxselect " disabled="disabled">
+								<option>省份</option>
+							</select>
+						</div>
 					</div>
-					<div class="col-md-3">
-							<select id="two" name="two"  
-							class="form-control two cxselect " disabled="disabled">
-									<option >省份</option>
-						</select>
-					</div>
-					<div class="col-md-3">
-							<select id="three " name="three"  
-							class="form-control three cxselect " disabled="disabled">
-									<option >省份</option>
-						</select>
-					</div>
+
+
+				</div>
+				<div class="panel-footer">还不完善！还要修改</div>
 			</div>
-        
-        
-        </div>
-        <div class="panel-footer">还不完善！还要修改</div>
-    </div>
 		</div>
 	</div>
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
@@ -285,7 +312,7 @@
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/jquery.cxselect.min.js"></script>
-		<script
+	<script
 		src="<%=request.getContextPath()%>/resources/js/jquery.cxselect.min.js"></script>
 
 	<script>

@@ -249,13 +249,13 @@ public class ClassifyController {
 		// 第一层目录
 		List<Class> c1list = classService.selectClassOne();
 
-		logger.info("第一层" + mapper.writeValueAsString(c1list));
+	//	logger.info("第一层" + mapper.writeValueAsString(c1list));
 		// 要生成的第一层对象
 		List<ClassifyJson> cj1list = new ArrayList<ClassifyJson>(c1list.size());
 		// 第一层json对象
 
 		// 用cj遍历c1list，并把cj放入cj1list
-		logger.info("==================================================");
+	//	logger.info("==================================================");
 		for (Class c : c1list) {
 			ClassifyJson cj = new ClassifyJson();
 			// cj获取名字
@@ -263,13 +263,13 @@ public class ClassifyController {
 			// 第二层目录
 			List<Class> c2list = classService.selectClassTwo(c.getClassid());
 
-			logger.info("第二层" + mapper.writeValueAsString(c2list));
+//			logger.info("第二层" + mapper.writeValueAsString(c2list));
 			// 要生成的第二层对象
 			List<S> s1 = new ArrayList<S>(c2list.size());
 			// 第二层json对象
 
 			// 用s遍历c2list,并将s加入到cj
-			logger.info("==================================================");
+	//		logger.info("==================================================");
 			for (Class cc : c2list) {
 				S s = new S();
 				s.setN(cc.getClassname());
@@ -277,12 +277,12 @@ public class ClassifyController {
 				List<Class> c3list = classService.selectClassThree(cc
 						.getClassid());
 
-				logger.info("第三层" + mapper.writeValueAsString(c3list));
+	//			logger.info("第三层" + mapper.writeValueAsString(c3list));
 				// 要生成的第三层对象
 				List<S> s2 = new ArrayList<S>(c3list.size());
 				// 第三层json对象
 
-				logger.info("==================================================");
+	//			logger.info("==================================================");
 				for (Class ccc : c3list) {
 					S ss = new S();
 					ss.setN(ccc.getClassname());

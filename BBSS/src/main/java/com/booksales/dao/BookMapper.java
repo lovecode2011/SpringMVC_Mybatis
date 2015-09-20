@@ -1,7 +1,10 @@
 package com.booksales.dao;
 
 import com.booksales.model.Book;
+
 import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
 
 public interface BookMapper {
 	/**
@@ -23,6 +26,7 @@ public interface BookMapper {
      * @return
      */
     List<Book> selectAll();
+    List<Book> selectAll(RowBounds rowBounds);
 
     int updateByPrimaryKey(Book record);
 }
