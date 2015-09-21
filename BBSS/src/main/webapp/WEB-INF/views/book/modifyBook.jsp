@@ -27,7 +27,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="bookname">图书名</label>
 				<div class="col-md-4">
-					<input type="hidden" name ="bookid"/>
+					<input type="hidden" name ="bookid" value = "${book.bookid }"/>
 					<input id="bookname" name="bookname" type="text" placeholder="图书名称"
 						class="form-control input-md" value="${book.bookname }">
 				</div>
@@ -89,7 +89,7 @@
 				<label class="col-md-4 control-label" for="author">图书分类</label>
 				<div class="col-md-4">
 					<input id="bookclassid" name="bookclassid" type="text" placeholder="图书作者"
-						class="form-control input-md" value="${book.bookclassid}" disabled="disabled">
+						class="form-control input-md" value="${book.bookclassid}" >
 
 				</div>
 			</div>

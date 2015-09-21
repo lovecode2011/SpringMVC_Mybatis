@@ -110,9 +110,9 @@ public class BookController {
 		Book book = new Book();
 		book.setAuthor(author);
 		Integer bookclassid = null;
-		System.out.println("bookThreeclassid===>"+bookThreeclassid);
-		System.out.println("bookTwoclassid===>"+bookTwoclassid);
-		System.out.println("bookOneclassid===>"+bookOneclassid);
+		//System.out.println("bookThreeclassid===>"+bookThreeclassid);
+		//System.out.println("bookTwoclassid===>"+bookTwoclassid);
+		//System.out.println("bookOneclassid===>"+bookOneclassid);
 		if(bookThreeclassid> new Integer(-1)){
 			bookclassid =bookThreeclassid;
 		}
@@ -144,7 +144,7 @@ public class BookController {
 		logger.info(mapper.writeValueAsString(book));
 		System.out.println(book);
 		bookService.addBook(book);
-		return "user/showAdmin";
+		return "redirect:/bookPage";
 	}
 
 	/**
@@ -239,6 +239,7 @@ public class BookController {
 		Book book = bookService.selectBook(id);
 		if (book != null) {
 			ObjectMapper mapper = new ObjectMapper();
+			System.out.println("输出原本的图书");
 			logger.info(mapper.writeValueAsString(book));
 			model.addAttribute(book);
 		} else {
@@ -258,6 +259,7 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/Book/modifyBook", method = RequestMethod.POST)
 	public String modifyBook2(
+			@RequestParam("bookid") Integer bookid,
 			@RequestParam("bookname") String bookname,
 			@RequestParam("author") String author,
 			@RequestParam("publish") String publish,
@@ -298,6 +300,7 @@ public class BookController {
 		
 
 		Book book = new Book();
+		book.setBookid(bookid);
 		book.setAuthor(author);
 		book.setBookclassid(bookclassid);
 		book.setBookname(bookname);
@@ -317,6 +320,7 @@ public class BookController {
 		book.setSales(sales);
 		book.setStock(stock);
 		ObjectMapper mapper = new ObjectMapper();
+		System.out.println("输出修改后的book");
 		logger.info(mapper.writeValueAsString(book));
 
 		int i = bookService.updateBook(book);
