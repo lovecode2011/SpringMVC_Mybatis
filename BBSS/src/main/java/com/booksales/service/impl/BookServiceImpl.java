@@ -12,6 +12,7 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.booksales.dao.BookMapper;
 import com.booksales.model.Book;
@@ -73,6 +74,7 @@ public class BookServiceImpl implements BookServiceI {
 	}
 
 	@Override
+	@Transactional
 	public int updateBook(Book book) {
 		
 	return bookMapper.updateByPrimaryKey(book);

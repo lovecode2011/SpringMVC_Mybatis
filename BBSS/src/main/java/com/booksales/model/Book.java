@@ -29,6 +29,17 @@ public class Book {
 
 	private Integer bookclassid;
 
+	@Override
+	public String toString() {
+		return "Book [bookid=" + bookid + ", bookname=" + bookname
+				+ ", author=" + author + ", publish=" + publish + ", isbn="
+				+ isbn + ", publishdate=" + publishdate + ", picture="
+				+ picture + ", repertory=" + repertory + ", price=" + price
+				+ ", stock=" + stock + ", sales=" + sales + ", bookclassid="
+				+ bookclassid + ", isrecommend=" + isrecommend + ", intro="
+				+ intro + "]";
+	}
+
 	private String isrecommend;
 
 	private String intro;

@@ -12,7 +12,7 @@ http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 ">
 
-
+<!-- 数据库连接 -->
  <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
@@ -20,12 +20,6 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<property name="username" value="${jdbc_username}" />
 		<property name="password" value="${jdbc_password}" />
 	</bean>
-	
-	
-	 
-	
-	
-	
 
 	<!-- myBatis文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -78,7 +72,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 	<!-- Spring aop事务管理 -->
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
-			expression="execution(* com.booksales.service..*Impl.*(..))" />
+			expression="execution(* com.booksales.service.impl.*.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut"
 			advice-ref="transactionAdvice" />
 	</aop:config>

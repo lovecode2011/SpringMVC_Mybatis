@@ -84,7 +84,9 @@ public class BookController {
 			@RequestParam("repertory") String repertory,
 			@RequestParam("price") Integer price,
 			@RequestParam("stock") Integer stock,
-			@RequestParam("bookThreeclassid") Integer bookclassid,
+			@RequestParam("bookOneclassid") Integer bookOneclassid,
+			@RequestParam(value ="bookTwoclassid", required = false) Integer bookTwoclassid,
+			@RequestParam(value ="bookThreeclassid", required = false) Integer bookThreeclassid,
 			@RequestParam(value = "isrecommend", required = false) String isrecommend,
 			@RequestParam("intro") String intro,
 			@RequestParam("picture") MultipartFile file, Model model)
@@ -107,6 +109,20 @@ public class BookController {
 
 		Book book = new Book();
 		book.setAuthor(author);
+		Integer bookclassid = null;
+		System.out.println("bookThreeclassid===>"+bookThreeclassid);
+		System.out.println("bookTwoclassid===>"+bookTwoclassid);
+		System.out.println("bookOneclassid===>"+bookOneclassid);
+		if(bookThreeclassid> new Integer(-1)){
+			bookclassid =bookThreeclassid;
+		}
+		else if(bookThreeclassid==new Integer(-1)&&bookTwoclassid>new Integer(-1)){
+			bookclassid =bookThreeclassid;
+			
+		}else {
+			bookclassid =bookOneclassid;
+		}
+		System.out.println(bookclassid);
 		book.setBookclassid(bookclassid);
 		book.setBookname(bookname);
 		book.setIntro(intro);

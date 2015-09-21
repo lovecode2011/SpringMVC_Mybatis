@@ -122,19 +122,19 @@ padding-top: 20px;
 				<label class="col-md-4 control-label" for="bookclassid">图书分类</label>
 				<div class="col-md-2">
 					<select id="bookOneclassid" name="bookOneclassid" class="form-control" onchange="getTwoClassify()" >
-						  <option value="">一级分类</option>
+						  <option value="-1">一级分类</option>
 					</select>
 				</div>
 				<div class="col-md-2">
 					<select id="bookTwoclassid" name="bookTwoclassid"  
 						class="form-control " onchange="getThreeClassify()">
-						  <option value="">二级分类</option>
+						  <option value="-1">二级分类</option>
 					</select>
 				</div>
 				<div class="col-md-2">
 					<select id="bookThreeclassid" name="bookThreeclassid"  
 						class="form-control ">
-						  <option value="">三级分类</option>
+						  <option value="-1">三级分类</option>
 					</select>
 				</div>
 			</div>
@@ -254,7 +254,7 @@ padding-top: 20px;
 			data : {},
 			dataType : "JSON",
 			success : function(data) {
-				$("#bookTwoclassid").append(" <option >二级分类</option>");
+				$("#bookTwoclassid").append(" <option value='-1' >二级分类</option>");
 				//data为后台返回的Json信息
 				for(var n=0;n<data.length;n++){
 				//	alert(data.length);
@@ -277,7 +277,7 @@ padding-top: 20px;
 			data : {},
 			dataType : "JSON",
 			success : function(data) {
-				$("#bookThreeclassid").append(" <option >三级分类</option>");
+				$("#bookThreeclassid").append(" <option value='-1' >三级分类</option>");
 				//data为后台返回的Json信息
 				for(var n=0;n<data.length;n++){
 				//	alert(data.length);
@@ -373,6 +373,9 @@ padding-top: 20px;
 					bookOneclassid:{
 						required:"请重新选择分类"
 					},
+					
+					
+					
 					bookTwoclassid:{
 						required:"请重新选择分类"
 					},

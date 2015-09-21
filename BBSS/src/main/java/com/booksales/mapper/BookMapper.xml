@@ -60,6 +60,8 @@
       Intro = #{intro,jdbcType=LONGVARCHAR}
     where BookId = #{bookid,jdbcType=INTEGER}
   </update>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture, Repertory, 
     Price, Stock, Sales, BookClassId, IsRecommend, Intro
