@@ -21,7 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.booksales.common.model.ClassifyJson;
+import com.booksales.common.model.Node;
+import com.booksales.common.model.Node2;
 import com.booksales.common.model.S;
+import com.booksales.common.model.TreeJson;
+import com.booksales.common.model.ZTreejson;
 import com.booksales.model.Class;
 import com.booksales.service.ClassServiceI;
 
@@ -239,7 +243,80 @@ public class ClassifyController {
 		logger.info(mapper.writeValueAsString(classThreelist));
 		return classThreelist;
 	}
+	@RequestMapping(value = "/classifyTreeJson")
+	@ResponseBody
+	public List<TreeJson> classifyTreeJson() throws JsonGenerationException,
+			JsonMappingException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+		// 第一层目录
+		List<Class> c1list = classService.selectClassOne();
+		
+		List<TreeJson> cj1list = new ArrayList<TreeJson>(c1list.size());
+		for (Class c : c1list) {
+			TreeJson cj = new TreeJson();
+			// cj获取名字
+			cj.setText(c.getClassname());
+			// 第二层目录
+			List<Class> c2list = classService.selectClassTwo(c.getClassid());
 
+//			logger.info("第二层" + mapper.writeValueAsString(c2list));
+			// 要生成的第二层对象
+			List<Node> n1 = new ArrayList<Node>(c2list.size());
+			// 第二层json对象
+
+			// 用s遍历c2list,并将s加入到cj
+	//		logger.info("==================================================");
+			for (Class cc : c2list) {
+				Node n = new Node();
+				n.setText(cc.getClassname());
+				// 第三层
+				List<Class> c3list = classService.selectClassThree(cc
+						.getClassid());
+
+	//			logger.info("第三层" + mapper.writeValueAsString(c3list));
+				// 要生成的第三层对象
+				List<Node2> n2 = new ArrayList<Node2>(c3list.size());
+				// 第三层json对象
+
+	//			logger.info("==================================================");
+				for (Class ccc : c3list) {
+					Node2 nn = new Node2();
+					nn.setText(ccc.getClassname());
+					n2.add(nn);
+				}
+				n.setNodes(n2);
+				n1.add(n);
+			}
+			cj.setNodes(n1);
+			cj1list.add(cj);
+		}
+		logger.info("json" + mapper.writeValueAsString(cj1list));
+		return cj1list;
+
+		
+		
+	}
+	@RequestMapping(value = "/classifyZTreeJson")
+	@ResponseBody
+	public List<ZTreejson> classifyZTreeJson() throws JsonGenerationException,
+			JsonMappingException, IOException {
+		List <Class> cl= classService.selectAll();
+		List<ZTreejson> ztl = new ArrayList<ZTreejson>(cl.size());
+		
+		
+		for(Class c :cl){
+			ZTreejson zt = new ZTreejson();
+			zt.setId(c.getClassid());
+			zt.setName(c.getClassname());
+			zt.setpId(c.getClassfatherid());
+			ztl.add(zt);
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		logger.info("ZTReejson" + mapper.writeValueAsString(ztl));
+		return ztl;
+		
+	}
+	
 	
 	@RequestMapping(value = "/classifyJson")
 	@ResponseBody
@@ -297,6 +374,11 @@ public class ClassifyController {
 		logger.info("json" + mapper.writeValueAsString(cj1list));
 		return cj1list;
 
+	}
+	@RequestMapping(value = "/TestTree",produces="application/json;charset=UTF-8")
+	public String TestTree(){
+		return "classify/ZTreeTest2";
+		
 	}
 
 }

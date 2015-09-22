@@ -322,9 +322,11 @@ padding-top: 20px;
 						maxlength : 1000
 					},
 					price:{
-						required:true,
+						number:true,
+						min:10                       
 					},staock:{
-						required:true,
+						digits:true,
+						min:10                       
 					},
 					bookOneclassid:{
 						required:true,
@@ -366,9 +368,11 @@ padding-top: 20px;
 						maxlength : "简介最长为1000个字"
 					},
 					price:{
-						required:"请输入价格",
+						number:"请输入价格",
+						min:"价格最少为10元"                       
 					},staock:{
-						required:"请输入库存",
+						digits:"请输入整数",
+						min:"库存最少为10件"                     
 					},
 					bookOneclassid:{
 						required:"请重新选择分类"

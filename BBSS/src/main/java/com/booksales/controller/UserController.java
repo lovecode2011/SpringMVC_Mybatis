@@ -48,7 +48,7 @@ public class UserController {
 	@RequestMapping()
 	public String showHome() {
 		
-		return "user/login";
+		return "index";
 	}
 	/**
 	 * 登陆

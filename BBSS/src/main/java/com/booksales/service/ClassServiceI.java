@@ -52,4 +52,6 @@ public interface ClassServiceI {
      */
 	int addClassifyOne(Class clazz);
 
+	List<Class> selectAll();
+
 }

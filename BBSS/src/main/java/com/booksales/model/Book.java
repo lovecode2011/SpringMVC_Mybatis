@@ -21,7 +21,7 @@ public class Book {
 
 	private String repertory;
 
-	private Integer price;
+	private Double price;
 
 	private Integer stock;
 
@@ -109,11 +109,12 @@ public class Book {
 		this.repertory = repertory == null ? null : repertory.trim();
 	}
 
-	public Integer getPrice() {
+
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

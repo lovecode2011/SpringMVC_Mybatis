@@ -10,7 +10,7 @@
     <result column="PublishDate" property="publishdate" jdbcType="VARCHAR" />
     <result column="Picture" property="picture" jdbcType="VARCHAR" />
     <result column="Repertory" property="repertory" jdbcType="CHAR" />
-    <result column="Price" property="price" jdbcType="DECIMAL" />
+    <result column="Price" property="price" jdbcType="DOUBLE" />
     <result column="Stock" property="stock" jdbcType="INTEGER" />
     <result column="Sales" property="sales" jdbcType="INTEGER" />
     <result column="BookClassId" property="bookclassid" jdbcType="INTEGER" />

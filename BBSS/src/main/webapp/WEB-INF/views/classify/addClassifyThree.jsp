@@ -128,13 +128,14 @@ padding-top: 100px;
 			data : {},
 			dataType : "JSON",
 			success : function(data) {
+				alert(data);
 				//data为后台返回的Json信息
 				for(var n=0;n<data.length;n++){
 				//	alert(data.length);
 		 		  	var ids=data[n].classid;
-		 		  //	alert(ids);
+		 		  	alert(ids);
 					var names=data[n].classname;
-				//	alert(names);
+					alert(names);
 					$("#classSubid").append("<option  value='"+ids+"'>"+names+"</option>");
 		     		}
 			}

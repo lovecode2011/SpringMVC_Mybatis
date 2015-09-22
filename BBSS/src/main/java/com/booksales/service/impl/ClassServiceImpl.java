@@ -77,4 +77,11 @@ public class ClassServiceImpl implements ClassServiceI {
 		return classMapper.insert(clazz);
 	}
 
+
+
+	@Override
+	public List<Class> selectAll() {
+		return classMapper.selectAll();
+	}
+
 }

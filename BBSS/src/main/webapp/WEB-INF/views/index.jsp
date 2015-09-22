@@ -18,5 +18,8 @@
 <a href="addPicture">添加图片</a>
 <a href="addReceiver">添加收货地址</a>
 
+
+<a href="TestTree">测试tree</a>
+
 </body>
 </html>
