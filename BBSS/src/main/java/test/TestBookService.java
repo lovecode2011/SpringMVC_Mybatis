@@ -23,7 +23,7 @@ public class TestBookService {
 		book.setPublish("bookname");
 		book.setIsbn("35435");
 		book.setBookclassid(34);
-		book.setPrice(33);
+		book.setPrice((double)33);
 		book.setStock(43);
 		book.setPublishdate("2011-11-11");
 		

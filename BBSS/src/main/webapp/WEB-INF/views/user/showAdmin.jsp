@@ -177,15 +177,15 @@
 															<form class="form-horizontal" id="addReceiver"
 																action="addReceiver" method="post">
 																<fieldset>
-
-
+	
+																	<input id="userid" type="text" name="userid" value="${u.userid}">
+																	
 																	<!-- Text input-->
 																	<div class="form-group">
 																		<label class="col-md-3 control-label"
 																			for="receivername">收货人姓名</label>
 																		<div class="col-md-4">
-																			<input id="userid" type="hidden" name="userid"
-																				value="${u.userid }"> <input
+																			 <input
 																				id="receivername" name="receivername" type="text"
 																				placeholder="收货人姓名" class="form-control input-md">
 
@@ -259,9 +259,9 @@
 											</div> <a href="listUserReceiver/${u.userid}"
 											class="btn btn-info  btn-sm" role="button">查看</a>
 										</td>
-										<td><a href="modifyBook/${b.bookid}"
+										<td><a href="modifyBook/${u.userid}"
 											class="btn btn-warning  btn-sm" role="button">修改</a> <a
-											href="deleteBookById/${b.bookid}"
+											href="deleteBookById/${u.userid}"
 											class="btn btn-danger  btn-sm" role="button">删除</a></td>
 									</tr>
 								</c:forEach>
@@ -278,8 +278,8 @@
 				<div class="panel-body">
 				<div>
 					<!-- Select Basic -->
-					<div class="form-group" id="receiveraddress"
-						data-url="classifyJson">
+					<!-- 每次都要多次的查询数据库，耗时，先暂时关闭         data-url="classifyJson"    -->
+					<div class="form-group" id="receiveraddress" >
 						<label class="col-md-3 control-label" for="receiveraddress">图书分类</label>
 						<div class="col-md-3">
 							<select id="one " name="one" class="form-control one cxselect "

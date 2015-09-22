@@ -46,9 +46,14 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping()
-	public String showHome() {
-		
-		return "index";
+	public String showHome(HttpServletRequest request,Model model) {
+		if(request.getSession().getAttribute("admin")!=null){
+			return "forward:bookPage";
+		}
+		if(request.getSession().getAttribute("user")!=null){
+			return "user/showUser";
+		}
+		return "forward:login";
 	}
 	/**
 	 * 登陆
@@ -56,13 +61,16 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
+	public String login(HttpServletRequest request,Model model) {
 		logger.info("用户登录");
-		
+		if(request.getSession().getAttribute("admin")!=null){
+			return "forward:bookPage";
+		}
+		if(request.getSession().getAttribute("user")!=null){
+			return "user/showUser";
+		}
 		return "user/login";
 	}
-	
-
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login2(HttpServletRequest request,
 			HttpServletResponse response,HttpSession httpSession) throws JsonGenerationException,
@@ -176,8 +184,7 @@ public class UserController {
 		PageInfo<Book> booklist = new PageInfo<Book>();
 			 booklist = bookService.bookpage();
 		logger.info(mapper.writeValueAsString(booklist));
-		request.setAttribute("booklist", booklist);
-		
+		request.getSession().setAttribute("booklist", booklist);
 		return "forward:showAdmin";
 		
 	}

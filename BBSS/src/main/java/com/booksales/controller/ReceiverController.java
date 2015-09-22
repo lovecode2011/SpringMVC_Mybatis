@@ -63,7 +63,7 @@ public class ReceiverController {
 		logger.info(city);
 		logger.info(area);
 		logger.info(receiveraddress2);
-		return "showUser";
+		return "redirect:showAdmin";
 	}
 	@RequestMapping(value = "/listUserReceiver/{userid}", method = RequestMethod.GET)
 	public String listUserReceiver( @PathVariable Integer userid,Model model){
