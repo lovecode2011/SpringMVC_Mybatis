@@ -15,6 +15,14 @@
   </delete>
   
   <insert id="insert" parameterType="com.booksales.model.Receiver" >
+    
+    insert into bsreceiver (UserId, ReceiverName, 
+      ReceiverTel, ReceiverAddress)
+    values (#{userid,jdbcType=INTEGER}, #{receivername,jdbcType=VARCHAR}, 
+      #{receivertel,jdbcType=CHAR}, #{receiveraddress,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insert2" parameterType="com.booksales.model.Receiver" >
     <selectKey resultType="java.lang.Integer" keyProperty="receiverid" order="BEFORE" >
       SELECT LAST_INSERT_ID()
     </selectKey>

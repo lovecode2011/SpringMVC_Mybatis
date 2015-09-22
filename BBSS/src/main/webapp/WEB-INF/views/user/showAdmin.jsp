@@ -161,15 +161,71 @@
 										<td>
 											<!-- Button trigger modal -->
 											<button type="button" class="btn btn-primary btn-sm"
-												data-toggle="modal" data-target="#myModal">添加</button> <!-- Modal -->
-											<div class="modal fade" id="myModal" tabindex="-1"
+												onclick="showMyModal('${u.userid}')">添加</button><!-- Modal -->
+											 <a href="listUserReceiver/${u.userid}"
+											class="btn btn-info  btn-sm" role="button">查看</a>
+										</td>
+										<td><a href="modifyBook/${u.userid}"
+											class="btn btn-warning  btn-sm" role="button">修改</a> <a
+											href="deleteBookById/${u.userid}"
+											class="btn btn-danger  btn-sm" role="button">删除</a></td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</tbody>
+					</table>
+				</div>
+				<div class="panel-footer">
+					<a href="##" class="btn btn-primary  btn-xs" role="button">查看详情</a>
+				</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">分类列表</div>
+				<div class="panel-body">
+				<div>
+					<!-- Select Basic -->
+					<!-- 每次都要多次的查询数据库，耗时，先暂时关闭         data-url="classifyJson"    -->
+					<div class="form-group" id="receiveraddress" >
+						<label class="col-md-3 control-label" for="receiveraddress">图书分类</label>
+						<div class="col-md-3">
+							<select id="one " name="one" class="form-control one cxselect "
+								disabled="disabled">
+								<option>省份</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<select id="two" name="two" class="form-control two cxselect "
+								disabled="disabled">
+								<option>省份</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<select id="three " name="three"
+								class="form-control three cxselect " disabled="disabled">
+								<option>省份</option>
+							</select>
+						</div>
+					</div>
+					</div>
+					<br>
+					<br>
+					<div>
+					<div class="zTreeDemoBackground left">
+						<ul id="treeDemo" class="ztree"></ul>
+					</div>
+					</div>
+				</div>
+				<div class="panel-footer">还不完善！还要修改</div>
+			</div>
+		</div>
+		<div class="modal fade" id="myModal" tabindex="-1"
 												role="dialog" aria-labelledby="myModalLabel">
 												<div class="modal-dialog" role="document">
 													<div class="modal-content">
 														<div class="modal-header">
 															<button type="button" class="close" data-dismiss="modal"
 																aria-label="Close">
-																<span aria-hidden="true">&times;</span>
+																<span onclick="cancel()" aria-hidden="true">&times;</span>
 															</button>
 															<h4 class="modal-title" id="myModalLabel">添加收货地址</h4>
 														</div>
@@ -178,7 +234,7 @@
 																action="addReceiver" method="post">
 																<fieldset>
 	
-																	<input id="userid" type="text" name="userid" value="${u.userid}">
+																	<input id="userid" type="hidden" name="userid" value="${u.userid}">
 																	
 																	<!-- Text input-->
 																	<div class="form-group">
@@ -256,62 +312,7 @@
 
 													</div>
 												</div>
-											</div> <a href="listUserReceiver/${u.userid}"
-											class="btn btn-info  btn-sm" role="button">查看</a>
-										</td>
-										<td><a href="modifyBook/${u.userid}"
-											class="btn btn-warning  btn-sm" role="button">修改</a> <a
-											href="deleteBookById/${u.userid}"
-											class="btn btn-danger  btn-sm" role="button">删除</a></td>
-									</tr>
-								</c:forEach>
-							</c:if>
-						</tbody>
-					</table>
-				</div>
-				<div class="panel-footer">
-					<a href="##" class="btn btn-primary  btn-xs" role="button">查看详情</a>
-				</div>
-			</div>
-			<div class="panel panel-info">
-				<div class="panel-heading">分类列表</div>
-				<div class="panel-body">
-				<div>
-					<!-- Select Basic -->
-					<!-- 每次都要多次的查询数据库，耗时，先暂时关闭         data-url="classifyJson"    -->
-					<div class="form-group" id="receiveraddress" >
-						<label class="col-md-3 control-label" for="receiveraddress">图书分类</label>
-						<div class="col-md-3">
-							<select id="one " name="one" class="form-control one cxselect "
-								disabled="disabled">
-								<option>省份</option>
-							</select>
-						</div>
-						<div class="col-md-3">
-							<select id="two" name="two" class="form-control two cxselect "
-								disabled="disabled">
-								<option>省份</option>
-							</select>
-						</div>
-						<div class="col-md-3">
-							<select id="three " name="three"
-								class="form-control three cxselect " disabled="disabled">
-								<option>省份</option>
-							</select>
-						</div>
-					</div>
-					</div>
-					<br>
-					<br>
-					<div>
-					<div class="zTreeDemoBackground left">
-						<ul id="treeDemo" class="ztree"></ul>
-					</div>
-					</div>
-				</div>
-				<div class="panel-footer">还不完善！还要修改</div>
-			</div>
-		</div>
+											</div>
 	</div>
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
 	<script
@@ -356,6 +357,17 @@
 			selects : [ 'one', 'two', 'three' ],
 			nodata : 'none'
 		});
+		
+		function showMyModal(id){
+			$("#userid").val(id);
+			$("#myModal").removeClass().addClass("modal fade in");
+			$("#myModal").css({"display":'block'});
+		}
+		function cancel(){
+			$("#myModal").removeClass().addClass("modal fade");
+			$("#myModal").removeAttr("style");
+		}
+		
 	</script>
 </body>
 </html>
