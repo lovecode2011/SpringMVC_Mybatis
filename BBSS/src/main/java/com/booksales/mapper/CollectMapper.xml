@@ -11,12 +11,9 @@
     where CollectId = #{collectid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.booksales.model.Collect" >
-    <selectKey resultType="java.lang.Integer" keyProperty="collectid" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into bscollect (CollectId, UserId, BookId
+    insert into bscollect ( UserId, BookId
       )
-    values (#{collectid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{bookid,jdbcType=INTEGER}
+    values ( #{userid,jdbcType=INTEGER}, #{bookid,jdbcType=INTEGER}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.booksales.model.Collect" >
@@ -33,5 +30,13 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select CollectId, UserId, BookId
     from bscollect
+  </select>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  select CollectId, UserId, BookId
+    from bscollect
+    where UserId = #{userId,jdbcType=INTEGER}
+  
+  
   </select>
 </mapper>

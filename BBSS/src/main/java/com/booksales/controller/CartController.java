@@ -23,14 +23,10 @@ import com.booksales.service.UserServiceI;
 public class CartController {
 	@Autowired
 	CartServiceI cartService;
-	@Autowired
-	UserServiceI userService;
-	@Autowired
-	BookServiceI bookService;
+	
 	private static Log logger = LogFactory.getLog(CartController.class);
 	@RequestMapping(value = "/addBook2Cart/{userid}/{bookid}", method = RequestMethod.GET)
 	public  String addBook2Cart(@PathVariable Integer userid, @PathVariable Integer bookid,Model model){
-		
 		 int i =cartService.addCart(userid,bookid);
 		 return "redirect:/";
 		

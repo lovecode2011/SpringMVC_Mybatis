@@ -53,4 +53,10 @@
     from bscart
     where UserId = #{userid,jdbcType=INTEGER}
   </select>
+  <select id="selectByBookId" resultMap="BaseResultMap" parameterType="com.booksales.model.Cart">
+   select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
+    from bscart
+    where UserId = #{userid,jdbcType=INTEGER} and BookId =#{bookid,jdbcType=INTEGER}
+  
+  </select>
 </mapper>

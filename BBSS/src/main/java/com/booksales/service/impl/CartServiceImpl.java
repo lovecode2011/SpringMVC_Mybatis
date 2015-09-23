@@ -26,17 +26,31 @@ public class CartServiceImpl implements CartServiceI {
 	@Override
 	public int addCart(Integer userid, Integer bookid) {
 		Book book = bookService.selectBook(bookid);
-		 User user= userService.getUserById(userid);
-		 
+		User user= userService.getUserById(userid);
 		 Cart cart = new Cart();
 		 cart.setBookid(bookid);
-		 cart.setBookname(book.getBookname());
 		 cart.setUserid(userid);
-		 cart.setUsername(user.getUsername());
-		 cart.setBooknum(1);
-		 cart.setAmount(book.getPrice());
-		 cartMapper.insert(cart);
-		return 0;
+		//查询数据库，查看该用户之前是否已经将该书加入购物车
+		Cart cart1 =  cartMapper.selectByBookId(cart);
+		int res = 0;
+		if(cart1!=null){
+			int booknum = cart1.getBooknum()+1;
+			cart1.setBooknum(booknum);
+			Double price = book.getPrice()*booknum;
+			cart1.setAmount(price);
+			res =cartMapper.updateByPrimaryKey(cart1);
+			
+		}else{
+			
+			 cart.setBookname(book.getBookname());
+			
+			 cart.setUsername(user.getUsername());
+			 cart.setBooknum(1);
+			 cart.setAmount(book.getPrice());
+			 res= cartMapper.insert(cart);
+		}
+		
+		return res;
 	}
 	@Override
 	public List<Cart> listUserCart(Integer userid) {

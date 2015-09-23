@@ -61,7 +61,7 @@
                        	 <td>${b.isrecommend}</td>
                        	 <td>${b.intro}</td>
                        	  <td><a href="addBook2Cart/${user.userid}/${b.bookid}">加入购物车</a></td>
-                          <td><a href="collectBook/${b.bookid}">收藏</a></td>
+                          <td><a href="collectBook/${user.userid}/${b.bookid}">收藏</a></td>
                        	 
                        	 
                   	  </tr>
