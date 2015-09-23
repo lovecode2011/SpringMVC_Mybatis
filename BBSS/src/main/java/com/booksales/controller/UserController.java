@@ -119,7 +119,7 @@ public class UserController {
 			}
 			else{
 				httpSession.setAttribute("user", u);
-				return "user/showUser";
+				return "forward:bookPage";
 			}
 		}
 		return "error/error";
@@ -185,6 +185,9 @@ public class UserController {
 			 booklist = bookService.bookpage();
 		logger.info(mapper.writeValueAsString(booklist));
 		request.getSession().setAttribute("booklist", booklist);
+		if(request.getSession().getAttribute("user")!=null){
+			return "forward:showUser";
+		}
 		return "forward:showAdmin";
 		
 	}
@@ -203,8 +206,25 @@ public class UserController {
 		model.addAttribute("userlist", userlist);
 		return "user/showAdmin";
 	}
+	/**
+	 * 显示用户页面
+	 * @param model
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/showUser")
+	public String showUser(
+			Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		List<User> userlist =userService.userList();
+		model.addAttribute("userlist", userlist);
+		return "user/showUser";
+	}
+	
+	
 	@RequestMapping(value = "/modifyBook/{userid}")
-	public String modifyUser(@PathVariable String userid,Model model){
+	public String modifyUser(@PathVariable Integer userid,Model model){
 		User user = userService.getUserById(userid);
 		model.addAttribute("user", user);
 		return "user/modifyUser";

@@ -11,21 +11,21 @@
     <result column="Amount" property="amount" jdbcType="DECIMAL" />
     <result column="OrderId" property="orderid" jdbcType="INTEGER" />
   </resultMap>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bscart
     where CartId = #{cartid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.booksales.model.Cart" >
-    <selectKey resultType="java.lang.Integer" keyProperty="cartid" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into bscart (CartId, UserId, UserName, 
+   
+    insert into bscart ( UserId, UserName, 
       BookId, BookName, BookNum, 
       Amount, OrderId)
-    values (#{cartid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+    values ( #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{bookid,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, #{booknum,jdbcType=INTEGER}, 
       #{amount,jdbcType=DECIMAL}, #{orderid,jdbcType=INTEGER})
   </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.booksales.model.Cart" >
     update bscart
     set UserId = #{userid,jdbcType=INTEGER},
@@ -37,13 +37,20 @@
       OrderId = #{orderid,jdbcType=INTEGER}
     where CartId = #{cartid,jdbcType=INTEGER}
   </update>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
     from bscart
     where CartId = #{cartid,jdbcType=INTEGER}
   </select>
+  
   <select id="selectAll" resultMap="BaseResultMap" >
     select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
     from bscart
+  </select>
+  <select id="selectUserCart" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
+    from bscart
+    where UserId = #{userid,jdbcType=INTEGER}
   </select>
 </mapper>

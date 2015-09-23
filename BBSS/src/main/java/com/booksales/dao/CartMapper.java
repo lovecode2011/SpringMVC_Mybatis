@@ -1,6 +1,7 @@
 package com.booksales.dao;
 
 import com.booksales.model.Cart;
+
 import java.util.List;
 
 public interface CartMapper {
@@ -13,4 +14,6 @@ public interface CartMapper {
     List<Cart> selectAll();
 
     int updateByPrimaryKey(Cart record);
+
+	List<Cart> selectUserCart(Integer userid);
 }

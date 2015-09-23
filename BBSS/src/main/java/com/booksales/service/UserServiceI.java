@@ -10,7 +10,7 @@ import com.booksales.model.User;
 
 public interface UserServiceI {
 	
-	User getUserById(String id);
+	User getUserById(Integer id);
 	/**
 	 * 根据email和password 判断是否可以登陆
 	 * @param email

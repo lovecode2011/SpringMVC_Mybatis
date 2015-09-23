@@ -29,11 +29,40 @@ public class ReceiverController {
 	
 	private static Log logger = LogFactory.getLog(ReceiverController.class);
 	
-	@RequestMapping(value = "/addReceiver", method = RequestMethod.GET)
-	public String addReceiver() {
+	@RequestMapping(value = "/addReceiver/{userid}", method = RequestMethod.GET)
+	public String addReceiver(@PathVariable Integer userid,Model model) {
+		
 		logger.info("GET-----添加收货地址----");
+		model.addAttribute("userid", userid);
+		
 		return "receiver/addReceiver";
 	}
+	@RequestMapping(value = "/addReceiver/Receiver", method = RequestMethod.POST)
+	public String addReceiver3(
+			
+			@RequestParam("userid")String userid,
+			@RequestParam("receivername")String receivername,
+			@RequestParam("receivertel")String receivertel,
+			@RequestParam(value="province", required=false)String province,
+			@RequestParam(value="city",required=false)String city,
+			@RequestParam(value="area",required=false)String area,
+			@RequestParam("receiveraddress2")String receiveraddress2,
+			Model model) {
+		
+		logger.info("POST-----添加收货地址----");
+		
+		Receiver receiver = new Receiver();
+		receiver.setUserid(Integer.parseInt(userid));
+		receiver.setReceivername(receivername);
+		receiver.setReceivertel(receivertel);
+		String receiveraddress = province+city+area+receiveraddress2;
+		receiver.setReceiveraddress(receiveraddress);
+		
+		int i=	receiverService.addReceiver(receiver);
+		
+		return "redirect:/showUser";
+	}
+	
 	@RequestMapping(value = "/addReceiver", method = RequestMethod.POST)
 	public String addReceiver2(User user,
 			@RequestParam("userid")String userid,

@@ -30,9 +30,8 @@ public class UserServiceImpl implements UserServiceI {
 		this.userMapper = userMapper;
 	}
 
-	public User getUserById(String id) {
-		Integer i = Integer.parseInt(id);
-		return userMapper.selectByPrimaryKey(i);
+	public User getUserById(Integer id) {
+		return userMapper.selectByPrimaryKey(id);
 	}
 	
 	/**

@@ -20,7 +20,7 @@
 
 <body>
 	<!-- Bootstrap -->
-	<form class="form-horizontal"  id="addReceiver" action="addReceiver" method="post">
+	<form class="form-horizontal"  id="addReceiver" action="Receiver" method="post">
 		<fieldset>
 
 			<!-- Form Name -->
@@ -30,7 +30,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="userid">用户id</label>
 				<div class="col-md-4">
-					<input id="userid" name="userid" type="text" placeholder="用户id"
+					<input id="userid" name="userid" type="text" placeholder="用户id" value ="${userid }"
 						class="form-control input-md">
 
 				</div>

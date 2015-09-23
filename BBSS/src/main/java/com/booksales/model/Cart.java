@@ -13,7 +13,7 @@ public class Cart {
 
     private Integer booknum;
 
-    private Long amount;
+    private Double  amount;
 
     private Integer orderid;
 
@@ -65,15 +65,16 @@ public class Cart {
         this.booknum = booknum;
     }
 
-    public Long getAmount() {
-        return amount;
-    }
 
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
+    public Double getAmount() {
+		return amount;
+	}
 
-    public Integer getOrderid() {
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public Integer getOrderid() {
         return orderid;
     }
 
