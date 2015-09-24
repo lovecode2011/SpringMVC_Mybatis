@@ -585,7 +585,7 @@
 		</div>
 		<div class="copyright-bg">
 			<div class="copyright">
-				<span>Copyright &copy 2015 树塾书署 All Rights Reserved. 备案号：湘ICP备1201314号-9</span>
+				<span>Copyright &copy 2015 树塾书署 All Rights Reserved. 备案号：湘ICP备1201314号</span>
 			</div>
 		</div>
 	</div>

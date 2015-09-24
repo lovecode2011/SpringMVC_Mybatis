@@ -16,10 +16,13 @@
 
 <body>
 	<c:if test="${cartlist!=NULL}">
-			<h1>${ cartlist[1].username}</h1>
+			<h1>${ user.username}</h1>
+			 <form  action="addOrder" method="post"
+					class="form-horizontal">
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                    <th>选择</th>
                     	<th>图书编号</th>
                         <th>图书名称</th>
                         <th>图书数量</th>
@@ -29,9 +32,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+              
 							<c:forEach var="c" items="${cartlist}" varStatus="clist">
 							<tr>
+							<td><input type="checkbox" name="cart_id" value="${c.bookid }"/></td>
 							<td>${c.bookid}</td>
                         	<td>${c.bookname}</td>
                        	 <td>${c.booknum}</td>
@@ -43,10 +47,14 @@
                        	 
                   	  </tr>
 							</c:forEach>
-						
                     
                 </tbody>
+                <tfoot>
+              <input type="submit" value="提交2"/>
+                
+                </tfoot>
             </table>
+            </form>
 </c:if>
 	 <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
 	
