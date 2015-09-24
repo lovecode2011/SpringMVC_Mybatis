@@ -157,7 +157,7 @@
 					<input id="picture" name="picture" class="input-file" type="file">
 				</div>
 				</c:if>
-				<c:if test="book.picture==NULL">
+				<c:if test="${ book.picture==NULL}">
 				<div class="col-md-4">
 					<input id="picture" name="picture" class="input-file" type="file">
 				</div>
@@ -301,12 +301,12 @@
 					bookname : {
 						required : true,
 						minlength : 2,
-						maxlength : 10
+						maxlength : 100
 					},
 					author : {
 						required : true,
 						minlength : 2,
-						maxlength : 10
+						maxlength : 50
 					},
 					publish : {
 						required : true,
@@ -336,12 +336,12 @@
 					bookname : {
 						required : "请输入图书名称",
 						minlength : "图书名称最短为两个字",
-						maxlength : "图书名称最长为10个字"
+						maxlength : "图书名称最长为100个字"
 					},
 					author : {
 						required : "请输入作者",
 						minlength : "作者名称最短为两个字",
-						maxlength : "作者名称最长为10个字"
+						maxlength : "作者名称最长为50个字"
 					},
 					publish : {
 						required : "请输入出版社",

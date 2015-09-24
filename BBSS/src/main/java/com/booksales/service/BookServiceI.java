@@ -52,6 +52,17 @@ public interface BookServiceI {
 	 */
 	int updateBook(Book book);
 	
+	/**
+	 * 查询图书排行榜
+	 * @return
+	 */
+	List<Book> BookRank();
+	/**
+	 * 查询图书推荐的榜单
+	 * @return
+	 */
+	List<Book> BookRecommend();
+	
 	
 
 }

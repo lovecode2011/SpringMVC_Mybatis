@@ -51,9 +51,9 @@ public class UserController {
 			return "forward:bookPage";
 		}
 		if(request.getSession().getAttribute("user")!=null){
-			return "user/showUser";
+			return "redirect:/rank";
 		}
-		return "forward:login";
+		return "redirect:/rank";
 	}
 	/**
 	 * 登陆
@@ -67,7 +67,7 @@ public class UserController {
 			return "forward:bookPage";
 		}
 		if(request.getSession().getAttribute("user")!=null){
-			return "user/showUser";
+			return "redirect:/rank";
 		}
 		return "user/login";
 	}
@@ -119,7 +119,7 @@ public class UserController {
 			}
 			else{
 				httpSession.setAttribute("user", u);
-				return "forward:bookPage";
+				return "redirect:/rank";
 			}
 		}
 		return "error/error";

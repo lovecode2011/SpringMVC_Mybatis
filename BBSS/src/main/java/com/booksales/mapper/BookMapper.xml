@@ -1,76 +1,96 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.booksales.dao.BookMapper" >
-  <resultMap id="BaseResultMap" type="com.booksales.model.Book" >
-    <id column="BookId" property="bookid" jdbcType="INTEGER" />
-    <result column="BookName" property="bookname" jdbcType="VARCHAR" />
-    <result column="Author" property="author" jdbcType="VARCHAR" />
-    <result column="Publish" property="publish" jdbcType="VARCHAR" />
-    <result column="ISBN" property="isbn" jdbcType="VARCHAR" />
-    <result column="PublishDate" property="publishdate" jdbcType="VARCHAR" />
-    <result column="Picture" property="picture" jdbcType="VARCHAR" />
-    <result column="Repertory" property="repertory" jdbcType="CHAR" />
-    <result column="Price" property="price" jdbcType="DOUBLE" />
-    <result column="Stock" property="stock" jdbcType="INTEGER" />
-    <result column="Sales" property="sales" jdbcType="INTEGER" />
-    <result column="BookClassId" property="bookclassid" jdbcType="INTEGER" />
-    <result column="IsRecommend" property="isrecommend" jdbcType="CHAR" />
-    <result column="Intro" property="intro" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  
-  
-  <delete id="deleteByPrimaryKey"  parameterType="java.lang.Integer" >
-    delete from bsbook
-    where BookId = #{bookname,jdbcType=VARCHAR}
-  </delete>
-  
-  
-  
-  <!-- 添加图书到数据库 -->
-  <insert id="insert" parameterType="com.booksales.model.Book" >
-    <selectKey resultType="java.lang.Integer" keyProperty="bookid" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into bsbook ( BookName, Author, 
-      Publish, ISBN, PublishDate, 
-      Picture, Repertory, Price, 
-      Stock,  BookClassId, 
-      IsRecommend, Intro)
-    values (#{bookname,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
-      #{publish,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{publishdate,jdbcType=VARCHAR}, 
-      #{picture,jdbcType=VARCHAR}, #{repertory,jdbcType=CHAR}, #{price,jdbcType=DECIMAL}, 
-      #{stock,jdbcType=INTEGER},  #{bookclassid,jdbcType=INTEGER}, 
-      #{isrecommend,jdbcType=CHAR}, #{intro,jdbcType=LONGVARCHAR})
-  </insert>
-  
-  <update id="updateByPrimaryKey" parameterType="com.booksales.model.Book" >
-    update bsbook
-    set BookName = #{bookname,jdbcType=VARCHAR},
-      Author = #{author,jdbcType=VARCHAR},
-      Publish = #{publish,jdbcType=VARCHAR},
-      ISBN = #{isbn,jdbcType=VARCHAR},
-      PublishDate = #{publishdate,jdbcType=TIMESTAMP},
-      Picture = #{picture,jdbcType=VARCHAR},
-      Repertory = #{repertory,jdbcType=CHAR},
-      Price = #{price,jdbcType=DECIMAL},
-      Stock = #{stock,jdbcType=INTEGER},
-      Sales = #{sales,jdbcType=INTEGER},
-      BookClassId = #{bookclassid,jdbcType=INTEGER},
-      IsRecommend = #{isrecommend,jdbcType=CHAR},
-      Intro = #{intro,jdbcType=LONGVARCHAR}
-    where BookId = #{bookid,jdbcType=INTEGER}
-  </update>
-  
-  
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture, Repertory, 
-    Price, Stock, Sales, BookClassId, IsRecommend, Intro
-    from bsbook
-    where BookId = #{bookid,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture, Repertory, 
-    Price, Stock, Sales, BookClassId, IsRecommend, Intro
-    from bsbook
-  </select>
+<mapper namespace="com.booksales.dao.BookMapper">
+	<resultMap id="BaseResultMap" type="com.booksales.model.Book">
+		<id column="BookId" property="bookid" jdbcType="INTEGER" />
+		<result column="BookName" property="bookname" jdbcType="VARCHAR" />
+		<result column="Author" property="author" jdbcType="VARCHAR" />
+		<result column="Publish" property="publish" jdbcType="VARCHAR" />
+		<result column="ISBN" property="isbn" jdbcType="VARCHAR" />
+		<result column="PublishDate" property="publishdate" jdbcType="VARCHAR" />
+		<result column="Picture" property="picture" jdbcType="VARCHAR" />
+		<result column="Repertory" property="repertory" jdbcType="CHAR" />
+		<result column="Price" property="price" jdbcType="DOUBLE" />
+		<result column="Stock" property="stock" jdbcType="INTEGER" />
+		<result column="Sales" property="sales" jdbcType="INTEGER" />
+		<result column="BookClassId" property="bookclassid" jdbcType="INTEGER" />
+		<result column="IsRecommend" property="isrecommend" jdbcType="CHAR" />
+		<result column="Intro" property="intro" jdbcType="LONGVARCHAR" />
+	</resultMap>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from bsbook
+		where BookId = #{bookname,jdbcType=VARCHAR}
+	</delete>
+
+
+
+	<!-- 添加图书到数据库 -->
+	<insert id="insert" parameterType="com.booksales.model.Book">
+		<selectKey resultType="java.lang.Integer" keyProperty="bookid"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into bsbook ( BookName, Author,
+		Publish, ISBN, PublishDate,
+		Picture, Repertory, Price,
+		Stock, BookClassId,
+		IsRecommend, Intro)
+		values (#{bookname,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR},
+		#{publish,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR},
+		#{publishdate,jdbcType=VARCHAR},
+		#{picture,jdbcType=VARCHAR}, #{repertory,jdbcType=CHAR}, #{price,jdbcType=DECIMAL},
+		#{stock,jdbcType=INTEGER}, #{bookclassid,jdbcType=INTEGER},
+		#{isrecommend,jdbcType=CHAR}, #{intro,jdbcType=LONGVARCHAR})
+	</insert>
+
+	<update id="updateByPrimaryKey" parameterType="com.booksales.model.Book">
+		update bsbook
+		set BookName = #{bookname,jdbcType=VARCHAR},
+		Author = #{author,jdbcType=VARCHAR},
+		Publish = #{publish,jdbcType=VARCHAR},
+		ISBN = #{isbn,jdbcType=VARCHAR},
+		PublishDate = #{publishdate,jdbcType=TIMESTAMP},
+		Picture = #{picture,jdbcType=VARCHAR},
+		Repertory = #{repertory,jdbcType=CHAR},
+		Price = #{price,jdbcType=DECIMAL},
+		Stock = #{stock,jdbcType=INTEGER},
+		Sales = #{sales,jdbcType=INTEGER},
+		BookClassId = #{bookclassid,jdbcType=INTEGER},
+		IsRecommend = #{isrecommend,jdbcType=CHAR},
+		Intro = #{intro,jdbcType=LONGVARCHAR}
+		where BookId = #{bookid,jdbcType=INTEGER}
+	</update>
+
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture,
+		Repertory,
+		Price, Stock, Sales, BookClassId, IsRecommend, Intro
+		from bsbook
+		where BookId = #{bookid,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture,
+		Repertory,
+		Price, Stock, Sales, BookClassId, IsRecommend, Intro
+		from bsbook
+	</select>
+	<select id="selectBookBySales" resultMap="BaseResultMap">
+		SELECT
+		BookId, BookName, Author, Publish, ISBN, PublishDate, Picture, Repertory,
+		Price, Stock, Sales, BookClassId, IsRecommend, Intro
+		FROM
+		bsbook  ORDER BY  Sales ASC  LIMIT 1, 9
+	</select>
+	
+	<select id="selectBookByRecommend" resultMap="BaseResultMap">
+		SELECT BookId, 
+		BookName, Author, Publish, ISBN, PublishDate, Picture, Repertory,
+		Price, Stock, Sales, BookClassId, IsRecommend, Intro
+		FROM  bsbook   WHERE  IsRecommend = 1  ORDER BY  Sales ASC LIMIT 1, 10
+	</select>
 </mapper>

@@ -1,0 +1,240 @@
+
+<style type="text/css">
+	.s-container {
+		width: 960px;
+		margin: 25px auto;
+		padding: 0;
+		background-color: #ffffff;
+	}
+	.btn:focus {
+		background-image:none;
+		outline: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border-color: #ccc;
+	}
+	.btn:active {
+		background-image:none;
+		outline: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border-color: #ccc;
+	}
+	.btn-primary.focus,.btn-primary:focus {
+		color: #000;
+		background-color: transparent;
+		border-color: transparent;}
+	.btn-primary.active.focus,.btn-primary.active:focus,.btn-primary.active:hover,.btn-primary:active.focus,.btn-primary:active:focus,.btn-primary:active:hover,.open>.dropdown-toggle.btn-primary.focus,.open>.dropdown-toggle.btn-primary:focus,.open>.dropdown-toggle.btn-primary:hover {
+		color: #000;
+		background-color: transparent;
+		border-color: transparent;
+	}
+	.form-control:focus {
+		border-color: #ccc;
+		outline: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	.form-control{
+		box-shadow: none;
+	}
+	.c-head {
+		height: 100px;
+		position: absolute;
+		z-index: 1;
+	}
+	.logo {
+		float: left;
+	}
+	.search {
+		width: 235px;
+		height: 100%;
+		float: right;
+		margin: 6px 0 0 725px;
+		position: absolute;
+	}
+	.navbar-form {
+		padding:0;
+	}
+	.mainav {
+		z-index: 1;
+		width: 510px;
+		height: 100%;
+		float: right;
+		position: absolute;
+		margin-left: 200px;
+	}
+
+	.row {
+		margin-top: 20px;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.dropdown {
+		float: right;
+	}
+	.ul-1:link,.ul-1:visited {
+		width: 70px;
+		color: #000;
+		border: 0px;
+		background-color: transparent;
+	}
+	.ul-1:hover {
+		color: #000;
+		border: 0px;
+		background-color: transparent;
+	}
+	.ul-1:active {
+		color: #000;
+		border: 0px;
+		background-color: transparent;
+	}
+	.caret {
+		border: 0;
+	}
+	.arrow {
+	    margin-left: 20px;
+	    margin-bottom: 0px;
+	    width: 6px;
+	    border: solid #ccc;
+	    border-width: 6px 6px 6px 6px;
+	    border-top-color: transparent;
+	    border-left-color: transparent;
+	    border-right-color: transparent;
+	    background-color: transparent;
+	    border-top: 0;
+	}
+	.ul-2 {
+		border:0;
+		padding: 0 0 7px 0;
+		border-top: 0;
+	  	border-left: 0;
+	  	border-right: 0;
+	  	border-bottom: 0;
+	  	margin:0;
+	  	box-shadow: 1px 3px 10px rgba(0,0,0,.175);
+	}
+	#arrow-ul {
+	}
+	.arrow-li {
+		height: 13px;
+		line-height: 0px;
+		background-color: transparent;
+	}
+	.m-divider {
+		margin: 7px 0;
+	}
+	.ul-3 {
+		padding-top: 7px;
+	}
+
+
+
+	.dropdown-submenu {
+        position: relative;
+    }
+   	.dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -7px;
+        margin-left: -1px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius:4px;
+    }
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
+    .dropdown-submenu > a:after {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #ccc;
+        margin-top: 5px;
+        margin-right: -10px;
+    }
+   	.dropdown-submenu:hover > a:after {
+    	border-left-color: #fff;
+    }
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
+    .dropdown-submenu.pull-left > .dropdown-menu {
+        left: -100%;
+        margin-left: 10px;
+        -webkit-border-radius: 6px 0 6px 6px;
+        -moz-border-radius: 6px 0 6px 6px;
+        border-radius: 6px 0 6px 6px;
+     }
+	.imagecoll {
+		width: 960px;
+		height: 500px;
+		margin-top: 123px;
+		background-color: #e8e8e8;
+	}
+	.imgbox {
+		width: 725px;
+		float: left;
+	}
+
+	.r-book-img {
+		background-color:#de575d;
+		height:194px;
+	}
+	.r-book-name {
+		padding: 3px 20px;
+		background-color:#e17d82;
+		height:42px;
+		overflow: hidden;
+	}
+	.r-book-author {
+		padding: 3px 20px;
+		background-color:#e59fa2;
+		height:24px;
+		overflow: hidden;
+	}
+	.r-book-price {
+		padding: 3px 20px;
+		background-color:#edcfd1;
+		height:30px;
+		overflow: hidden;
+	}
+	.chart {
+		width: 235px;
+		height: 500px;
+		float: right;
+		background-color: #d3d3d3; 
+	}
+	.chart ul {
+		float: left;
+		padding: 0;
+	}
+	.chart li {
+		width: 235px;
+		height: 50px;
+		list-style: none;
+		border-bottom: dotted 1px #fff;
+		padding: 0px 10px 0px 10px;
+		overflow: hidden;
+	}
+	#bang {
+		line-height: 48px;
+	}
+	.chart a {
+		color: #000;
+		text-decoration: none;
+		line-height: 48px;
+		margin-left: 10px;
+	}
+	.roll-li:hover {
+		background-color: #c1c1c1;
+	}
+	.chart a:hover, a.on {
+		color: #fff;
+	}
+</style>

@@ -1,0 +1,96 @@
+
+<style type="text/css">
+	.state {
+		width: 100%;
+		height: 200px;
+		margin: 0;
+		padding-top: 20px;
+		background-color: #fff;
+		position: relative;
+	}
+	.ads-bg {
+		margin: 10px auto;
+		width: 100%;
+		height: 100px;
+		background-color: #ebebeb;
+	}
+	.ads {
+		margin: 10px auto;
+		width: 960px;
+		height: 100px;
+		background-color: #ebebeb;
+	}
+	.ads-img {
+		width: 20%;
+		height: 100%;
+		float: left;
+		margin: auto 55px;
+	}
+	.copyright {
+		width: 100%;
+		height: 100%;
+	}
+	.copyright {
+		width: 960px;
+		height: 20px;
+		text-align: center;
+		margin: 50px auto 30px auto;
+		background-color: #fff;
+		color: #7e7e7e;
+	}
+
+	.dn {
+		display: none;
+	}
+	.go-top {
+		position: fixed;
+		left: 50%;
+		margin-left: 500px;
+		bottom: 41px;
+		width: 46px;
+		z-index: 999;
+	}
+	.go-top a {
+		display: block;
+		width: 46px;
+		height: 46px;
+		margin-bottom: 10px;
+		background-image: url(../images/go-top.png);
+	}
+	.go-top a:last-child {
+		margin-bottom: -22px;
+	}
+	.go-top .go {
+		background-position: 0 -147px;
+	}
+	.go-top .go:hover {
+		background-position: 0 -250px;
+	}
+	.go-top .feedback {
+		background-position: 0 -100px;
+	}
+	.go-top .feedback:hover {
+		background-position: 0 -300px;
+	}
+	.go-top .uc-2vm {
+		background-position: 0 0;
+	}
+	.go-top .uc-2vm:hover {
+		background-position: 0 -350px;
+	}
+	.go-top .uc-2vm-pop {
+		position: absolute;
+		right: 60px;
+		top: -100px;
+		width: 240px;
+		box-shadow: 0px 1px 4px rgba(0,0,0,.1);
+		background: #fff;
+	}
+	.go-top .uc-2vm-pop .title-2wm {
+		font-size: 14px; 
+		margin: 10px 20px;
+	}
+	.go-top .uc-2vm-pop .logo-2wm-box {
+		position: relative;
+	}
+</style>

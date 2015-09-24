@@ -110,18 +110,23 @@ public class BookController {
 		Book book = new Book();
 		book.setAuthor(author);
 		Integer bookclassid = null;
-		//System.out.println("bookThreeclassid===>"+bookThreeclassid);
-		//System.out.println("bookTwoclassid===>"+bookTwoclassid);
-		//System.out.println("bookOneclassid===>"+bookOneclassid);
+		System.out.println("bookThreeclassid===>"+bookThreeclassid);
+		System.out.println("bookTwoclassid===>"+bookTwoclassid);
+		System.out.println("bookOneclassid===>"+bookOneclassid);
 		if(bookThreeclassid> new Integer(-1)){
 			bookclassid =bookThreeclassid;
 		}
-		else if(bookThreeclassid==new Integer(-1)&&bookTwoclassid>new Integer(-1)){
-			bookclassid =bookThreeclassid;
+		else if(bookTwoclassid>new Integer(-1)){
+			bookclassid =bookTwoclassid;
 			
 		}else {
 			bookclassid =bookOneclassid;
 		}
+		System.out.println("图书价格："+price);
+		
+		Double tsprice = Double.parseDouble(String.format("%.2f",price));
+		System.out.println(tsprice);
+		
 		System.out.println(bookclassid);
 		book.setBookclassid(bookclassid);
 		book.setBookname(bookname);
@@ -135,7 +140,7 @@ public class BookController {
 		book.setPublishdate(publishdate);
 		book.setIsrecommend(isrecommend);
 		book.setPicture(newFileName);
-		book.setPrice(price);
+		book.setPrice(tsprice);
 		book.setPublish(publish);
 		book.setRepertory(repertory);
 		book.setSales(0);
@@ -327,6 +332,27 @@ public class BookController {
 		System.out.println(i);
 		return "redirect:/bookPage";
 
+	}
+	
+	
+	@RequestMapping(value = "/rank", method = RequestMethod.GET)
+	public String rankBook(Model model)
+			throws JsonGenerationException, JsonMappingException, IOException {
+		logger.info("-----查询图书排行-----");
+		List<Book> rankbook = bookService.BookRank();
+		ObjectMapper mapper = new ObjectMapper();
+		
+		logger.info("排名榜"+mapper.writeValueAsString(rankbook));
+		
+		List<Book> recommendbook = bookService.BookRecommend();
+		
+		logger.info("推荐榜"+mapper.writeValueAsString(recommendbook));
+		
+		model.addAttribute("rankbook", rankbook);
+		
+		model.addAttribute("recommendbook", recommendbook);
+		
+		return "home/home";
 	}
 
 }

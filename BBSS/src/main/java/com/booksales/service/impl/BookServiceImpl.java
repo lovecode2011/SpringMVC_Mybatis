@@ -73,11 +73,24 @@ public class BookServiceImpl implements BookServiceI {
 		return page;
 	}
 
-	@Override
-	@Transactional
 	public int updateBook(Book book) {
 		
 	return bookMapper.updateByPrimaryKey(book);
+	}
+
+	/**
+	 * 根据图书销售量来排行
+	 */
+	public List<Book> BookRank() {
+		return bookMapper.selectBookBySales();
+	}
+
+	/**
+	 * 通过是否推荐的关键字来判断
+	 */
+	public List<Book> BookRecommend() {
+		
+		return bookMapper.selectBookByRecommend();
 	}
 
 }

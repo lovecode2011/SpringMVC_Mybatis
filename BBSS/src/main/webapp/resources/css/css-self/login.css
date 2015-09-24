@@ -1,0 +1,86 @@
+      html {
+        background: #63bad8;
+      }
+      body#login {
+        text-align: center;  
+        font: 12px 'Lucida Grande',lucida,helvetica,arial,sans-serif;  
+        color: #333333;  
+        padding: 70px  0px 50px 0px;  
+        margin: 0 auto;  
+        width: 440px;
+        height: 300px;
+      }
+      #wrapper{
+        width: 400px;
+        height: 320px;
+        padding: 0 20px 0 20px;
+        position: relative;
+      }
+      #header {
+        width: 360px;
+        padding: 0px 10px 0px 0px; 
+        background: #c5e6ea;
+        border-bottom: #b2ccd0 solid 1px; 
+        height: 70px; 
+        display: block;
+        position: relative;
+      }
+      #content {
+        width: 400px;
+        height: 320px;
+        box-shadow: 0 0 50px #424242;
+        background-color: #fff;
+        text-align: left;
+      }
+      #darkbanner {
+        margin: 20px 0 0 -18px;
+        padding: 10px 10px 10px 40px;
+        background: #424242;
+        position: relative;
+        height: 30px;
+      }
+      #darkbanner h2 {
+        font: bold 24px helvetica, arial, sans-serif;
+        color: #fff;
+        display: inline;
+        margin-left: 10px;
+      }
+      #darkbannerwrap {
+        background: url(../images/aiwrap.png);
+        width: 18px;
+        height: 10px;
+        margin: 0 0 20px -18px;
+        position: relative;
+      }
+      #box {
+        font-family: 'arial';
+        width: 360px;
+        height: 121px;
+        padding: 0px 20px 10px 20px;
+        position: relative;
+        text-align: center;
+      }
+      #table {
+        padding-right: 15px;
+        margin: 0px auto;}
+      tr {
+        background-color: #fff;}
+      tr:hover {
+        background-color: #c3e6e5;}
+      td {
+        text-align: right;
+      }
+      #confirm {
+        margin-left: -15px;
+      }
+      input#click {
+        border: 1px solid;
+        border-radius: 5px;
+        color: #fff;
+        background-color: #27ba31;
+        padding: 5px 90px 5px 90px;
+        margin: 0 auto;
+      }
+      input#click:hover{
+      	background-color: #a6f181;
+      }
