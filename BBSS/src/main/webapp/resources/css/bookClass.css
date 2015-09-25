@@ -1,0 +1,55 @@
+header{
+	margin-bottom: 20px;
+}
+
+ul li{
+	list-style: none;
+	display: inline;
+}
+.navbar-header p{
+	font-weight: bold;
+}
+
+.navbar {
+	margin-top: 30px;
+	margin-right: 30px;
+}
+
+.input-group{
+	margin-top: 40px;
+}
+
+ol.breadcrumb{
+	margin-bottom: 0px;
+	margin-top: 20px;
+}
+nav.col-lg-12.navbar.navbar-default{
+	margin-top: 20px;
+}
+
+.row.bookshow{
+	margin-bottom: 30px;
+}
+
+.center{
+	text-align: center;
+}
+
+.bookclassButton{
+	margin: 20px;
+}
+
+ul.pagination>li>a:hover{
+	color: #5CB85C;
+    background-color: #C1CBBC;
+}
+ul.pagination>li.active>a{
+	color: #fff;
+    background-color: #5CB85C;
+    border-color: #5CB85C
+}
+ul.pagination>li.active>a:hover{
+	color: #fff;
+    background-color: #5CB85C;
+    border-color: #5CB85C
+}

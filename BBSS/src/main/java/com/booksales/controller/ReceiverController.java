@@ -100,4 +100,31 @@ public class ReceiverController {
 		model.addAttribute("receiverlist", receiverlist);
 		return "receiver/listReceiver";
 	}
+	@RequestMapping(value = "listCart/addReceiver", method = RequestMethod.POST)
+	public String addRec(
+			@RequestParam("userid") String userid,
+			@RequestParam("receivername")String receivername,
+			@RequestParam("receivertel")String receivertel,
+			@RequestParam(value="province", required=false)String province,
+			@RequestParam(value="city",required=false)String city,
+			@RequestParam(value="area",required=false)String area,
+			@RequestParam("placeDetail")String placeDetail,
+			@RequestParam("postalcode")String postalcode,
+			
+			Model model){
+		Receiver receiver = new Receiver();
+		System.out.println("用户id："+userid);
+		receiver.setUserid(Integer.parseInt(userid));
+		receiver.setReceivername(receivername);
+		receiver.setReceivertel(receivertel);
+		String receiveraddress = province+city+area+placeDetail;
+		receiver.setReceiveraddress(receiveraddress);
+		receiver.setReceivercode(postalcode);
+		
+		int i=	receiverService.addReceiver(receiver);
+		
+		return "redirect:addOrder";
+		
+	}
+
 }

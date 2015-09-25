@@ -93,4 +93,10 @@ public class BookServiceImpl implements BookServiceI {
 		return bookMapper.selectBookByRecommend();
 	}
 
+	@Override
+	public int selectBookAmount() {
+		
+		return bookMapper.selectBookAmount();
+	}
+
 }

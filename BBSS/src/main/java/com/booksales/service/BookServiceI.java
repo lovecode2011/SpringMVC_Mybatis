@@ -63,6 +63,12 @@ public interface BookServiceI {
 	 */
 	List<Book> BookRecommend();
 	
+	/**
+	 * 查询图书的总的数量
+	 * @return
+	 */
+	int selectBookAmount();
+	
 	
 
 }

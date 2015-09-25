@@ -115,6 +115,9 @@ public class UserController {
 			
 			if("1".equals(u.getIsroot())){
 				httpSession.setAttribute("admin", u);
+				
+				int bookAmount = bookService.selectBookAmount();
+				request.setAttribute("bookAmount",bookAmount );
 				return "forward:bookPage";
 			}
 			else{

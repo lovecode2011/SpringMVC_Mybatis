@@ -10,8 +10,18 @@ public class Receiver {
     private String receivertel;
 
     private String receiveraddress;
+    
+    private String receivercode;
 
-    public Integer getReceiverid() {
+    public String getReceivercode() {
+		return receivercode;
+	}
+
+	public void setReceivercode(String receivercode) {
+		this.receivercode = receivercode;
+	}
+
+	public Integer getReceiverid() {
         return receiverid;
     }
 

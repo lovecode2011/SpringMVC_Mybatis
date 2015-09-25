@@ -1,0 +1,81 @@
+body {
+	font-family: 'Microsoft YaHei', 'Microsoft JhengHei';
+}
+
+header {
+	margin-bottom: 20px;
+}
+
+.folatRight {
+	float: right;
+}
+
+.folatLeft {
+	float: left;
+}
+
+button>a {
+	color: #fff;
+	text-decoration: none;
+}
+
+button>a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+button>a:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+button>a:active {
+	color: #fff;
+	text-decoration: none;
+}
+
+input {
+	width: 60px;
+}
+
+.control-group {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.control-group>input {
+	width: 200px;
+}
+
+select {
+	height: 27px;
+}
+.placeShow{
+	width: 150px;
+}
+.control-group>input#placeDetail {
+	width: 450px;
+}
+
+.returnBack {
+	margin-top: 30px;
+}
+
+.container {
+	width: 960px;
+	font-size: 14px;
+	line-height: 21px;
+	color: #454545;
+}
+
+.row.head {
+	margin-bottom: 20px;
+}
+
+.receiver li {
+	list-style: none;
+}
+
+.wrap {
+	display: -webkit-box;
+}

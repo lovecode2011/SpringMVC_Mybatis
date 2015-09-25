@@ -7,6 +7,7 @@
     <result column="ReceiverName" property="receivername" jdbcType="VARCHAR" />
     <result column="ReceiverTel" property="receivertel" jdbcType="CHAR" />
     <result column="ReceiverAddress" property="receiveraddress" jdbcType="VARCHAR" />
+     <result column="ReceiverCode" property="receivercode" jdbcType="VARCHAR" />
   </resultMap>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -17,9 +18,9 @@
   <insert id="insert" parameterType="com.booksales.model.Receiver" >
     
     insert into bsreceiver (UserId, ReceiverName, 
-      ReceiverTel, ReceiverAddress)
+      ReceiverTel, ReceiverAddress,ReceiverCode)
     values (#{userid,jdbcType=INTEGER}, #{receivername,jdbcType=VARCHAR}, 
-      #{receivertel,jdbcType=CHAR}, #{receiveraddress,jdbcType=VARCHAR})
+      #{receivertel,jdbcType=CHAR}, #{receiveraddress,jdbcType=VARCHAR},#{receivercode,jdbcType=VARCHAR})
   </insert>
   
   <insert id="insert2" parameterType="com.booksales.model.Receiver" >
@@ -55,7 +56,7 @@
   </select>
   
   <select id="selectAll" resultMap="BaseResultMap" >
-    select ReceiverId, UserId, ReceiverName, ReceiverTel, ReceiverAddress
+    select ReceiverId, UserId, ReceiverName, ReceiverTel, ReceiverAddress,ReceiverCode
     from bsreceiver
   </select>
 </mapper>

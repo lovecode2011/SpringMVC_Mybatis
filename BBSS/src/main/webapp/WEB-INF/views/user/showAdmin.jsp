@@ -46,7 +46,7 @@
 		<div class="col-xs-3 col-md-2">
 			<ul class="nav nav-pills nav-stacked" style="max-width: 260px;">
 				<li class="active"><a href="#"> <span
-						class="badge pull-right">${fn:length(booklist.list)} </span>图书列表
+						class="badge pull-right">${bookAmount} </span>图书列表
 				</a></li>
 				<li><a href="#userpanel"> <span class="badge pull-right">${fn:length(userlist)}
 					</span>用户列表

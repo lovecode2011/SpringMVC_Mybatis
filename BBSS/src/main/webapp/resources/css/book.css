@@ -1,0 +1,12 @@
+.hasMargin{
+	margin: 20px;
+}
+
+.inline{
+	display: inline-block;
+}
+
+img.bookPic{
+	width:320px;
+	height:320px;
+}

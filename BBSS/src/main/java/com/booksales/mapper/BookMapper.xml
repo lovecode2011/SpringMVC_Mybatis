@@ -93,4 +93,8 @@
 		Price, Stock, Sales, BookClassId, IsRecommend, Intro
 		FROM  bsbook   WHERE  IsRecommend = 1  ORDER BY  Sales ASC LIMIT 1, 10
 	</select>
+	
+	<select id="selectBookAmount" resultType="java.lang.Integer">
+		SELECT	Count(BookId) FROM  bsbook
+	</select>
 </mapper>

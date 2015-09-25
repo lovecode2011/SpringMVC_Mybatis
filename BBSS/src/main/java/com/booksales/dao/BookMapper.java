@@ -40,4 +40,9 @@ public interface BookMapper {
 	 * @return
 	 */
 	List<Book> selectBookByRecommend();
+	/**
+	 * 查询图书的总数量
+	 * @return
+	 */
+	int selectBookAmount();
 }
