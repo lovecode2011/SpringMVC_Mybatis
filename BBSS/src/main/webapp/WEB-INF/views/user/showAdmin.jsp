@@ -39,6 +39,7 @@
 		</ul>
 		<ul class="nav navbar-nav pull-right">
 			<li><a href="##">管理员：${admin.username}</a></li>
+			<li><a href="adminLogout">注销</a></li>
 		</ul>
 	</div>
 	<div class="row">

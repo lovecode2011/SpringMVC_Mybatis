@@ -32,10 +32,9 @@
 
 <body style="margin: auto;">
 	<ul id="nav">
-	
-		
 		<c:if test="${user.username!=null}">
 		<li class="nav-left"><a href="#" style="text-align:center;">${user.username}</a></li>
+		<li class="nav-left"><a href="userLogout" style="text-align:center;">注销</a></li>
 		</c:if>
 		<c:if test="${user.username==null}">
 		<li class="nav-left"><a href="login" style="text-align:center;">登录</a></li>

@@ -230,6 +230,20 @@ public class UserController {
 		return "user/modifyUser";
 	}
 	
+	@RequestMapping(value = "/adminLogout")
+	public String adminLogout(HttpServletRequest request){
+		request.getSession().removeAttribute("admin");
+		return "redirect:/rank";
+		
+	}
+	@RequestMapping(value = "/userLogout")
+	public String userLogout(HttpServletRequest request){
+		//TODO
+		//多用户登陆的时候，注销问题
+		request.getSession().removeAttribute("user");
+		return "redirect:/rank";
+		
+	}
 	
 	
 }
