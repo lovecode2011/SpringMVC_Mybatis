@@ -15,8 +15,7 @@
     where ReceiverId = #{receiverid,jdbcType=INTEGER}
   </delete>
   
-  <insert id="insert" parameterType="com.booksales.model.Receiver" >
-    
+  <insert id="insert" useGeneratedKeys="true" keyProperty="receiverid" parameterType="com.booksales.model.Receiver" >
     insert into bsreceiver (UserId, ReceiverName, 
       ReceiverTel, ReceiverAddress,ReceiverCode)
     values (#{userid,jdbcType=INTEGER}, #{receivername,jdbcType=VARCHAR}, 

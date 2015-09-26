@@ -29,7 +29,7 @@ public class CartController {
 		 int i =cartService.addCart(userid,bookid);
 		 return "redirect:/";
 	}
-	@RequestMapping(value = "/listCart/{userid}", method = RequestMethod.GET)
+	@RequestMapping(value = "{userid}/listCart/", method = RequestMethod.GET)
 	public String listCart(@PathVariable Integer userid,Model model){
 		List<Cart> cartlist = cartService.listUserCart(userid);
 		model.addAttribute("cartlist", cartlist);

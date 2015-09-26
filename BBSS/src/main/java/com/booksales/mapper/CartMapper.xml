@@ -12,6 +12,13 @@
     <result column="OrderId" property="orderid" jdbcType="INTEGER" />
   </resultMap>
   
+  <select id="selectListBookId" resultMap="BaseResultMap">
+  	 select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
+        from bscart where BookId in  
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
+        #{item}  
+        </foreach>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bscart
     where CartId = #{cartid,jdbcType=INTEGER}
@@ -57,6 +64,5 @@
    select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
     from bscart
     where UserId = #{userid,jdbcType=INTEGER} and BookId =#{bookid,jdbcType=INTEGER}
-  
   </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.booksales.dao;
 
+import com.booksales.model.Cart;
 import com.booksales.model.Class;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public interface ClassMapper {
      * @return List<Class>
      */
 	List<Class> selectSubClassByFatherId(Integer classid);
+	
 
 	
 }

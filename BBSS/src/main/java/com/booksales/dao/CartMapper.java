@@ -19,4 +19,12 @@ public interface CartMapper {
 
 	
 	Cart selectByBookId(Cart cart);
+	
+	
+	/**
+     * 根据bookid集合查询cart集合
+     * @param cartIdList
+     * @return
+     */
+	List<Cart> selectListBookId(List<Integer> bookIdList);
 }

@@ -10,16 +10,17 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>图书列表</title>
 <!-- Bootstrap -->
-<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 	<c:if test="${cartlist!=NULL}">
 			<h1>${ user.username}</h1>
-			 <form  action="addOrder" method="post"
+			 <form  action="${pageContext.request.contextPath }/${user.userid }/addOrder" method="post"
 					class="form-horizontal">
             <table class="table table-bordered">
+            <input type="hidden" name ="userid" value="${user.userid }"/>
                 <thead>
                     <tr>
                     <th>选择</th>
@@ -35,7 +36,7 @@
               
 							<c:forEach var="c" items="${cartlist}" varStatus="clist">
 							<tr>
-							<td><input type="checkbox" name="cart_id" value="${c.bookid }"/></td>
+							<td><input type="checkbox" name="book_id" value="${c.bookid }"/></td>
 							<td>${c.bookid}</td>
                         	<td>${c.bookname}</td>
                        	 <td>${c.booknum}</td>
@@ -56,10 +57,10 @@
             </table>
             </form>
 </c:if>
-	 <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
+	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>   
 	
 	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+		src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	 
 	
 </body>

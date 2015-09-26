@@ -6,9 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户登录后的页面</title>
-<link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	欢迎你：${user.username}
@@ -16,7 +14,7 @@
 
 	<a href="listUserReceiver/${user.userid}">查看收货地址</a>
 
-	<a href="listCart/${user.userid}">查看购物车</a>
+	<a href="listCart/">查看购物车</a>
 
 	<a href="listOrder/${user.userid}">查看订单</a>
 
@@ -55,7 +53,9 @@
 
 						<td>${b.publishdate}</td>
 						<td>${b.isbn}</td>
-						<td><img alt="" src="http://wwhahapic.tunnel.mobi/${b.picture}" width="100px" height="80px"></td>
+						<td><img alt=""
+							src="http://wwhahapic.tunnel.mobi/${b.picture}" width="100px"
+							height="80px"></td>
 						<td>${b.repertory}</td>
 						<td>${b.price}</td>
 						<td>${b.stock}</td>
@@ -70,11 +70,8 @@
 			</c:if>
 		</tbody>
 	</table>
-
-	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

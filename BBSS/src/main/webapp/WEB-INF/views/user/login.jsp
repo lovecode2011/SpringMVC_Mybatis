@@ -1,34 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>登录</title>
 <!-- Bootstrap -->
-<link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<link  href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="Font-Awesome/css/bootstrap.min.css">
+<link rel="stylesheet" 	href="Font-Awesome/css/font-awesome.min.css">
 <style type="text/css">
 body {
 	background-color: #F6F9FB;
 }
-
 #mainbox {
 	background-color: #FFF;
 	margin-top: 120px;
@@ -39,26 +25,21 @@ body {
 	border: 1px solid #eef2f4;
 	box-shadow: 0px 1px 2px #eee;
 }
-
 #mainbox img {
 	width: 400px;
 	height: 400px;
 }
-
 #loginForm {
 	padding-top: 80px;
 	padding-left: 20px;
 }
-
 #loginForm .input-group {
 	padding-top: 20px;
 }
-
 #loginForm img {
 	width: 80px;
 	height: 35px;
 }
-
 #footer {
 	padding-top: 50px;
 }
@@ -66,13 +47,11 @@ body {
 </head>
 
 <body>
-
-
 	<div class="container-fluid">
 		<div class="row" id="mainbox">
 			<div class="col-md-6">
 				<img alt="Bootstrap Image Preview"
-					src="<%=request.getContextPath()%>/resources/images/01.jpg"
+					src="images/01.jpg"
 					class="img-rounded" />
 			</div>
 			<div class="col-md-6">
@@ -136,11 +115,11 @@ body {
 	</div>
 
 
-	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+		src="js/jquery.validate.min.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+		src="js/bootstrap.min.js"></script>
 	<script>  
     function refresh(obj){  
          obj.src = "<%=request.getContextPath()%>/VerifyCodeServlet?"+ Math.random();

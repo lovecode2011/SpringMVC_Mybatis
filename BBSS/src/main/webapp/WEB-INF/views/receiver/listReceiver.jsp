@@ -10,7 +10,7 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>收货地址列表</title>
 <!-- Bootstrap -->
-<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
@@ -44,12 +44,9 @@
                 </tbody>
             </table>
 
-	 <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
+	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>   
 	
 	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-	 
-	
+		src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 </body>
-
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -8,21 +8,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>登录</title>
-<!-- Bootstrap -->
-<link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="Font-Awesome/css/bootstrap.min.css">
+<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
 <style type="text/css">
 body {
 	background-color: #F6F9FB;
 }
-
 #mainbox {
 	background-color: #FFF;
 	margin-top: 120px;
@@ -51,9 +44,10 @@ body {
 #footer {
 	padding-top: 50px;
 }
-.alert{
-width: 70%;
-margin-left: 160px;
+
+.alert {
+	width: 70%;
+	margin-left: 160px;
 }
 </style>
 </head>
@@ -62,15 +56,14 @@ margin-left: 160px;
 	<div class="container-fluid">
 		<div class="row" id="mainbox">
 			<div class="col-md-4">
-				<img alt="Bootstrap Image Preview"
-					src="<%=request.getContextPath()%>/resources/images/01.jpg"
+				<img alt="Bootstrap Image Preview" src="images/01.jpg"
 					class="img-rounded" />
 			</div>
 			<div class="col-md-8" id="message">
-			<c:if test="${register==1 }">
-			<div class="alert alert-success" role="alert" id="alert">注册成功！</div>			
-			</c:if>
-				
+				<c:if test="${register==1 }">
+					<div class="alert alert-success" role="alert" id="alert">注册成功！</div>
+				</c:if>
+
 
 
 				<form class="form-horizontal" id="register1" action="register"
@@ -81,8 +74,7 @@ margin-left: 160px;
 							<label class="col-md-4 control-label" for="username"></label>
 							<div class="col-md-8">
 								<div class="input-group">
-									<span class="input-group-addon">昵称</span> 
-									<input id="username"
+									<span class="input-group-addon">昵称</span> <input id="username"
 										name="username" class="form-control" placeholder="请输入昵称"
 										type="text">
 								</div>
@@ -135,7 +127,7 @@ margin-left: 160px;
 
 							<div class="col-md-4"></div>
 							<div class="col-md-4">
-								<button name="register" class="btn btn-primary" >注册</button>
+								<button name="register" class="btn btn-primary">注册</button>
 							</div>
 							<div class="col-md-4">
 								<a href="login" class="btn btn-success  active pull-right"
@@ -154,11 +146,9 @@ margin-left: 160px;
 			| </span><span>BY<a href="#" class="btn btn-link btn-xs "
 			role="button">软件实训小组</a></span>
 	</div>
-	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script>  
 	//前端输入数据校验
 	$(document).ready(function() {

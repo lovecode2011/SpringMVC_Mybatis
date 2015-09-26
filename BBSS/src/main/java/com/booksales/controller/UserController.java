@@ -239,9 +239,11 @@ public class UserController {
 	 * @throws JsonMappingException
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/showUser")
+	@RequestMapping(value = "{userid}/info")
 	public String showUser(
+			@PathVariable Integer userid,
 			Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		
 		List<User> userlist =userService.userList();
 		model.addAttribute("userlist", userlist);
 		return "user/showUser";

@@ -11,16 +11,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>添加图书</title>
-<link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../Font-Awesome/css/font-awesome.min.css">
 </head>
 
 <body>
 	<!-- Bootstrap -->
-	<form class="form-horizontal"  id="addReceiver" action="Receiver" method="post">
+	<form class="form-horizontal" id="addReceiver" action="Receiver"
+		method="post">
 		<fieldset>
 
 			<!-- Form Name -->
@@ -28,10 +26,9 @@
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="userid">用户id</label>
 				<div class="col-md-4">
-					<input id="userid" name="userid" type="text" placeholder="用户id" value ="${userid }"
-						class="form-control input-md">
+					<input id="userid" name="userid" type="hidden" placeholder="用户id"
+						value="${userid }" class="form-control input-md" >
 
 				</div>
 			</div>
@@ -57,12 +54,19 @@
 			</div>
 
 			<!-- Select Basic -->
-			<div class="form-group" id="city_china" data-url="<%=request.getContextPath()%>/resources/js/cityData.min.js" >
+			<div class="form-group" id="city_china" data-url="../js/cityData.min.js">
 				<label class="col-md-4 control-label" for="receiveraddress">收货人地址</label>
-				<div class="col-md-3"  >
-          <p>省份：<select class="province cxselect" disabled="disabled" name="province"></select></p>
-          <p>城市：<select class="city cxselect" disabled="disabled" name="city"></select></p>
-          <p>地区：<select class="area cxselect" disabled="disabled" name="area"></select></p>
+				<div class="col-md-3">
+					<p>
+						省份：<select class="province cxselect" disabled="disabled"
+							name="province"></select>
+					</p>
+					<p>
+						城市：<select class="city cxselect" disabled="disabled" name="city"></select>
+					</p>
+					<p>
+						地区：<select class="area cxselect" disabled="disabled" name="area"></select>
+					</p>
 				</div>
 			</div>
 
@@ -87,23 +91,20 @@
 		</fieldset>
 	</form>
 
-	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.cxselect.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.validate.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.cxselect.min.js"></script>
 
 	<script>
-	$('#global_location').cxSelect({
-		  selects: ['country', 'state', 'city', 'region'],
-		  nodata: 'none'
+		$('#global_location').cxSelect({
+			selects : [ 'country', 'state', 'city', 'region' ],
+			nodata : 'none'
 		});
-	
-	$('#city_china').cxSelect({
-		  selects: ['province', 'city', 'area'],
-		  nodata: 'none'
+
+		$('#city_china').cxSelect({
+			selects : [ 'province', 'city', 'area' ],
+			nodata : 'none'
 		});
 		$('#receiveraddress').cxSelect({
 

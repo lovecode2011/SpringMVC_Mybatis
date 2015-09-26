@@ -37,7 +37,7 @@
 <body style="margin: auto;">
 	<ul id="nav">
 		<c:if test="${user.username!=null}">
-		<li class="nav-left"><a href="#" style="text-align:center;">Hi.${user.username}</a></li>
+		<li class="nav-left"><a href="#" style="text-align:center;">${user.username}</a></li>
 		<li class="nav-left"><a href="userLogout" style="text-align:center;">注销</a></li>
 		</c:if>
 		<c:if test="${user.username==null}">
@@ -47,7 +47,7 @@
 		<li class="nav-right"><a href="#" style="text-align:center;">联系我们</a></li>
 		<li class="nav-right"><a href="#" style="text-align:center;">积分商城</a></li>
 		<li class="nav-right"><a href="#" style="text-align:center;">我的订单</a></li>
-		<li class="nav-right"><a href="#" style="margin-left:1em;">个人中心</a>
+		<li class="nav-right"><a href="${user.userid }/info" style="margin-left:1em;">个人中心</a>
 			<ul>
 				<li class="nav-self"><a href="#">我的收藏</a></li>
 				<li class="nav-self"><a href="#">我的积分</a></li>
@@ -546,11 +546,10 @@
 				<ul>
 					<c:forEach var="re" items="${recommendbook}" varStatus="relist">
 					<li>
-					
 						<a href="book/${re.bookid }"><div class="r-book-img"><img src="http://wwhahapic.tunnel.mobi/${re.picture}"></div>
 						<div class="r-book-name">${re.bookname }</div></a>
 						<div class="r-book-author">${re.author }</div>
-						<div class="r-book-price">${re.price}</div>
+						<div class="r-book-price">¥${re.price}</div>
 					</li>
 					</c:forEach>
 				</ul>

@@ -1,6 +1,8 @@
 package com.booksales.dao;
 
+import com.booksales.model.Cart;
 import com.booksales.model.Order;
+
 import java.util.List;
 
 public interface OrderMapper {
@@ -13,4 +15,5 @@ public interface OrderMapper {
     List<Order> selectAll();
 
     int updateByPrimaryKey(Order record);
+    
 }

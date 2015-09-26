@@ -335,7 +335,7 @@ public class BookController {
 	}
 	
 	
-	@RequestMapping(value = "/rank", method = RequestMethod.GET)
+	@RequestMapping(value = "/rank")
 	public String rankBook(Model model)
 			throws JsonGenerationException, JsonMappingException, IOException {
 		logger.info("-----查询图书排行-----");
@@ -352,7 +352,7 @@ public class BookController {
 		
 		model.addAttribute("recommendbook", recommendbook);
 		
-		return "home/home2";
+		return "home/home";
 	}
 	
 
