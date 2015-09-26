@@ -50,11 +50,11 @@
 		width: 235px;
 		height: 100%;
 		float: right;
-		margin: 6px 0 0 725px;
+		margin: 0 0 0 725px;
 		position: absolute;
 	}
 	.navbar-form {
-		padding:0;
+		padding: 20px 0 0 0;
 	}
 	.mainav {
 		z-index: 1;
@@ -180,29 +180,6 @@
 	.imgbox {
 		width: 725px;
 		float: left;
-	}
-
-	.r-book-img {
-		background-color:#de575d;
-		height:194px;
-	}
-	.r-book-name {
-		padding: 3px 20px;
-		background-color:#e17d82;
-		height:42px;
-		overflow: hidden;
-	}
-	.r-book-author {
-		padding: 3px 20px;
-		background-color:#e59fa2;
-		height:24px;
-		overflow: hidden;
-	}
-	.r-book-price {
-		padding: 3px 20px;
-		background-color:#edcfd1;
-		height:30px;
-		overflow: hidden;
 	}
 	.chart {
 		width: 235px;

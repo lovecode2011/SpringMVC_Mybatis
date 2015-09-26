@@ -18,12 +18,6 @@
 	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/Font-Awesome/css/font-awesome.min.css">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 <style type="text/css">
 body {
 	background-color: #F6F9FB;
@@ -57,7 +51,7 @@ body {
 #footer {
 	padding-top: 50px;
 }
-#alert{
+.alert{
 width: 70%;
 margin-left: 160px;
 }
@@ -72,14 +66,14 @@ margin-left: 160px;
 					src="<%=request.getContextPath()%>/resources/images/01.jpg"
 					class="img-rounded" />
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-8" id="message">
 			<c:if test="${register==1 }">
 			<div class="alert alert-success" role="alert" id="alert">注册成功！</div>			
 			</c:if>
 				
 
 
-				<form class="form-horizontal" id="register" action="register"
+				<form class="form-horizontal" id="register1" action="register"
 					method="post">
 					<fieldset>
 						<!-- Prepended text-->
@@ -141,7 +135,7 @@ margin-left: 160px;
 
 							<div class="col-md-4"></div>
 							<div class="col-md-4">
-								<button name="register" class="btn btn-primary">注册</button>
+								<button name="register" class="btn btn-primary" >注册</button>
 							</div>
 							<div class="col-md-4">
 								<a href="login" class="btn btn-success  active pull-right"
@@ -160,57 +154,90 @@ margin-left: 160px;
 			| </span><span>BY<a href="#" class="btn btn-link btn-xs "
 			role="button">软件实训小组</a></span>
 	</div>
-
-
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	<script>  
-
-		$(document).ready(function() {
-			$("#register").validate({
-				rules : {
-					email : {
-						required : true,
-						email : true
-					},
-					password : {
-						required : true,
-						minlength : 2,
-						maxlength : 10
-					},
-					username : {
-						required : true,
-						minlength : 1,
-						maxlength : 12
-					},
-					"repassword":{
-						equalTo:"#password"
-					}
+	//前端输入数据校验
+	$(document).ready(function() {
+		$("#register1").validate({
+			rules : {
+				email : {
+					required : true,
+					email : true
 				},
-				messages : {
-					email : {
-						required : '请输入电子邮件',
-						email : '请检查电子邮件的格式'
-					},
-					password : {
-						required : '请输入密码',
-						minlength : "密码最短为2位",
-						maxlength : "密码最长为10位"
-					},username : {
-						required : "请输入昵称",
-						minlength : "昵称最短长度为1位",
-						maxlength : "昵称最长长度为12位"
-					},
-					"repassword":{
-						equalTo:"两次输入的密码不一致"
-					}
+				password : {
+					required : true,
+					minlength : 2,
+					maxlength : 10
+				},
+				username : {
+					required : true,
+					minlength : 1,
+					maxlength : 12
+				},
+				"repassword":{
+					equalTo:"#password"
+				}
+			},
+			messages : {
+				email : {
+					required : '请输入电子邮件',
+					email : '请检查电子邮件的格式'
+				},
+				password : {
+					required : '请输入密码',
+					minlength : "密码最短为2位",
+					maxlength : "密码最长为10位"
+				},username : {
+					required : "请输入昵称",
+					minlength : "昵称最短长度为1位",
+					maxlength : "昵称最长长度为12位"
+				},
+				"repassword":{
+					equalTo:"两次输入的密码不一致"
+				}
 
+			}
+		});
+	});
+			$("#register").click(function(){
+				
+			});
+			/////动态查看用户名是否已经被使用了
+			$("input[name='username']").change(function(){
+				var username = $(this).val();
+				username = $.trim(username);
+				if(username!=""){
+					var url="${pageContext.request.contextPath}/Validate/UserName";
+					var args={"username":username,"time":new Date()};
+					$.post(url,args,function(data){
+					//	alert(data);
+						if(data){
+							$("#validateusername").remove();
+						}
+						$("#message").prepend(data);					
+					})
 				}
 			});
-		});
+			///查看用户邮箱是否也是已经被注册了
+			$("input[name='email']").change(function(){
+				var email = $(this).val();
+				email = $.trim(email);
+				if(email!=""){
+				var url="${pageContext.request.contextPath}/Validate/Email";
+				var args={"email":email,"time":new Date()};
+				$.post(url,args,function(data){
+					//	alert(data);
+						if(data){
+							$("#validateemail").remove();
+						}
+						$("#message").prepend(data);					
+					})
+				}
+			});
 	</script>
 </body>
 

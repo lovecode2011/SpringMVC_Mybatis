@@ -352,7 +352,7 @@ public class BookController {
 		
 		model.addAttribute("recommendbook", recommendbook);
 		
-		return "home/home";
+		return "home/home2";
 	}
 	
 

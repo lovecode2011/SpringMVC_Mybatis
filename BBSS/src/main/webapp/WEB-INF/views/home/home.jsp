@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>树塾书署</title>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" href="<%=request.getContextPath()%>/resources/<%=request.getContextPath()%>/resources/images/Book.ico">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/css-self/navbar.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/css-self/recomd.css">
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/css-self/container.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/css-self/ad-state.css">
+	<link rel="shortcut icon" href="images/Book.ico">
+	<link rel="stylesheet" type="text/css" href="css/css-self/navbar.css">
+	<link rel="stylesheet" type="text/css" href="css/css-self/recomd.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/css-self/container.css">
+	<link rel="stylesheet" type="text/css" href="css/css-self/ad-state.css">
 </head>
 
 	<style type="text/css">
@@ -28,12 +28,16 @@
 		top: 40%;
 		text-shadow: none;
 	}
+
+	.dropdown-submenu > a:after {
+		display: none;
+	}
 	</style>
 
 <body style="margin: auto;">
 	<ul id="nav">
 		<c:if test="${user.username!=null}">
-		<li class="nav-left"><a href="#" style="text-align:center;">${user.username}</a></li>
+		<li class="nav-left"><a href="#" style="text-align:center;">Hi.${user.username}</a></li>
 		<li class="nav-left"><a href="userLogout" style="text-align:center;">注销</a></li>
 		</c:if>
 		<c:if test="${user.username==null}">
@@ -62,15 +66,15 @@
 		<div class="c-head">
 			<div class="logo">
 				<a href="#">
-					<img src="<%=request.getContextPath()%>/resources/images/logo长.png">
+					<img src="images/logo长.png">
 				</a>
 			</div>
-			<div class="search" style="line-height:63px">
+			<div class="search" style="/*line-height:63px*/">
 				<form class="navbar-form navbar-left" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search" style="display:block;">
+					<div class="form-group" style="width:174px;height:100%;">
+						<input type="text" class="form-control" placeholder="Search" style="display:block;width:174px;height:100%;">
 					</div>
-					<button type="submit" class="btn btn-default m-btn">搜索</button>
+					<button type="submit" class="btn btn-default m-btn" style="width:54px;height:100%;float:right;margin-left:7px;">搜索</button>
 				</form>
 			</div>
 			<div class="mainav" style="line-height:50px">
@@ -84,13 +88,6 @@
 		                    <li class="divider m-divider"></li>
 		                    <li class="dropdown-submenu">
 		                        <a tabindex="-1" href="javascript:;">0-2岁</a>
-		                        <ul class="dropdown-menu ul-2 ul-3">
-			                        <li><a href="javascript:;">待添加</a></li>
-			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
-			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
-		                        </ul>
 		                    </li>
 
 		                    <li class="divider m-divider"></li>
@@ -157,18 +154,72 @@
 		            
 		            <!--目录5-->
 		            <div class="dropdown">
-		                <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary ul-1" data-target="#" href="javascript:;">科普<span class="caret"></span></a>
+		                <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary ul-1" data-target="#" href="javascript:;">社科<span class="caret"></span></a>
 		                <ul id="arrow-ul" class="dropdown-menu multi-level ul-2" role="menu" aria-labelledby="dropdownMenu">
 		                	<li class="arrow-li"><b class="arrow"></b></li>
 		                    <li class="divider m-divider"></li>
 		                    <li class="dropdown-submenu">
+		                        <a tabindex="-1" href="javascript:;">历史</a>
+		                        <ul class="dropdown-menu ul-2 ul-3">
+			                        <li><a href="javascript:;">中国史</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">世界史</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">历史普及读物</a></li>
+		                        </ul>
+		                    </li>
+
+		                    <li class="divider m-divider"></li>
+		                    <li class="dropdown-submenu">
+		                        <a tabindex="-1" href="javascript:;">文化</a>
+		                        <ul class="dropdown-menu ul-2 ul-3">
+			                        <li><a href="javascript:;">中国文化</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">各国文化</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">文化评述</a></li>
+		                        </ul>
+		                    </li>
+
+		                    <li class="divider m-divider"></li>
+		                    <li class="dropdown-submenu">
+		                        <a tabindex="-1" href="javascript:;">法律</a>
+		                        <ul class="dropdown-menu ul-2 ul-3">
+			                        <li><a href="javascript:;">民法</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">刑法</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">经济法</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">法律法规</a></li>
+		                        </ul>
+		                    </li>
+		                    
+		                    <li class="divider m-divider"></li>
+		                    <li class="dropdown-submenu">
+		                        <a tabindex="-1" href="javascript:;">政治/军事</a>
+		                        <ul class="dropdown-menu ul-2 ul-3">
+			                        <li><a href="javascript:;">军事史</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">军事理论</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">中国政治</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">世界政治</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">时事政治</a></li>
+		                        </ul>
+		                    </li>
+
+		                    <li class="divider m-divider"></li>
+		                    <li class="dropdown-submenu">
 		                        <a tabindex="-1" href="javascript:;">百科知识</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">植物志</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">动物志</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">国家地理</a></li>
 		                        </ul>
 		                    </li>
 
@@ -176,11 +227,11 @@
 		                    <li class="dropdown-submenu">
 		                        <a tabindex="-1" href="javascript:;">宇宙知识</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">外星人</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">宇宙幻想</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">宇宙探索</a></li>
 		                        </ul>
 		                    </li>
 
@@ -188,11 +239,11 @@
 		                    <li class="dropdown-submenu">
 		                        <a tabindex="-1" href="javascript:;">科学世界</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">地球科学</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">科学史话</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">科普图鉴</a></li>
 		                        </ul>
 		                    </li>
 		                </ul>
@@ -205,7 +256,7 @@
 		                	<li class="arrow-li"><b class="arrow"></b></li>
 		                    <li class="divider m-divider"></li>
 		                    <li class="dropdown-submenu">
-		                        <a tabindex="-1" href="javascript:;">传记Biography</a>
+		                        <a tabindex="-1" href="javascript:;">影视</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
 			                        <li><a href="javascript:;">待添加</a></li>
 			                        <li class="divider m-divider"></li>
@@ -217,7 +268,7 @@
 
 		                    <li class="divider m-divider"></li>
 		                    <li class="dropdown-submenu">
-		                        <a tabindex="-1" href="javascript:;">艺术Art</a>
+		                        <a tabindex="-1" href="javascript:;">摄影</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
 			                        <li><a href="javascript:;">待添加</a></li>
 			                        <li class="divider m-divider"></li>
@@ -229,7 +280,7 @@
 
 		                    <li class="divider m-divider"></li>
 		                    <li class="dropdown-submenu">
-		                        <a tabindex="-1" href="javascript:;">摄影Photograph</a>
+		                        <a tabindex="-1" href="javascript:;">作品集</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
 			                        <li><a href="javascript:;">待添加</a></li>
 			                        <li class="divider m-divider"></li>
@@ -320,60 +371,64 @@
 
 		            <!--目录2-->
 		            <div class="dropdown">
-		                <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary ul-1" data-target="#" href="javascript:;">人文<span class="caret"></span></a>
+		                <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary ul-1" data-target="#" href="javascript:;">文学<span class="caret"></span></a>
 		                <ul id="arrow-ul" class="dropdown-menu multi-level ul-2" role="menu" aria-labelledby="dropdownMenu">
 		                	<li class="arrow-li"><b class="arrow"></b></li>
 		                    <li class="divider m-divider"></li>
 		                    <li class="dropdown-submenu">
-		                        <a tabindex="-1" href="javascript:;">历史</a>
+		                        <a tabindex="-1" href="javascript:;">小说</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
-			                        <li><a href="javascript:;">中国史</a></li>
+			                        <li><a href="javascript:;">名著经典</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">世界史</a></li>
+			                        <li><a href="javascript:;">中国小说</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">历史普及读物</a></li>
+			                        <li><a href="javascript:;">外国小说</a></li>
 		                        </ul>
 		                    </li>
 
 		                    <li class="divider m-divider"></li>
 		                    <li class="dropdown-submenu">
-		                        <a tabindex="-1" href="javascript:;">文化</a>
+		                        <a tabindex="-1" href="javascript:;">动漫</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
-			                        <li><a href="javascript:;">中国文化</a></li>
+			                        <li><a href="javascript:;">绘本</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">各国文化</a></li>
+			                        <li><a href="javascript:;">漫画</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">文化评述</a></li>
+			                        <li><a href="javascript:;">轻小说</a></li>
 		                        </ul>
 		                    </li>
 
 		                    <li class="divider m-divider"></li>
 		                    <li class="dropdown-submenu">
-		                        <a tabindex="-1" href="javascript:;">法律</a>
+		                        <a tabindex="-1" href="javascript:;">传记</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
-			                        <li><a href="javascript:;">民法</a></li>
+			                        <li><a href="javascript:;">学者</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">刑法</a></li>
+			                        <li><a href="javascript:;">科学</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">经济法</a></li>
+			                        <li><a href="javascript:;">艺术</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">法律法规</a></li>
+			                        <li><a href="javascript:;">政治人物</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">历代帝王</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">其他传记</a></li>
 		                        </ul>
 		                    </li>
 		                    
 		                    <li class="divider m-divider"></li>
 		                    <li class="dropdown-submenu">
-		                        <a tabindex="-1" href="javascript:;">政治/军事</a>
+		                        <a tabindex="-1" href="javascript:;">青春文学</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
-			                        <li><a href="javascript:;">军事史</a></li>
+			                        <li><a href="javascript:;">校园</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">军事理论</a></li>
+			                        <li><a href="javascript:;">爱情/情感</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">中国政治</a></li>
+			                        <li><a href="javascript:;">叛逆/成长</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">世界政治</a></li>
+			                        <li><a href="javascript:;">悬疑/惊悚</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">时事政治</a></li>
+			                        <li><a href="javascript:;">爆笑/无厘头</a></li>
 		                        </ul>
 		                    </li>
 		                </ul>
@@ -428,11 +483,13 @@
 		                    <li class="dropdown-submenu">
 		                        <a tabindex="-1" href="javascript:;">中小学教辅</a>
 		                        <ul class="dropdown-menu ul-2 ul-3">
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">小学</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">中考</a></li>
 			                        <li class="divider m-divider"></li>
-			                        <li><a href="javascript:;">待添加</a></li>
+			                        <li><a href="javascript:;">高考</a></li>
+			                        <li class="divider m-divider"></li>
+			                        <li><a href="javascript:;">课外读物</a></li>
 		                        </ul>
 		                    </li>
 		                </ul>
@@ -453,114 +510,49 @@
   					<!-- Carousel items -->
   					<div class="carousel-inner">
     					<div class="active item">
-    						<a href="#"><img src="<%=request.getContextPath()%>/resources/images/test1.jpg"></a>
+    						<a href="#"><img src="images/test1.jpg"></a>
     					</div>
-    					<div class="item"><a href="#"><img src="<%=request.getContextPath()%>/resources/images/test2.jpg"></a></div>
-    					<div class="item"><a href="#"><img src="<%=request.getContextPath()%>/resources/images/test3.jpg"></a></div>
+    					<div class="item"><a href="#"><img src="images/test2.jpg"></a></div>
+    					<div class="item"><a href="#"><img src="images/test3.jpg"></a></div>
   					</div>
   					<!-- Carousel nav -->
   					<a class="carousel-control left" href="#myCarousel" data-slide="prev" style="background-image:none;">&lsaquo;</a>
   					<a class="carousel-control right" href="#myCarousel" data-slide="next" style="background-image:none;">&rsaquo;</a>
 				</div>
 			</div>
-			<c:if test="${ rankbook!=NULL}">
-			</c:if>
-			
 			<div class="chart">
 				<ul>
 				
-					<li><img src="<%=request.getContextPath()%>/resources/images/bang.png"><sapn style="line-height:48px;margin-left:10px;">图书排行榜</span></li>
+					<li><img src="images/bang.png"><sapn style="line-height:48px;margin-left:10px;">图书排行榜</span></li>
 					<c:forEach var="rb" items="${rankbook}" varStatus="rblist">
 				
-					<li class="roll-li"><img src="<%=request.getContextPath()%>/resources/images/${rblist.count}.png"><a href="book/${rb.bookid }">${rb.bookname}</a></li>
-				<%---
-					<li class="roll-li"><img src="<%=request.getContextPath()%>/resources/images/2.png"><a href="#">第二名</a></li>
-					<li class="roll-li"><img src="<%=request.getContextPath()%>/resources/images/3.png"><a href="#">第三名</a></li>
-					<li class="roll-li"><img src="<%=request.getContextPath()%>/resources/images/4.png"><a href="#">第四名</a></li>
-					<li class="roll-li"><img src="<%=request.getContextPath()%>/resources/images/5.png"><a href="#">第五名</a></li>
-					<li class="roll-li"><img src="<%=request.getContextPath()%>/resources/images/6.png"><a href="#">第六名</a></li>
-					<li class="roll-li"><img src="<%=request.getContextPath()%>/resources/images/7.png"><a href="#">第七名</a></li>
-					<li class="roll-li"><img src="<%=request.getContextPath()%>/resources/images/8.png"><a href="#">第八名</a></li>
-					<li  class="roll-li" style="border-bottom:dotted 0px #fff;"><img src="<%=request.getContextPath()%>/resources/images/9.png"><a href="#">第九名</a></li>
-				 --%>
-				</c:forEach>
+					<li class="roll-li"><img src="images/${rblist.count}.png"><a href="book/${rb.bookid }">${rb.bookname}</a></li>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>
-	
+		<!--轮播跟排行榜-->
+
 		<div class="recomd" style="height: 700px !important;">
-			<div class="r-title">
-				<span>图书推荐</span>
+			<div class="r-title-wrap">
+				<div class="r-img">
+					<img src="images/recomd.png">
+				</div>
+				<div class="r-title">
+					<span>图书推荐</span>
+				</div>
 			</div>
 			<div class="r-book">
 				<ul>
-				<c:forEach var="re" items="${recommendbook}" varStatus="relist">
+					<c:forEach var="re" items="${recommendbook}" varStatus="relist">
 					<li>
-						<div class="r-book-img"><a href="book/${re.bookid }"><img alt="" src="http://wwhahapic.tunnel.mobi/${re.picture}" width="194px" height="194px"></a></div>
-						<div class="r-book-name"><a href="book/${re.bookid }">${re.bookname }</a></div>
-						<div class="r-book-author"><a href="book/${re.bookid }">${re.author }</a></div>
-						<div class="r-book-price"><a href="book/${re.bookid }">${re.price}</a></div>
+					
+						<a href="book/${re.bookid }"><div class="r-book-img"><img src="http://wwhahapic.tunnel.mobi/${re.picture}"></div>
+						<div class="r-book-name">${re.bookname }</div></a>
+						<div class="r-book-author">${re.author }</div>
+						<div class="r-book-price">${re.price}</div>
 					</li>
 					</c:forEach>
-					<%---------
-					<li>
-						<div class="r-book-img"></div>
-						<div class="r-book-name"><a href="#">名称</a></div>
-						<div class="r-book-author"><a href="#">作者</a></div>
-						<div class="r-book-price"><a href="#">价格</a></div>
-					</li>
-					<li>
-						<div class="r-book-img"></div>
-						<div class="r-book-name"><a href="#">名称</a></div>
-						<div class="r-book-author"><a href="#">作者</a></div>
-						<div class="r-book-price"><a href="#">价格</a></div>
-					</li>
-					<li>
-						<div class="r-book-img"></div>
-						<div class="r-book-name"><a href="#">名称</a></div>
-						<div class="r-book-author"><a href="#">作者</a></div>
-						<div class="r-book-price"><a href="#">价格</a></div>
-					</li>
-					<li>
-						<div class="r-book-img"></div>
-						<div class="r-book-name"><a href="#">名称</a></div>
-						<div class="r-book-author"><a href="#">作者</a></div>
-						<div class="r-book-price"><a href="#">价格</a></div>
-					</li>
-				</ul>
-				<ul>
-					<li>
-						<div class="r-book-img"></div>
-						<div class="r-book-name"><a href="#">名称</a></div>
-						<div class="r-book-author"><a href="#">作者</a></div>
-						<div class="r-book-price"><a href="#">价格</a></div>
-					</li>
-					<li>
-						<div class="r-book-img"></div>
-						<div class="r-book-name"><a href="#">名称</a></div>
-						<div class="r-book-author"><a href="#">作者</a></div>
-						<div class="r-book-price"><a href="#">价格</a></div>
-					</li>
-					<li>
-						<div class="r-book-img"></div>
-						<div class="r-book-name"><a href="#">名称</a></div>
-						<div class="r-book-author"><a href="#">作者</a></div>
-						<div class="r-book-price"><a href="#">价格</a></div>
-					</li>
-					<li>
-						<div class="r-book-img"></div>
-						<div class="r-book-name"><a href="#">名称</a></div>
-						<div class="r-book-author"><a href="#">作者</a></div>
-						<div class="r-book-price"><a href="#">价格</a></div>
-					</li>
-					<li>
-						<div class="r-book-img"></div>
-						<div class="r-book-name"><a href="#">名称</a></div>
-						<div class="r-book-author"><a href="#">作者</a></div>
-						<div class="r-book-price"><a href="#">价格</a></div>
-					</li>
-					
-					 --%>
 				</ul>
 			</div>
 		</div>
@@ -576,15 +568,15 @@
 	<div class="state">
 		<div class="ads-bg">
 			<div class="ads">
-				<div class="ads-img" style="margin-left:-70px;"><img src="<%=request.getContextPath()%>/resources/images/ad-img-1.png"></div>
-				<div class="ads-img"><img src="<%=request.getContextPath()%>/resources/images/ad-img-2.png"></div>
-				<div class="ads-img"><img src="<%=request.getContextPath()%>/resources/images/ad-img-3.png"></div>
-				<div class="ads-img" style="margin-right:-70px;"><img src="<%=request.getContextPath()%>/resources/images/ad-img-4.png"></div>
+				<div class="ads-img" style="margin-left:-70px;"><img src="images/ad-img-1.png"></div>
+				<div class="ads-img"><img src="images/ad-img-2.png"></div>
+				<div class="ads-img"><img src="images/ad-img-3.png"></div>
+				<div class="ads-img" style="margin-right:-70px;"><img src="images/ad-img-4.png"></div>
 			</div>
 		</div>
 		<div class="copyright-bg">
 			<div class="copyright">
-				<span>Copyright &copy 2015 树塾书署 All Rights Reserved. 备案号：湘ICP备1201314号</span>
+				<span>Copyright &copy 2015 树塾书署 All Rights Reserved. 备案号：湘ICP备1201314号-9</span>
 			</div>
 		</div>
 	</div>
@@ -596,10 +588,8 @@
 
 </body>
 
-     <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
-	
-	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
     	$('.dropdown').mouseover(function() {
     		$(this).addClass('open');
@@ -608,55 +598,35 @@
     	});
 
     	$("a,button").focus(function(){this.blur()});
-
-    	/*$(".form-control").focus(function() {
-    		$(this).attr('placeholder','')
-    	})*/
-    	/*$('form-control').ready(function() {
-    		$('.form-control').val('Search').css({color:"#c6c7c8"});
-		//当鼠标聚焦
-    		$('.form-control').focus(function() {
-    			if($(this).val() == 'Search') {
-    				$(this).val('').css({color:"#000"});
-    			}
-    		});
-		//当鼠标失去焦点
-			$('.form-control').blur(function() {
-        		if($(this).val() == '') {
-            		$(this).val('Search').css({color:"#c6c7c8"});
-        		}
-      		});
- 		});*/
-
-		$(function(){
-			$(window).on('scroll',function(){
+		$(function() {
+			$(window).on('scroll',function() {
 				var st = $(document).scrollTop();
 				if(st>0){
-					if($('#main-container').length!=0){
+					if($('#main-container').length!=0) {
 						var w = $(window).width(),mw = $('#main-container').width();
 						if((w-mw)/2>70)
 							$('#go-top').css({'left':(w-mw)/2+mw+20});
-						else{
+						else {
 							$('#go-top').css({'left':'auto'});
 						}
 					}
-					$('#go-top').fadeIn(function(){
+					$('#go-top').fadeIn(function() {
 						$(this).removeClass('dn');
 					});
 				}
 				else{
-					$('#go-top').fadeOut(function(){
+					$('#go-top').fadeOut(function() {
 						$(this).addClass('dn');
 					});
 				}	
 			});
-			$('#go-top .go').on('click',function(){
+			$('#go-top .go').on('click',function() {
 				$('html,body').animate({'scrollTop':0},500);
 			});
 
-			$('#go-top .uc-2vm').hover(function(){
+			$('#go-top .uc-2vm').hover(function() {
 				$('#go-top .uc-2vm-pop').removeClass('dn');
-			},function(){
+			},function() {
 				$('#go-top .uc-2vm-pop').addClass('dn');
 			});
 		});

@@ -75,6 +75,17 @@ public class UserServiceImpl implements UserServiceI {
 		return userMapper.selectAll();
 	}
 
+	@Override
+	public User ValidateUserName(String username) {
+		 
+		return userMapper.selectUserName(username);
+	}
+
+	@Override
+	public User ValidateEmail(String email) {
+		return userMapper.selectUserByEmail(email);
+	}
+
 
 	
 

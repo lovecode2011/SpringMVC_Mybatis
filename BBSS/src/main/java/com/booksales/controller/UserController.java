@@ -1,6 +1,7 @@
 package com.booksales.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.booksales.model.Book;
 import com.booksales.model.User;
@@ -47,30 +49,44 @@ public class UserController {
 	 */
 	@RequestMapping()
 	public String showHome(HttpServletRequest request,Model model) {
+		
 		if(request.getSession().getAttribute("admin")!=null){
 			return "forward:bookPage";
 		}
 		if(request.getSession().getAttribute("user")!=null){
-			return "redirect:/rank";
+			return "forward:/rank";
 		}
-		return "redirect:/rank";
+		return "forward:/rank";
 	}
 	/**
-	 * 登陆
+	 * 跳转到登陆页面：管理员和用户都可以通过这个页面进入
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request,Model model) {
 		logger.info("用户登录");
+		//当session中有admin时，跳转到加载后台的数据处理方法中
 		if(request.getSession().getAttribute("admin")!=null){
 			return "forward:bookPage";
 		}
+		//当session中有user时，跳转到前台数据处理加载的方法中
 		if(request.getSession().getAttribute("user")!=null){
-			return "redirect:/rank";
+			return "forward:/rank";
 		}
+		//当session中没有值时，跳转到登陆的页面进行登陆
 		return "user/login";
 	}
+	/**
+	 * 登陆页面请求POST
+	 * @param request
+	 * @param response
+	 * @param httpSession
+	 * @return
+	 * @throws JsonGenerationException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login2(HttpServletRequest request,
 			HttpServletResponse response,HttpSession httpSession) throws JsonGenerationException,
@@ -89,11 +105,14 @@ public class UserController {
 		
 		// 判断验证码是否正确
 		if (checkcode.equals(verifycode)) {
+			
 			logger.info("验证码正确==》" + checkcode);
-
+			//判断用户输入的用户名和密码是否正确
 			User u = userService.login(email, password);
 			ObjectMapper mapper = new ObjectMapper();
 			logger.info(mapper.writeValueAsString(u));
+			
+			///记住密码功能实现：将email和password放在cookie中
 			// 创建两个Cookie对象
 			Cookie nameCookie = new Cookie("email", email);
 			Cookie pwdCookie = new Cookie("password", password);
@@ -112,7 +131,7 @@ public class UserController {
 				response.addCookie(nameCookie);
 				response.addCookie(pwdCookie);
 			}
-			
+			//判断是否是管理员
 			if("1".equals(u.getIsroot())){
 				httpSession.setAttribute("admin", u);
 				
@@ -120,16 +139,20 @@ public class UserController {
 				request.setAttribute("bookAmount",bookAmount );
 				return "forward:bookPage";
 			}
+			//否则就是普通用户
 			else{
 				httpSession.setAttribute("user", u);
-				return "redirect:/rank";
+				return "forward:/rank";
 			}
 		}
-		return "error/error";
+		//如果验证码没有通过
+		request.setAttribute("error", "验证码输入错误");
+		
+		return "user/login";
 	}
 	
 	/**
-	 * 用户注册
+	 * 跳转到用户注册页面
 	 * @return
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -138,7 +161,7 @@ public class UserController {
 		return "user/register";
 	}
 	/**
-	 * 用户注册
+	 * 用户注册:数据传入
 	 * @param user
 	 * @param model
 	 * @return
@@ -148,7 +171,6 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register2(User user,Model model) throws JsonGenerationException, JsonMappingException, IOException {
-		
 		
 		logger.info("用户注册开始");
 		int i =userService.register(user);
@@ -246,6 +268,48 @@ public class UserController {
 		request.getSession().removeAttribute("user");
 		return "redirect:/rank";
 		
+	}
+	
+	@RequestMapping(value = "/Validate/UserName",method = RequestMethod.POST)
+	public void ValidateUserName(@RequestParam("username") String username,HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
+		
+		User user=userService.ValidateUserName(username);
+		ObjectMapper mapper = new ObjectMapper();
+		
+		logger.info("查看用户名是否已经注册："+mapper.writeValueAsString(user));
+		response.setContentType("text/html;charset=UTF-8");
+		response.setCharacterEncoding("utf-8");
+		String result = new String();
+		
+		if(user!=null){
+			result="<div class='alert alert-danger' role='alert' id='validateusername'>用户名存在！！！</div>";
+		}else{
+		//	result="<div class='alert alert-success' role='alert' id='validateusername'>用户名可用！</div>";
+		}
+		PrintWriter out = response.getWriter();
+		out.println(result);
+		out.close();				
+	}
+	
+	@RequestMapping(value = "/Validate/Email",method = RequestMethod.POST)
+	public void ValidateEmail(@RequestParam("email") String email,HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
+		
+		User user=userService.ValidateEmail(email);
+		ObjectMapper mapper = new ObjectMapper();
+		
+		logger.info("查看邮箱是否已经注册："+mapper.writeValueAsString(user));
+		response.setContentType("text/html;charset=UTF-8");
+		response.setCharacterEncoding("utf-8");
+		String result = new String();
+		
+		if(user!=null){
+			result="<div class='alert alert-danger' role='alert' id='validateemail'>邮箱已经存在！！！</div>";
+		}else{
+		//	result="<div class='alert alert-success' role='alert' id='validateusername'>用户名可用！</div>";
+		}
+		PrintWriter out = response.getWriter();
+		out.println(result);
+		out.close();				
 	}
 	
 	

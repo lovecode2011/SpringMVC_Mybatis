@@ -23,19 +23,16 @@ import com.booksales.service.UserServiceI;
 public class CartController {
 	@Autowired
 	CartServiceI cartService;
-	
 	private static Log logger = LogFactory.getLog(CartController.class);
 	@RequestMapping(value = "/addBook2Cart/{userid}/{bookid}", method = RequestMethod.GET)
 	public  String addBook2Cart(@PathVariable Integer userid, @PathVariable Integer bookid,Model model){
 		 int i =cartService.addCart(userid,bookid);
 		 return "redirect:/";
-		
 	}
 	@RequestMapping(value = "/listCart/{userid}", method = RequestMethod.GET)
 	public String listCart(@PathVariable Integer userid,Model model){
 		List<Cart> cartlist = cartService.listUserCart(userid);
 		model.addAttribute("cartlist", cartlist);
 		return "cart/listCart";
-
 	}
 }

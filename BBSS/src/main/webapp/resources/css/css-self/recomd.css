@@ -2,16 +2,27 @@
 	.recomd {
 		width: 960px;
 	}
-	.r-title {
+	.r-title-wrap {
 		width: 960px;
 		float: left;
-		margin: 20px 0 0 0;
-		color: #6e6e6e;
+		margin: 0;
+	}
+	.r-img {
+		float: left;
+		margin: 0;
+	}
+	.r-title {
+		width: 930px;
+		float: left;
+		position: relative;
+		margin: 5px 0 0 5px;
+		color: #697b74;
 		font-size: large;
+		border-bottom: 1px solid #5da286;
 	}
 	.r-book {
 		float: left;
-		margin: 10px 0 0 -5px;
+		margin: 5px 0 0 -5px;
 		width: 970px;
 		height: 300px;
 	}
@@ -28,14 +39,43 @@
 		float: left;
 		padding: 0;
 		list-style: none;
-		background-color: #de575d;
+		background-color: #fff;
+	}
+	.r-book-img {
+		background-color:#fff;
+		height:194px;
+	}
+	.r-book-img img {
+		weight:184px; 
+		height: 184px;
+	}
+	.r-book-name {
+		padding: 3px 28px;
+		background-color:#fff;
+		height:44px;
+		overflow: hidden;
+	}
+	.r-book-author {
+		padding: 3px 28px;
+		color: #b3b3b3;
+		background-color:#fff;
+		height:25px;
+		overflow: hidden;
+	}
+	.r-book-price {
+		font-weight: bold;
+		color: red;
+		padding: 3px 28px;
+		background-color:#fff;
+		height:27px;
+		overflow: hidden;
 	}
 	.r-book a:link, a:visited {
 		color: #000;
 		text-decoration: none;
 	}
 	.r-book a:hover, a:active {
-		color: #fff;
-		text-decoration: none;
+		color: #5da286;
+		text-decoration: underline;
 	}
 </style>

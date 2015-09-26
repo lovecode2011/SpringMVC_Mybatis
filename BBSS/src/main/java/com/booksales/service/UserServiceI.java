@@ -33,5 +33,17 @@ public interface UserServiceI {
 	 * @return
 	 */
 	List<User> userList();
+	/**
+	 * 向后台发送请求，查询该用户名是否已经被使用
+	 * @param username
+	 * @return
+	 */
+	User ValidateUserName(String username);
+	/**
+	 *  向后台发送请求，查询该邮箱是否已经被使用
+	 * @param email
+	 * @return
+	 */
+	User ValidateEmail(String email);
 	
 }

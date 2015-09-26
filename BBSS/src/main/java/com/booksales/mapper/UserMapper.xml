@@ -69,6 +69,16 @@
   <select id="loginSelectPassword" resultMap="BaseResultMap" parameterType="java.lang.String">
   	select UserId, UserName, Password, Credit, Email, IsRoot
     from bsuser where Email =#{email,jdbcType=VARCHAR}
+  </select>
+  <!-- 查询数据库中这个用户名是否已经注册。 -->
+  <select id="selectUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  	select UserId, UserName, Password, Credit, Email, IsRoot
+    from bsuser where UserName =#{username,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectUserByEmail" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select UserId, UserName, Password, Credit, Email, IsRoot
+    from bsuser where Email =#{email,jdbcType=VARCHAR}
   
   </select>
 </mapper>
