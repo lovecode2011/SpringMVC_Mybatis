@@ -18,7 +18,7 @@
 
 	<a href="listOrder/${user.userid}">查看订单</a>
 
-	<a href="listCollect/${user.userid}">查看收藏</a>
+	<a href="listCollect/">查看收藏</a>
 
 	<h1>图书列表</h1>
 	<table class="table table-bordered">

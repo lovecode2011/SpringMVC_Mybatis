@@ -1,6 +1,7 @@
 package com.booksales.dao;
 
 import com.booksales.model.Cart;
+import com.booksales.model.CartWapper;
 
 import java.util.List;
 

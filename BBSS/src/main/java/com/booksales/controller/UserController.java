@@ -102,13 +102,13 @@ public class UserController {
 		String checkcode = request.getParameter("checkcode").trim().toUpperCase();
 		// 是否记住密码
 		String checkbox = request.getParameter("checkbox");
-		
+		User u = new User();
 		// 判断验证码是否正确
 		if (checkcode.equals(verifycode)) {
 			
 			logger.info("验证码正确==》" + checkcode);
 			//判断用户输入的用户名和密码是否正确
-			User u = userService.login(email, password);
+			u = userService.login(email, password);
 			ObjectMapper mapper = new ObjectMapper();
 			logger.info(mapper.writeValueAsString(u));
 			
@@ -142,6 +142,11 @@ public class UserController {
 			//否则就是普通用户
 			else{
 				httpSession.setAttribute("user", u);
+				//将用户id放入cookie中，便于传送
+				Cookie useridCookie = new Cookie("userid",String.valueOf(u.getUserid()));
+				useridCookie.setMaxAge(60 * 60 * 24 * 3);
+				response.addCookie(useridCookie);
+				
 				return "forward:/rank";
 			}
 		}
@@ -260,7 +265,7 @@ public class UserController {
 	@RequestMapping(value = "/adminLogout")
 	public String adminLogout(HttpServletRequest request){
 		request.getSession().removeAttribute("admin");
-		return "redirect:/rank";
+		return "redirect:/";
 		
 	}
 	@RequestMapping(value = "/userLogout")
@@ -268,7 +273,7 @@ public class UserController {
 		//TODO
 		//多用户登陆的时候，注销问题
 		request.getSession().removeAttribute("user");
-		return "redirect:/rank";
+		return "redirect:/";
 		
 	}
 	

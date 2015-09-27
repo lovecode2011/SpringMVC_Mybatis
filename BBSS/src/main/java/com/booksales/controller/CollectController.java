@@ -26,7 +26,7 @@ public class CollectController {
 		
 	}
 	
-	@RequestMapping(value = "/listCollect/{userid}", method = RequestMethod.GET)
+	@RequestMapping(value = "{userid}/listCollect/", method = RequestMethod.GET)
 	public String listCollect(@PathVariable Integer userid,Model model){
 		List<Collect> collectlist = collectService.listCollect(userid);
 		model.addAttribute("collectlist", collectlist);

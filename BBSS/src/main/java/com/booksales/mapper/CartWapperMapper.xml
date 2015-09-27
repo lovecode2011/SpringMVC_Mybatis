@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.booksales.dao.CartWapperMapper">
+	<resultMap id="BaseResultMap" type="com.booksales.model.CartWapper">
+		<id column="CartId" property="cartid" jdbcType="INTEGER" />
+		<result column="UserId" property="userid" jdbcType="INTEGER" />
+		<result column="UserName" property="username" jdbcType="VARCHAR" />
+		<result column="BookId" property="bookid" jdbcType="INTEGER" />
+		<result column="BookName" property="bookname" jdbcType="VARCHAR" />
+		<result column="BookNum" property="booknum" jdbcType="INTEGER" />
+		<result column="Amount" property="amount" jdbcType="DECIMAL" />
+		<result column="OrderId" property="orderid" jdbcType="INTEGER" />
+		<result column="Author" property="author" jdbcType="VARCHAR" />
+		<result column="Publish" property="publish" jdbcType="VARCHAR" />
+		<result column="ISBN" property="isbn" jdbcType="VARCHAR" />
+		<result column="PublishDate" property="publishdate" jdbcType="VARCHAR" />
+		<result column="Picture" property="picture" jdbcType="VARCHAR" />
+		<result column="Repertory" property="repertory" jdbcType="CHAR" />
+		<result column="Price" property="price" jdbcType="DOUBLE" />
+		<result column="Stock" property="stock" jdbcType="INTEGER" />
+		<result column="Sales" property="sales" jdbcType="INTEGER" />
+		<result column="BookClassId" property="bookclassid" jdbcType="INTEGER" />
+		<result column="IsRecommend" property="isrecommend" jdbcType="CHAR" />
+		<result column="Intro" property="intro" jdbcType="LONGVARCHAR" />
+
+	</resultMap>
+
+	<select id="selectListBookId" resultMap="BaseResultMap">
+		SELECT bscart.CartId,
+		bscart.UserId,
+		bscart.UserName,
+		bscart.BookName,
+		bsbook.Repertory,
+		bsbook.Price,
+		bscart.BookNum,
+		bscart.Amount
+		FROM
+		bscart
+		INNER JOIN bsbook ON bscart.BookId = bsbook.BookId
+
+		where bscart.BookId in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+</mapper>

@@ -140,21 +140,15 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach var="cl" items="${cartwapperlist}" varStatus="clist">
 						<tr>
-							<td>文明之光文明之光文明之光文明之光文明之光</td>
-							<td>武汉仓库</td>
-							<td>107</td>
-							<td>1</td>
-							<td>107</td>
+							<td>${cl.bookname }</td>
+							<td>${cl.repertory }</td>
+							<td>${cl.price}</td>
+							<td>${cl.booknum }</td>
+							<td>${cl.amount }</td>
 						</tr>
-						<tr>
-							<td>文明之光文明之光</td>
-							<td>武汉仓库</td>
-							<td>10</td>
-							<td>1</td>
-							<td>107</td>
-						</tr>
-					</tbody>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>

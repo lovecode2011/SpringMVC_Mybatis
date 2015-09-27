@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.booksales.model.Cart;
+import com.booksales.model.CartWapper;
 import com.booksales.model.Receiver;
 import com.booksales.model.User;
+import com.booksales.service.CartWapperServiceI;
 import com.booksales.service.OrderServiceI;
 import com.booksales.service.ReceiverServiceI;
 
@@ -29,20 +31,24 @@ public class OrderController {
 	OrderServiceI orderService;
 	@Autowired
 	ReceiverServiceI receiverService;
+	@Autowired
+	CartWapperServiceI cartWapperService;
 	private static Log logger = LogFactory.getLog(OrderController.class);
 	@RequestMapping(value = "{userid}/addOrder")
 	public String addOrder( @RequestParam Integer[] book_id, @RequestParam("userid") Integer useriid,HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
 		System.out.println(useriid);
-		List<Cart> cartlst= orderService.selectCartForOrder(useriid,book_id);
+		System.out.println(book_id);
+		List<CartWapper> cwlist= cartWapperService.selectCartForOrder(useriid,book_id);
 		
-		logger.info("选中的cart信息："+mapper.writeValueAsString(cartlst));
+		logger.info("选中的cart信息："+mapper.writeValueAsString(cwlist));
 		
 		//获取用户id---》获取收货地址
 		User user = (User) request.getSession().getAttribute("user");
 		int userid= user.getUserid();
 		List<Receiver> receiverlist= receiverService.SelectReceiverByUserId(userid);
 		request.setAttribute("receiverlist", receiverlist);
+		request.setAttribute("cartwapperlist", cwlist);
 		
 		return "home/order";
 	}
