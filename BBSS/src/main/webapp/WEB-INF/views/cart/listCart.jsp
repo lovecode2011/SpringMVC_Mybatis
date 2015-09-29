@@ -17,8 +17,7 @@
 <body>
 	<c:if test="${cartlist!=NULL}">
 			<h1>${ user.username}</h1>
-			 <form  action="${pageContext.request.contextPath }/${user.userid }/addOrder" method="post"
-					class="form-horizontal">
+			 <form  action="${pageContext.request.contextPath }/${user.userid }/addOrder" method="post" class="form-horizontal">
             <table class="table table-bordered">
             <input type="hidden" name ="userid" value="${user.userid }"/>
                 <thead>

@@ -92,9 +92,9 @@ public class ReceiverController {
 		
 		if(i>0){
 			result="<li><div><input name='addr' type='radio' value="+receiver.getReceiverid()+">"
-					+"<span>"+receivername+"</span>"
-					+"<span>"+receiveraddress+"</span>"
-					+"<span>"+receivertel+"</span></div></li>";
+					+"<span class='receivername'>"+receivername+"</span>"
+					+"<span class='receiveraddress'>"+receiveraddress+"</span>"
+					+"<span class='receivertel'>"+receivertel+"</span></div></li>";
 		}
 		PrintWriter out = null;
 		try {

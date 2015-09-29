@@ -67,7 +67,17 @@ public class BookController {
 			setValue(date);
 		}
 	}
-
+	
+	@RequestMapping(value = "/book/{bookid}", method = RequestMethod.GET)
+	public String BookInfo(@PathVariable Integer bookid,Model model) {
+		
+		logger.info("----查看图书信息----");
+		
+	Book book =	bookService.selectBook(bookid);
+	model.addAttribute("book", book);
+		return "home/book";
+	}
+	
 	@RequestMapping(value = "/addBook", method = RequestMethod.GET)
 	public String addBook(Model model) {
 		logger.info("GET----添加图书----");

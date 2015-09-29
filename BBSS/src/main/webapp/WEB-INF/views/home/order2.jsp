@@ -176,7 +176,7 @@
 						<p>
 							应付总额（含运费）:<span id="orderAmount"></span>
 						</p>
-						<form action="AddorderTo" method="post">
+						<form action="Addorder" method="post">
 						<input type = "hidden" name ="auserid" value =""/>
 						<input type = "hidden" name ="areceiverid" value =""/>
 						<input type = "hidden" name ="apayway" value =""/>
@@ -237,7 +237,7 @@
 				"cartids" : cartids,
 				"time" : new Date()
 			};
-		////	$.post(url, args);
+			$.post(url, args);
 		})
 		//将book数量计算并放入订单form中
 		var orderBookNum = 0;

@@ -79,3 +79,13 @@ select {
 .wrap {
 	display: -webkit-box;
 }
+
+
+tr:nth-child(odd)
+{
+	background:#fff;
+}
+tr:nth-child(even)
+{
+	background:#EBEBEB;
+}
