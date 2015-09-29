@@ -7,7 +7,7 @@ public class Order {
 
     private Integer userid;
 
-    private Long sum;
+    private double sum;
 
     private Integer receiverid;
 
@@ -35,15 +35,16 @@ public class Order {
         this.userid = userid;
     }
 
-    public Long getSum() {
-        return sum;
-    }
 
-    public void setSum(Long sum) {
-        this.sum = sum;
-    }
+    public double getSum() {
+		return sum;
+	}
 
-    public Integer getReceiverid() {
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public Integer getReceiverid() {
         return receiverid;
     }
 

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.booksales.model.Order" >
     <id column="OrderId" property="orderid" jdbcType="INTEGER" />
     <result column="UserId" property="userid" jdbcType="INTEGER" />
-    <result column="Sum" property="sum" jdbcType="DECIMAL" />
+    <result column="Sum" property="sum" jdbcType="DOUBLE" />
     <result column="ReceiverId" property="receiverid" jdbcType="INTEGER" />
     <result column="OrderStates" property="orderstates" jdbcType="CHAR" />
     <result column="LogisticsStates" property="logisticsstates" jdbcType="CHAR" />
@@ -15,14 +15,12 @@
     delete from bsorder
     where OrderId = #{orderid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.booksales.model.Order" >
-    <selectKey resultType="java.lang.Integer" keyProperty="orderid" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into bsorder (OrderId, UserId, Sum, 
+  <insert id="insert" parameterType="com.booksales.model.Order" useGeneratedKeys="true" keyProperty="orderid" >
+   
+    insert into bsorder ( UserId, Sum, 
       ReceiverId, OrderStates, LogisticsStates, 
       PayWay, OrderTime)
-    values (#{orderid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{sum,jdbcType=DECIMAL}, 
+    values ( #{userid,jdbcType=INTEGER}, #{sum,jdbcType=DECIMAL}, 
       #{receiverid,jdbcType=INTEGER}, #{orderstates,jdbcType=CHAR}, #{logisticsstates,jdbcType=CHAR}, 
       #{payway,jdbcType=CHAR}, #{ordertime,jdbcType=TIMESTAMP})
   </insert>
@@ -37,6 +35,9 @@
       OrderTime = #{ordertime,jdbcType=TIMESTAMP}
     where OrderId = #{orderid,jdbcType=INTEGER}
   </update>
+  
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select OrderId, UserId, Sum, ReceiverId, OrderStates, LogisticsStates, PayWay, OrderTime
     from bsorder

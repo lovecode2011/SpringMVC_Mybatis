@@ -14,7 +14,7 @@
     delete from bsreceiver
     where ReceiverId = #{receiverid,jdbcType=INTEGER}
   </delete>
-  
+  <!-- 插入收货地址，并返回该条记录的receiverid -->
   <insert id="insert" useGeneratedKeys="true" keyProperty="receiverid" parameterType="com.booksales.model.Receiver" >
     insert into bsreceiver (UserId, ReceiverName, 
       ReceiverTel, ReceiverAddress,ReceiverCode)

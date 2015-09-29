@@ -3,6 +3,7 @@ package com.booksales.service;
 import java.util.List;
 
 import com.booksales.model.Cart;
+import com.booksales.model.Order;
 
 public interface OrderServiceI {
 	/**
@@ -19,5 +20,12 @@ public interface OrderServiceI {
 	 */
 	
 	List<Cart> selectCartForOrder(Integer useriid, Integer[] book_id);
+	/**
+	 * 创建一个新的order，返回该order的orderid ，并将orderid赋值给acartid中的cart集合中
+	 * @param order
+	 * @param acartid 
+	 * @return
+	 */
+	int CreatOrder(Order order, Integer[] acartid);
 
 }

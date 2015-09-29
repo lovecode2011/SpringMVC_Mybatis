@@ -143,12 +143,11 @@
 					<tbody>
 						<c:forEach var="cl" items="${cartwapperlist}" varStatus="clist">
 							<tr>
-								<%----------- 
+								
 								<input type="hidden"  name="cartid" class="cartid" value="${cl.cartid}"/>
-								--%>
 								<td>${cl.bookname }</td>
 								<td>${cl.repertory }</td>
-								<td>${cl.price}</td>
+								<td>${cl.price}</td> 
 								<td class="booknum">${cl.booknum }</td>
 								<td class="amount">${cl.amount }</td>
 							</tr>
@@ -176,7 +175,7 @@
 						<p>
 							应付总额（含运费）:<span id="orderAmount"></span>
 						</p>
-						<form action="AddorderTo" method="post">
+						<form action="${pageContext.request.contextPath}/${user.userid }/AddorderTo" method="post">
 						<input type = "hidden" name ="auserid" value =""/>
 						<input type = "hidden" name ="areceiverid" value =""/>
 						<input type = "hidden" name ="apayway" value =""/>
@@ -207,12 +206,13 @@
 			alert("用户id:" + userid);
 			var orderAmount = $("#orderamount").text();
 			alert("总净额：" + orderAmount);
+			
 			var cartids = new Array();
 			$("input:hidden").filter(".cartid").each(function(element) {
 				cartids.push(this.value);
-				$("input[name='aorderdate']").after("<input type = 'hidden' name ='cartid' value ='"+this.value+"'/>")
+				$("input[name='aorderdate']").after("<input type = 'hidden' name ='acartid' value ='"+this.value+"'/>")
 			});
-			alert(cartids);
+			alert("cartids"+cartids);
 			var orderdate = new Date();
 			alert("订单时间毫秒值:" + orderdate.getTime());
 

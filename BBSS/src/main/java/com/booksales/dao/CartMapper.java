@@ -28,4 +28,10 @@ public interface CartMapper {
      * @return
      */
 	List<Cart> selectListBookId(List<Integer> bookIdList);
+	/**
+	 * 根据传入的List<Cart>更新orderid字段
+	 * @param updateList
+	 * @return
+	 */
+	List<Cart> updateCartList(List<Cart> updateList);
 }

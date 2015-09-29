@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.booksales.model.Cart;
 import com.booksales.model.CartWapper;
+import com.booksales.model.Order;
 import com.booksales.model.Receiver;
 import com.booksales.model.User;
 import com.booksales.service.CartWapperServiceI;
@@ -55,23 +56,35 @@ public class OrderController {
 		
 		return "home/order";
 	}
-	@RequestMapping(value = "{userid}AddorderTo")
+	@RequestMapping(value = "/{userid}/AddorderTo")
 	public String addOrderTo( 
-		//	@RequestParam("cartid") String[] cartid, 
+			@RequestParam("acartid") Integer[] acartid, 
 			@RequestParam("auserid") Integer auserid,
 			@RequestParam("areceiverid") Integer areceiverid,
 			@RequestParam("apayway") String apayway,
 			@RequestParam("aorderdate") Date aorderdate,
 			@RequestParam("aorderAmount") Float aorderAmount,
-			
 			HttpServletRequest request,@PathVariable Integer userid) throws JsonGenerationException, JsonMappingException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
-		//System.out.println(cartid);
-		System.out.println(auserid);
+		for(int i:acartid)
+			System.out.println(i);
+		 System.out.println(auserid);
 		System.out.println(areceiverid);
 		System.out.println(apayway);
 		System.out.println(aorderdate);
 		System.out.println(aorderAmount);
+		//创建order对象，并把值都set进入
+		Order order =new Order();
+		order.setOrdertime(aorderdate);
+		order.setSum(aorderAmount);
+		order.setUserid(auserid);
+		order.setReceiverid(areceiverid);
+		order.setPayway(apayway);
+		
+		order.setLogisticsstates("0");
+		order.setOrderstates("0");
+		//将order加入数据库 ，//返回刚才加入的order的orderid，//将orderid加入到acartid数组中的cart中
+		int i =orderService.CreatOrder(order,acartid);
 		
 		return "home/book";
 	}

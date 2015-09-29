@@ -19,6 +19,16 @@
         #{item}  
         </foreach>
   </select>
+  
+  <update id="updateCartList" >
+  	 update bscart set 
+      OrderId = #{orderid,jdbcType=INTEGER}
+    where where CartId in  
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
+        #{item.cartid}  
+        </foreach>
+  
+  </update>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bscart
     where CartId = #{cartid,jdbcType=INTEGER}
