@@ -16,5 +16,12 @@ public interface CollectMapper {
     int updateByPrimaryKey(Collect record);
 
 	List<Collect> selectByUserId(Integer userid);
+	/**
+	 * 根据用户id和图书id删除收藏记录
+	 * @param userid
+	 * @param bookid
+	 * @return
+	 */
+	int deleteCollect(Collect collect);
 
 }

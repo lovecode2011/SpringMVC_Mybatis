@@ -57,4 +57,32 @@ public class CartServiceImpl implements CartServiceI {
 		
 		return cartMapper.selectUserCart(userid);
 	}
+	@Override
+	public int addCart(Integer userid, Integer bookid, String username,String bookname, Integer bookNum) {
+		Book book = bookService.selectBook(bookid);
+		User user= userService.getUserById(userid);
+		 Cart cart = new Cart();
+		 cart.setBookid(bookid);
+		 cart.setUserid(userid);
+		//查询数据库，查看该用户之前是否已经将该书加入购物车
+		Cart cart1 =  cartMapper.selectByBookId(cart);
+		int res = 0;
+		if(cart1!=null){
+			int booknum = cart1.getBooknum()+bookNum;
+			cart1.setBooknum(booknum);
+			Double price = book.getPrice()*booknum;
+			cart1.setAmount(price);
+			res =cartMapper.updateByPrimaryKey(cart1);
+			
+		}else{
+			
+			 cart.setBookname(bookname);
+			
+			 cart.setUsername(username);
+			 cart.setBooknum(bookNum);
+			 cart.setAmount(book.getPrice()*bookNum);
+			 res= cartMapper.insert(cart);
+		}
+		return res;
+	}
 }

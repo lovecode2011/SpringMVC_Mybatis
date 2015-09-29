@@ -43,12 +43,12 @@
 		<c:if test="${user.username!=null}">
 			<li class="nav-left"><a href="#" style="text-align: center;">${user.username}</a></li>
 			
-			<li class="nav-left"><a href="userLogout"
+			<li class="nav-left"><a href="${pageContext.request.contextPath }/userLogout"
 				style="text-align: center;">注销</a></li>
 		</c:if>
 		<c:if test="${user.username==null}">
-			<li class="nav-left"><a href="login" style="text-align: center;">登录</a></li>
-			<li class="nav-left"><a href="register"
+			<li class="nav-left"><a href="${pageContext.request.contextPath }/login" style="text-align: center;">登录</a></li>
+			<li class="nav-left"><a href="${pageContext.request.contextPath }/register"
 				style="text-align: center;">注册</a></li>
 		</c:if>
 		<li class="nav-right"><a href="#" style="text-align: center;">联系我们</a></li>
@@ -78,9 +78,12 @@
 		</div>
 		<ol class="breadcrumb">
 			<!--面包屑导航-->
-			<li><a href="#">全部</a></li>
-			<li><a href="#">科技</a></li>
-			<li class="active">JAVA</li>
+			<li><a href="${ pageContext.request.contextPath}">全部</a></li>
+		<c:forEach var="cl" items="${classlist}" varStatus="clist">
+			
+			<li><a href="${ pageContext.request.contextPath}/classify/${cl.classid }">${cl.classname}</a></li>
+			</c:forEach>
+			
 		</ol>
 		<div class="hasMargin">
 			<!--图书详细信息头-->
@@ -107,7 +110,7 @@
 									<p>ISBN:&nbsp;&nbsp;${book.isbn}</p>
 								</li>
 								<li>
-									<h3 class="red">${book.price}</h3>
+									<h3 class="red">¥:${book.price}</h3>
 								</li>
 								<li>
 									<p>库存:&nbsp;&nbsp;${book.stock }&nbsp;&nbsp;本</p>
@@ -123,9 +126,15 @@
 									<input type="hidden" name ="bookid" value="${book.bookid}"/>
 									<input type="hidden" name ="bookname" value="${book.bookname}"/>
 								</div>
-								<button type="submit" class="btn btn-md btn-success"
-									id="addCart">购买</button>
-								<button type="submit" class="btn btn-md btn-success" id="addCollect">收藏</button>
+								<button type="submit" class="btn btn-md btn-success"id="addCart">购买</button>
+									<c:if test="${!valiCollect}">
+									<button type="submit" class="btn btn-md btn-success" id="addCollect">收藏</button>
+									</c:if>
+									<c:if test="${valiCollect}">
+									<button type="submit" class="btn btn-md btn-success" id="romoveCollect">已收藏</button>
+									</c:if>
+									
+								
 							</div>
 					</td>
 				</tr>
@@ -143,33 +152,31 @@
 			<div class="panel-heading">用户评论</div>
 			<div class="panel-body">
 				<table class="table">
-					<tr class="comment">
+				<c:if test="${ empty commentlist}">
+				<tr class="comment">
 						<td>
 							<p class="person">
 								用户名
-								<time>2015-02-14</time>
+								<time>2015-10-01</time>
 							</p>
-							<p>我是评论我是评论我是评论我是评论我是评论</p>
+							<p>暂时没有评论，等待你的评论。</p>
 						</td>
 					</tr>
-					<tr class="comment">
+				</c:if>
+				<c:if test="${!empty commentlist }">
+				<c:forEach var="col" items="${commentlist}" varStatus="colist">
+				<tr class="comment">
 						<td>
 							<p class="person">
-								用户名
-								<time>2015-02-14</time>
+								${col.username}
+								<time>${col.commenttime}</time>
 							</p>
-							<p>我是评论我是评论我是评论我是评论我是评论</p>
+							<p>${col.commentcontext }</p>
 						</td>
 					</tr>
-					<tr class="comment">
-						<td>
-							<p class="person">
-								用户名
-								<time>2015-02-14</time>
-							</p>
-							<p>我是评论我是评论我是评论我是评论我是评论</p>
-						</td>
-					</tr>
+				
+				</c:forEach>
+				</c:if>
 				</table>
 			</div>
 		</div>
@@ -216,30 +223,80 @@
 </body>
 
 <script type="text/javascript">
-
+	
+	$("#romoveCollect").click(function(){
+		alert("已收藏，取消收藏");
+		var userid=$("input[name='userid']").val();
+		if(userid!=""){
+			var bookid=$("input[name='bookid']").val();
+			
+			var url = "${pageContext.request.contextPath}/romoveCollect";
+			
+			var args={"userid":userid,
+					  "bookid":bookid,
+			};
+			$.post(url,args,function(data){
+				alert(data);
+				$("#addCart").next().remove();
+				$("#addCart").after("<button type='submit' class='btn btn-md btn-success' id='addCollect'>收藏</button>");
+			});
+		}
+		if(userid==""){
+			alert("请先登录");
+		}
+		
+		
+	})
 	$("#addCart").click(function(){
 		alert("点击了购买");
 		var userid=$("input[name='userid']").val();
-		var username=$("input[name='username']").val();
-		var bookid=$("input[name='bookid']").val();
-		var bookname=$("input[name='bookname']").val();
-		var bookNum=$("input[name='bookNum']").val();
+		if(userid!=""){
+			var username=$("input[name='username']").val();
+			var bookid=$("input[name='bookid']").val();
+			var bookname=$("input[name='bookname']").val();
+			var bookNum=$("input[name='bookNum']").val();
+			
+			var url = "${pageContext.request.contextPath}/addCart";
+			
+			var args={"userid":userid,
+					  "username":username,
+					  "bookid":bookid,
+					  "bookname":bookname,
+					  "bookNum":bookNum
+			};
+			$.post(url,args,function(data){
+				alert(data);
+				
+			});
+			
+		}if(userid==""){
+			alert("请先登录");
+		}
 		
-		var url = "${pageContext.request.contextPath}/addCart";
 		
-		var args={"userid":userid,
-				  "username":username,
-				  "bookid":bookid,
-				  "bookname":bookname,
-				  "bookNum":bookNum
-		};
-		$.post(url,args,function(data){
-			alert(data)
-		});
 		
 	});
 	$("#addCollect").click(function(){
 		alert("点击了收藏");
+		var userid=$("input[name='userid']").val();
+		if(userid!=""){
+			var bookid=$("input[name='bookid']").val();
+			
+			var url = "${pageContext.request.contextPath}/addCollect";
+			var args={"userid":userid,
+					  "bookid":bookid,
+			};
+			$.post(url,args,function(data){
+				alert(data);
+				$("#addCart").next().remove();
+				$("#addCart").after("<button type='submit' class='btn btn-md btn-success' id='romoveCollect'>已收藏</button>");
+			});
+		}
+		if(userid ==""){
+			alert("请先登录");
+		}
+		
+		
 	});
 
 	$('.dropdown').mouseover(function() {
@@ -252,10 +309,7 @@
 		this.blur()
 	});
 	$(function() {
-		$(window)
-				.on(
-						'scroll',
-						function() {
+		$(window).on('scroll',function() {
 							var st = $(document).scrollTop();
 							if (st > 0) {
 								if ($('#main-container').length != 0) {

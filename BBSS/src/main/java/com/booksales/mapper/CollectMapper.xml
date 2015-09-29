@@ -6,6 +6,10 @@
     <result column="UserId" property="userid" jdbcType="INTEGER" />
     <result column="BookId" property="bookid" jdbcType="INTEGER" />
   </resultMap>
+  <delete id="deleteCollect" parameterType="com.booksales.model.Collect">
+   delete from bscollect
+    where UserId = #{userid,jdbcType=INTEGER} and BookId = #{bookid,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bscollect
     where CollectId = #{collectid,jdbcType=INTEGER}

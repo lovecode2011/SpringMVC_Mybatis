@@ -33,5 +33,23 @@ public class CollectServiceImpl implements CollectServiceI  {
 		
 		return collectMapper.selectByUserId(userid);
 	}
+	@Override
+	public boolean selectCollect(Integer bookid, String userid) {
+		
+		int uid = Integer.parseInt(userid);
+		List<Collect> collectlist =collectMapper.selectByUserId(uid);
+		for(Collect c :collectlist){
+			if(c.getBookid()==bookid){
+				return true;
+			}
+		}
+		return false;
+	}
+	@Override
+	public int delcollectBook(Integer userid, Integer bookid) {
+		Collect c = new Collect();
+		c.setBookid(bookid);
+		c.setUserid(userid);
+		return collectMapper.deleteCollect(c);	}
 
 }

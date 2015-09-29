@@ -39,4 +39,10 @@
     select CommentId, UserId, BookId, CommentTime, CommentContext, CommentLevel
     from bscomment
   </select>
+  <select id="selectCommentByBookId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  select CommentId, UserId, BookId, CommentTime, CommentContext, CommentLevel
+    from bscomment
+    where BookId = #{bookid,jdbcType=INTEGER}
+  
+  </select>
 </mapper>

@@ -40,7 +40,16 @@ public class CartController {
 		model.addAttribute("cartlist", cartlist);
 		return "cart/listCart";
 	}
-	
+	/**
+	 * 图书详情页面    将图书加入购物车
+	 * @param userid
+	 * @param username
+	 * @param bookid
+	 * @param bookname
+	 * @param bookNum
+	 * @param model
+	 * @param response
+	 */
 	@RequestMapping(value = "addCart", method = RequestMethod.POST)
 	public void addCart(
 			@RequestParam("userid") Integer userid,
@@ -49,12 +58,8 @@ public class CartController {
 			@RequestParam("bookname") String bookname,
 			@RequestParam("bookNum") Integer bookNum
 			,Model model,HttpServletResponse response){
-		System.out.println(bookNum);
-		System.out.println(userid);
-		System.out.println(username);
-		
-		System.out.println(bookid);
-		System.out.println(bookname);
+		logger.info("---异步请求添加图书到购物车----");		
+		int i =cartService.addCart(userid, bookid,username,bookname,bookNum);
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
 		

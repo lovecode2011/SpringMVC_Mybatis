@@ -53,5 +53,11 @@ public interface ClassServiceI {
 	int addClassifyOne(Class clazz);
 
 	List<Class> selectAll();
+	/**
+	 * 根据id查询父类id
+	 * @param classify
+	 * @return
+	 */
+	Class SelectTwoClassify(int classify);
 
 }

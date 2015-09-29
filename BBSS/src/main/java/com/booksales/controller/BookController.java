@@ -5,9 +5,14 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,7 +37,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.booksales.model.Book;
+import com.booksales.model.Class;
+import com.booksales.model.Collect;
+import com.booksales.model.Comment;
+import com.booksales.model.CommentWapper;
 import com.booksales.service.BookServiceI;
+import com.booksales.service.ClassServiceI;
+import com.booksales.service.CollectServiceI;
+import com.booksales.service.CommentServiceI;
+import com.booksales.service.CommentWapperServiceI;
 import com.sun.media.jfxmedia.logging.Logger;
 
 @Controller
@@ -40,7 +53,12 @@ import com.sun.media.jfxmedia.logging.Logger;
 public class BookController {
 	@Autowired
 	BookServiceI bookService;
-
+	@Autowired
+	ClassServiceI classifyService;
+	@Autowired
+	CollectServiceI collectService;
+	@Autowired
+	CommentWapperServiceI commentWapperService;
 	private static Log logger = LogFactory.getLog(BookController.class);
 
 	@InitBinder
@@ -69,12 +87,46 @@ public class BookController {
 	}
 	
 	@RequestMapping(value = "/book/{bookid}", method = RequestMethod.GET)
-	public String BookInfo(@PathVariable Integer bookid,Model model) {
+	public String BookInfo(@PathVariable Integer bookid,Model model,HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException {
 		
 		logger.info("----查看图书信息----");
-		
-	Book book =	bookService.selectBook(bookid);
-	model.addAttribute("book", book);
+		//根据图书id获取图书信息
+		 Book book =	bookService.selectBook(bookid);
+		 //图书图书分类获取图书分类目录，，形成面包屑导航
+		 int classify = book.getBookclassid();
+		 List<Class> classlist = new ArrayList<Class>();
+		 Class classify2 = new Class();
+		 while(classify!=0){
+			 classify2 = classifyService.SelectTwoClassify(classify);
+			 classify =classify2.getClassfatherid();
+			 classlist.add(classify2);
+		 }
+		 //获取bookid和userid 判断用户之前是否已经收藏过该书
+		 String userid=new String();
+		 Cookie[]  cookies=  request.getCookies();
+		 for(Cookie c:cookies){
+			 if(c.getName().equals("userid")){
+				 userid= c.getValue();
+			 }
+		 }
+		 System.out.println(userid);
+		 if(!userid.isEmpty()){
+			 boolean valiCollect = collectService.selectCollect(bookid,userid);
+			 model.addAttribute("valiCollect", valiCollect);
+		 }
+		 
+		 
+		 //获取该书的评论
+		 List<CommentWapper> commentlist= commentWapperService.selectCommentByBookId(bookid);
+		 ObjectMapper mapper = new ObjectMapper();
+		 logger.info(mapper.writeValueAsString(classlist));
+		 Collections.reverse(classlist);
+		 logger.info(mapper.writeValueAsString(classlist));
+		 System.out.println("commentlist"+commentlist);
+		 logger.info("commentlist"+mapper.writeValueAsString(commentlist));
+		 model.addAttribute("classlist", classlist);
+		 model.addAttribute("book", book);
+		 model.addAttribute("commentlist", commentlist);
 		return "home/book";
 	}
 	

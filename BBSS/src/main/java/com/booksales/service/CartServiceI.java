@@ -20,5 +20,16 @@ public interface CartServiceI {
 	 * @return
 	 */
 	List<Cart> listUserCart(Integer userid);
+	/**
+	 * 添加图书到购物车
+	 * @param userid
+	 * @param bookid
+	 * @param username
+	 * @param bookname
+	 * @param bookNum
+	 * @return
+	 */
+	int addCart(Integer userid, Integer bookid, String username,
+			String bookname, Integer bookNum);
 
 }

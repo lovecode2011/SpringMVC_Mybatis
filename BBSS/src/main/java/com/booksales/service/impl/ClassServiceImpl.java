@@ -84,4 +84,11 @@ public class ClassServiceImpl implements ClassServiceI {
 		return classMapper.selectAll();
 	}
 
+
+
+	@Override
+	public Class SelectTwoClassify(int classify) {
+		return classMapper.selectByPrimaryKey(classify);
+	}
+
 }

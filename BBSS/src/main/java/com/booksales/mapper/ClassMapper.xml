@@ -52,4 +52,10 @@
     select ClassId, ClassName, ClassFatherId
     from bsclass
   </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  select ClassId, ClassName, ClassFatherId
+    from bsclass where ClassId=#{classid,jdbcType=INTEGER}
+  
+  </select>
 </mapper>
