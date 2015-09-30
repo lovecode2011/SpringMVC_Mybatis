@@ -25,8 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.booksales.model.Book;
+import com.booksales.model.Cart;
+import com.booksales.model.CartWapper;
 import com.booksales.model.User;
 import com.booksales.service.BookServiceI;
+import com.booksales.service.CartServiceI;
+import com.booksales.service.CartWapperServiceI;
 import com.booksales.service.UserServiceI;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -37,6 +41,8 @@ public class UserController {
 	private UserServiceI userService;
 	@Autowired
 	BookServiceI bookService;
+	@Autowired
+	CartWapperServiceI cartWapperService;
 	private static Log logger = LogFactory.getLog(UserController.class);
 
 	@Autowired
@@ -147,6 +153,10 @@ public class UserController {
 				useridCookie.setMaxAge(60 * 60 * 24 * 3);
 				response.addCookie(useridCookie);
 				
+				List<CartWapper> cartWapperlist =cartWapperService.selectCartListByUserId(u.getUserid());
+				
+				logger.info("购物车中的cart信息："+mapper.writeValueAsString(cartWapperlist));
+				request.setAttribute("cartwapperlist", cartWapperlist);
 				return "forward:/rank";
 			}
 		}

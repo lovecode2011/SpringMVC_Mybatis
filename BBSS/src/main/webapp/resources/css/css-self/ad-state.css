@@ -55,7 +55,7 @@
 		width: 46px;
 		height: 46px;
 		margin-bottom: 10px;
-		background-image: url(../../images/go-top.png);
+		background-image: url(${pageContext.request.contextPath }/images/go-top.png);
 	}
 	.go-top a:last-child {
 		margin-bottom: -22px;

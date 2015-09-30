@@ -40,4 +40,10 @@ public interface CartMapper {
 	 * @return
 	 */
 	List<Cart> selectListCartId(List<Integer> cartIdList);
+	/**
+	 * 根据用户id查询该用户的购物车
+	 * @param userid
+	 * @return
+	 */
+	List<Cart> selectCartListByUserId(Integer userid);
 }

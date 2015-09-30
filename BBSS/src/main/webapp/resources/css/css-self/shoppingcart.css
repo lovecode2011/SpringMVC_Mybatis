@@ -1,0 +1,321 @@
+<style type="text/css">
+	.s-container {
+		width: 960px;
+		margin: 25px auto;
+		padding: 0;
+		background-color: #ffffff;
+		z-index: -1;
+	}
+
+	.cart {
+		width: 100%;
+		height: 100%;
+		margin: 123px 0 70px 0;
+	}
+	.cart-filter-bar {
+		width: 960px;
+		height: 20%;
+		color: #a50017;
+		font-weight: bolder;
+		font-size: larger;
+		margin: 0px auto;
+	}
+	.cart-filter-bar p {
+		margin: 5px auto;
+	}
+	.cart-wrap {
+		width: 100%;
+		height: 80%;
+		position: relative;
+	}
+	.my-cart {
+		width: 960px;
+		height: 100%;
+		margin: 0 auto;
+		position: relative;
+	}
+	.cart-main {
+		width: 960px;
+		height: 100%;
+		position: relative;
+	}
+
+	.cart-head {
+		width: 960px;
+		height: 30px;
+		position: relative;
+		color: #3e3e3e;
+		background-color: #e8e8e8;
+	}
+	.all-checkbox {
+		width: 15%;
+		position: relative;
+		float: left;
+	}
+	.checkbox {
+		margin: 5px auto;
+	}
+	.checkbox input[type=checkbox] {
+		margin: 5px auto;
+		margin-left: 0;
+	}
+	.check-name {
+		margin: 5px auto;
+		text-align: center;
+	}
+	.goods {
+		width: 40%;
+		position: relative;
+		float: left;
+		margin: 5px auto;
+	}
+	.price {
+		width: 10%;
+		position: relative;
+		float: left;
+		margin: 5px auto;
+	}
+	.quantity {
+		width: 15%;
+		position: relative;
+		float: left;
+		margin: 5px auto;
+		text-align: center;
+		padding-right: 20px;
+	}
+	.sum {
+		width: 10%;
+		position: relative;
+		float: left;
+		margin: 5px auto;
+	}
+	.action {
+		width: 10%;
+		position: relative;
+		float: left;
+		margin: 5px auto;
+		text-align: center;
+	}
+
+
+	.cart-list {
+		width: 960px;
+		height: 120px;
+		position: relative;
+		color: #6e6e6e;
+		background-color: #fff;
+		border-top: 1px solid #e8e8e8;
+	}
+	.item-list {
+		width: 960px;
+		height: 120px;
+		position: relative;
+	}
+	.item-item {
+		width: 960px;
+		height: 120px;
+		position: relative;
+	}
+	.item-checkbox {
+		width: 13px;
+		height: 13px;
+		position: relative;
+		float: left;
+		margin: 50px auto;
+	}
+	.item-checkbox input[type=checkbox] {
+		margin: 3.5px auto;
+		margin-left: 0;
+	}
+	.img-name {
+		width: 480px;
+		height: 100%;
+		position: relative;
+		float: left;
+	}
+	.item-img {
+		width: 25%;
+		height: 100%;
+		padding: 35px 33px;
+		position: relative;
+		float: left;
+	}
+	.item-name {
+		width: 75%;
+		height: 100%;
+		padding: 50px 0 50px 12px;
+		position: relative;
+		float: left;
+	}
+	.item-name a {
+		text-decoration: none;
+		color: #6e6e6e;
+		overflow: hidden;
+	}
+	.item-name a:hover {
+		color: #5da286;
+		text-decoration: underline;
+	}
+	.item-price {
+		width: 147px;
+		height: 100%;
+		padding: 50px 0 50px 38px;
+		position: relative;
+		float: left;
+	}
+	/*数量控制*/
+	.spinner-wrap {
+
+	}
+	.spinner {
+		margin: 49px auto;
+		width: 90px;
+		height: 22px;
+		position: relative;
+		float: left;
+	}
+	.decrease {
+		width: 20px;
+  		height: 22px;
+  		border: 1px solid #808080;
+  		position: relative;
+  		float: left;
+	  	text-align: center;
+	  	padding: 0px 5px;
+	  	font-size: 12px;
+	  	background-color: #fff;
+	}
+	.buy_num {
+		width: 50px;
+		height: 22px;
+		float: left;
+  		border-top: 1px solid #808080;
+  		border-bottom: 1px solid #808080;
+  		border-right: 0;
+  		border-left: 0;
+  		text-align: center;
+	}
+	.increase {
+		width: 20px;
+  		height: 22px;
+  		border: 1px solid #808080;
+  		position: relative;
+  		float: left;
+	  	text-align: center;
+	  	padding: 0px 5px;
+	  	font-size: 12px;
+	  	background-color: #fff;
+	}
+
+	.item-sum {
+		width: 130px;
+		height: 100%;
+		padding: 50px 0 50px 40px;
+		position: relative;
+		float: left;
+	}
+	.item-action {
+		width: 100px;
+		height: 100%;
+		position: relative;
+		float: left;
+		text-align: center;
+		padding: 40px 0;
+	}
+	.item-action a {
+		text-decoration: none;
+		color: #6e6e6e;
+	}
+	.item-action a:hover {
+		color: #6e6e6e;
+		text-decoration: none;
+	}
+
+
+	.cart-float-bar-wrap {
+		width: 100%;
+		height: 40px;
+		background-color: #fff;
+		position: relative;
+	}
+	.cart-float-bar {
+		width: 960px;
+		height: 40px;
+		margin: 0 auto;
+		color: #3e3e3e;
+		background-color: #fff;
+		position: relative;
+	}
+	.select-all {
+		width: 15%;
+		height: 100%;
+		position: relative;
+		float: left;
+	}
+	.settle-checkbox {
+		position: relative;
+		float: left;
+		margin: 10px auto;
+	}
+	.settle-checkbox input[type=checkbox] {
+		margin: 3.5px auto;
+		margin-left: 0;
+	}
+	.settle-check-name {
+		margin: 10px auto;
+	}
+	.operation {
+		width: 15%;
+		height: 100%;
+		padding: 10px 0;
+		text-align: center;
+		position: relative;
+		float: left;
+	}
+	.operation a {
+		text-decoration: none;
+		color: #3e3e3e;
+	}
+	.operation a:hover {
+		color: #3e3e3e;
+		text-decoration: none;
+	}
+	.item-sum-num {
+		width: 15%;
+		height: 100%;
+		padding: 10px 0;
+		text-align: center;
+		position: relative;
+		float: left;
+	}
+	#num-item {
+		color: #a50017;
+	}
+	.price-sum {
+		width: 30%;
+		height: 100%;
+		padding: 10px 0;
+		position: relative;
+		float: left;
+	}
+	.points {
+		width: 15%;
+		height: 100%;
+		padding: 10px 0;
+		position: relative;
+		float: left;
+	}
+	.settle {
+		width: 10%;
+		height: 100%;
+		padding: 0;
+		text-align: center;
+		position: relative;
+		float: left;
+	}
+	.fixed-bottom { 
+		position: fixed; 
+		bottom: 0;
+		box-shadow: 1px 1px 10px #6e6e6e;
+	}
+</style>

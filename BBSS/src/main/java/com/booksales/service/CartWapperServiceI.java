@@ -20,5 +20,11 @@ public interface CartWapperServiceI {
 	 * @throws JsonGenerationException 
 	 */
 	List<CartWapper> selectCartForOrder(Integer useriid, Integer[] book_id) throws JsonGenerationException, JsonMappingException, IOException;
+	/**
+	 * 根据用户id查询该用户的购物车
+	 * @param userid
+	 * @return
+	 */
+	List<CartWapper> selectCartListByUserId(Integer userid);
 
 }

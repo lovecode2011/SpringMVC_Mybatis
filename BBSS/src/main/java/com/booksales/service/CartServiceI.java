@@ -31,5 +31,12 @@ public interface CartServiceI {
 	 */
 	int addCart(Integer userid, Integer bookid, String username,
 			String bookname, Integer bookNum);
+	
+	/**
+	 * 根据用户id查询该用户的购物车
+	 * @param userid
+	 * @return
+	 */
+	List<Cart> selectCartListByUserId(Integer userid);
 
 }

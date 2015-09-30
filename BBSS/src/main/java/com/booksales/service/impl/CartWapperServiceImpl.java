@@ -36,4 +36,9 @@ public class CartWapperServiceImpl implements CartWapperServiceI {
 		}
 		return cwl;
 	}
+
+	@Override
+	public List<CartWapper> selectCartListByUserId(Integer userid) {
+		return cartWapperMapper.selectCartListByUserId(userid);
+	}
 }

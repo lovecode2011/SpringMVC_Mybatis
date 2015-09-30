@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.booksales.model.Book;
 import com.booksales.model.Cart;
+import com.booksales.model.CartWapper;
 import com.booksales.model.User;
 import com.booksales.service.BookServiceI;
 import com.booksales.service.CartServiceI;
+import com.booksales.service.CartWapperServiceI;
 import com.booksales.service.UserServiceI;
 
 @Controller
@@ -28,6 +30,8 @@ import com.booksales.service.UserServiceI;
 public class CartController {
 	@Autowired
 	CartServiceI cartService;
+	@Autowired
+	CartWapperServiceI cartWapperService;
 	private static Log logger = LogFactory.getLog(CartController.class);
 	@RequestMapping(value = "/addBook2Cart/{userid}/{bookid}", method = RequestMethod.GET)
 	public  String addBook2Cart(@PathVariable Integer userid, @PathVariable Integer bookid,Model model){
@@ -72,8 +76,16 @@ public class CartController {
 		}
 		out.println("已经添加到购物车");
 		out.close();	
+	}
+	@RequestMapping(value = "{userid}/shoppingCart")
+	public String shoppingCart(@PathVariable Integer userid ,Model model){
+		
+		List<CartWapper> cartwapperlist =	cartWapperService.selectCartListByUserId(userid);
+		
+		model.addAttribute("cartwapperlist", cartwapperlist);
+		
+		return "home/shoppingCart";
 		
 	}
-	
 	
 }

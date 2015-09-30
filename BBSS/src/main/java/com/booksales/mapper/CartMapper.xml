@@ -26,18 +26,24 @@
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
         #{item}  
         </foreach>
-  
   </select>
+  <!-- 根据cartid更新orderid===》将cart加入订单 -->
   <update id="updateCartOrderId" parameterType="com.booksales.model.Cart" >
   update bscart Set OrderId =#{orderid,jdbcType=INTEGER} where  CartId = #{cartid,jdbcType=INTEGER}
   
   </update>
+  <!-- 根据用户id查询该用户的购物车    -->
+ <select id="selectCartListByUserId"   resultMap="BaseResultMap" parameterType="java.lang.Integer">
+ 	SELECT bscart.CartId, bscart.UserId, bscart.UserName, bscart.BookId, bscart.BookName, bscart.BookNum,
+           bscart.Amount, bscart.OrderId FROM bscart WHERE bscart.UserId = #{userid,jdbcType=INTEGER} AND
+		   bscart.OrderId is Null
+  </select>
  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bscart
     where CartId = #{cartid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.booksales.model.Cart" >
+  <insert id="insert" parameterType="com.booksales.model.Cart"  >
    
     insert into bscart ( UserId, UserName, 
       BookId, BookName, BookNum, 

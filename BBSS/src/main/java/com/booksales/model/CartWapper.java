@@ -15,7 +15,50 @@ public class CartWapper {
 
     private Double  amount;
 
-    public Integer getCartid() {
+	private Integer orderid;
+    
+	private String author;
+
+	private String publish;
+
+	private String isbn;
+	
+	private String publishdate;
+
+	private String picture;
+
+	
+
+	private String repertory;
+
+	private Double price;
+
+	private Integer stock;
+
+	private Integer sales;
+
+	private Integer bookclassid;
+	
+	private String isrecommend;
+
+	private String intro;
+	public String getIsrecommend() {
+		return isrecommend;
+	}
+
+	public void setIsrecommend(String isrecommend) {
+		this.isrecommend = isrecommend;
+	}
+
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+
+	public Integer getCartid() {
 		return cartid;
 	}
 
@@ -158,26 +201,6 @@ public class CartWapper {
 	public void setBookclassid(Integer bookclassid) {
 		this.bookclassid = bookclassid;
 	}
-
-	private Integer orderid;
-    
-	private String author;
-
-	private String publish;
-
-	private String isbn;
 	
-	private String publishdate;
-
-	private String picture;
-
-	private String repertory;
-
-	private Double price;
-
-	private Integer stock;
-
-	private Integer sales;
-
-	private Integer bookclassid;
+	
 }

@@ -80,9 +80,14 @@ public class CartServiceImpl implements CartServiceI {
 			
 			 cart.setUsername(username);
 			 cart.setBooknum(bookNum);
+			
 			 cart.setAmount(book.getPrice()*bookNum);
 			 res= cartMapper.insert(cart);
 		}
 		return res;
+	}
+	@Override
+	public List<Cart> selectCartListByUserId(Integer userid) {
+		return cartMapper.selectCartListByUserId(userid);
 	}
 }

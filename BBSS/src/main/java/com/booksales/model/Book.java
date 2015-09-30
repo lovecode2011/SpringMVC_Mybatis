@@ -28,6 +28,9 @@ public class Book {
 	private Integer sales;
 
 	private Integer bookclassid;
+	private String isrecommend;
+
+	private String intro;
 
 	@Override
 	public String toString() {
@@ -40,9 +43,7 @@ public class Book {
 				+ intro + "]";
 	}
 
-	private String isrecommend;
-
-	private String intro;
+	
 
 	public Integer getBookid() {
 		return bookid;
