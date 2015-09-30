@@ -29,9 +29,15 @@ public interface CartMapper {
      */
 	List<Cart> selectListBookId(List<Integer> bookIdList);
 	/**
-	 * 根据传入的List<Cart>更新orderid字段
-	 * @param updateList
+	 * 更新cart的cartid
+	 * @param c
+	 * @return 
+	 */
+	int updateCartOrderId(Cart c);
+	/**
+	 * 根据cartid集合查询cart集合
+	 * @param cartIdList
 	 * @return
 	 */
-	List<Cart> updateCartList(List<Cart> updateList);
+	List<Cart> selectListCartId(List<Integer> cartIdList);
 }

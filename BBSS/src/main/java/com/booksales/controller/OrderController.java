@@ -66,13 +66,7 @@ public class OrderController {
 			@RequestParam("aorderAmount") Float aorderAmount,
 			HttpServletRequest request,@PathVariable Integer userid) throws JsonGenerationException, JsonMappingException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
-		for(int i:acartid)
-			System.out.println(i);
-		 System.out.println(auserid);
-		System.out.println(areceiverid);
-		System.out.println(apayway);
-		System.out.println(aorderdate);
-		System.out.println(aorderAmount);
+		
 		//创建order对象，并把值都set进入
 		Order order =new Order();
 		order.setOrdertime(aorderdate);
@@ -83,8 +77,12 @@ public class OrderController {
 		
 		order.setLogisticsstates("0");
 		order.setOrderstates("0");
+		int cartidSize = acartid.length;
 		//将order加入数据库 ，//返回刚才加入的order的orderid，//将orderid加入到acartid数组中的cart中
 		int i =orderService.CreatOrder(order,acartid);
+		if(cartidSize == i){
+			return "home/userinfo";
+		}
 		
 		return "home/book";
 	}

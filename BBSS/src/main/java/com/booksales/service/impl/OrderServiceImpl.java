@@ -1,11 +1,15 @@
 package com.booksales.service.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,21 +52,34 @@ public class OrderServiceImpl implements OrderServiceI {
 	}
 
 	@Override
-	public int CreatOrder(Order order, Integer[] acartid) {
+	public int CreatOrder(Order order, Integer[] acartid) throws JsonGenerationException, JsonMappingException, IOException {
+		
+		
 		int i = orderMapper.insert(order);
 		
 		int orderid =order.getOrderid();
+		System.out.println("添加到数据库的order的orderid为："+order.getOrderid());
+		
 		//将Integer[]转换为list<Integer>
 		List<Integer> cartIdList =Arrays.asList(acartid);
 		//先获取全部LIST<Integer>中的cart
-		List<Cart> cartList=cartMapper.selectListBookId(cartIdList);
+		List<Cart> cartList=cartMapper.selectListCartId(cartIdList);
+		ObjectMapper mapper = new ObjectMapper();
+		
+		
+		logger.info("选中的cart信息："+mapper.writeValueAsString(cartList));
 		List<Cart> updateList =new ArrayList<Cart>();
+		
+		int result= 0;
 		for(Cart c:cartList){
 			c.setOrderid(orderid);
+			
 			updateList.add(c);
+			int m= cartMapper.updateCartOrderId(c);
+			
+			result+=m;
 		}
-		List<Cart> updateCartList = cartMapper.updateCartList(updateList);
-		return 0;
+		return result;
 	}
 
 

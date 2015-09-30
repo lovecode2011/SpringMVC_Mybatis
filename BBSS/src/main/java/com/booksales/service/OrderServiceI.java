@@ -1,6 +1,10 @@
 package com.booksales.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 
 import com.booksales.model.Cart;
 import com.booksales.model.Order;
@@ -25,7 +29,10 @@ public interface OrderServiceI {
 	 * @param order
 	 * @param acartid 
 	 * @return
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonGenerationException 
 	 */
-	int CreatOrder(Order order, Integer[] acartid);
+	int CreatOrder(Order order, Integer[] acartid) throws JsonGenerationException, JsonMappingException, IOException;
 
 }

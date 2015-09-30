@@ -11,7 +11,7 @@
     <result column="Amount" property="amount" jdbcType="DECIMAL" />
     <result column="OrderId" property="orderid" jdbcType="INTEGER" />
   </resultMap>
-  
+  <!-- 根据图书idlist 查询cart集合 -->
   <select id="selectListBookId" resultMap="BaseResultMap">
   	 select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
         from bscart where BookId in  
@@ -19,16 +19,20 @@
         #{item}  
         </foreach>
   </select>
-  
-  <update id="updateCartList" >
-  	 update bscart set 
-      OrderId = #{orderid,jdbcType=INTEGER}
-    where where CartId in  
+  <!-- 根据cartid集合查询cart集合 -->
+  <select id="selectListCartId" resultMap="BaseResultMap">
+  	select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId
+        from bscart where CartId in  
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
-        #{item.cartid}  
+        #{item}  
         </foreach>
   
+  </select>
+  <update id="updateCartOrderId" parameterType="com.booksales.model.Cart" >
+  update bscart Set OrderId =#{orderid,jdbcType=INTEGER} where  CartId = #{cartid,jdbcType=INTEGER}
+  
   </update>
+ 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bscart
     where CartId = #{cartid,jdbcType=INTEGER}
