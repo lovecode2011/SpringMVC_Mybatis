@@ -24,8 +24,15 @@ public class CollectServiceImpl implements CollectServiceI  {
 		 Collect collect = new Collect();
 		 collect.setBookid(bookid);
 		 collect.setUserid(userid);
-		int i= collectMapper.insert(collect);
 		 
+		Collect c= collectMapper.selectCollectUserIdBookId(collect);
+		int i=0;
+		if(c!=null){
+			i=1;
+		}
+		else{
+			i= collectMapper.insert(collect);
+		}
 		return i;
 	}
 	@Override

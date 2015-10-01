@@ -76,16 +76,7 @@
 						</c:forEach>
 						</c:if>
 						<c:if test="${cartwapperlist==null }">
-						<c:forEach var="cwl" items="${cartwapperlist}" varStatus="cwllist">
-						<li class="nav-cart">
-								<div class="nav-cart-img"><a href="#"><img src="http://wwhahapic.tunnel.mobi/${cwl.picture }" width="54px" height="54px"></a></div>
 								<div class="nav-cart-name"><a href="#" style="color:#6e6e6e;">购物车为空！</a></div>
-								<div class="nav-cart-action">
-									<span>${cwl.price }</span>×<span>${cwl.booknum }</span>
-									<a href="#"  style="color:#6e6e6e;text-align:right;">删除</a>
-								</div>
-							</li>
-						</c:forEach>
 						</c:if>
 						</ul>
 					</li>

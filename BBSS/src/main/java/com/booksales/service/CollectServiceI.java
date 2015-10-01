@@ -5,7 +5,12 @@ import java.util.List;
 import com.booksales.model.Collect;
 
 public interface CollectServiceI {
-
+	/**
+	 * 用户收藏图书  
+	 * @param userid
+	 * @param bookid
+	 * @return
+	 */
 	int collectBook(Integer userid, Integer bookid);
 
 	List<Collect> listCollect(Integer userid);

@@ -78,10 +78,12 @@
 										<div class="nav-cart-name">
 											<a href="#" style="color: #6e6e6e;">${cwl.bookname }</a>
 										</div>
+										<!--  这个地方的删除，貌似可以去掉。。等以后商量一下再说---> 
 										<div class="nav-cart-action">
 											<span>${cwl.price }</span>×<span>${cwl.booknum }</span> <a
 												href="#" style="color: #6e6e6e; text-align: right;">删除</a>
 										</div>
+										 
 									</li>
 								</c:forEach>
 							</c:if>
@@ -117,7 +119,7 @@
 	<div class="container s-container">
 		<div class="c-head">
 			<div class="logo">
-				<a href="#"> <img
+				<a href="${pageContext.request.contextPath }"> <img
 					src="${pageContext.request.contextPath }/images/logo长.png">
 				</a>
 			</div>
@@ -149,7 +151,7 @@
 							<!--购物框头部-->
 							<div class="all-checkbox">
 								<div class="checkbox">
-									<input type="checkbox" name="item-check"  class ="allselect" value="All">
+									<input type="checkbox" name="item-allcheck" class="allselect" value="All" >
 								</div>
 								<div class="check-name ">全选</div>
 							</div>
@@ -168,25 +170,31 @@
 									<div class="item-item">
 										<!--单品开始-->
 										<div class="item-checkbox">
-											<input type="checkbox" name="item-check" value="item">
+											<input type="checkbox" name="item-check" class="itemcheck" value="${cwl.cartid }">
+											<input type="hidden" id = "userid" value="${userid}"> 
+											<input type="hidden" class= "bookid" value="${cwl.bookid}"> 
 										</div>
 										<div class="img-name">
 											<div class="item-img">
-												<a href="#"><img
+												<a href="${pageContext.request.contextPath}/book/${cwl.bookid}"><img
 													src="http://wwhahapic.tunnel.mobi/${cwl.picture}"
 													width="54px" height="54px"></a>
 											</div>
 											<div class="item-name">
-												<a href="#">${cwl.bookname }</a>
+												<a href="${pageContext.request.contextPath}/book/${cwl.bookid}">${cwl.bookname }</a>
 											</div>
 										</div>
 										<div class="item-price">¥${cwl.price }</div>
 										<div class="spinner-wrap">
-											<input type="text" class="buy_num" value="${cwl.booknum }">
+											<input type="text" class="buy_num"  id="buynum" value="${cwl.booknum}">
+											
 										</div>
-										<div class="item-sum">¥${cwl.amount }</div>
+										<div class="item-sum">
+											<span>¥</span><span class="amount">${cwl.amount }</span>
+										</div>
 										<div class="item-action">
-											<a href="#">收藏</a></br> <a href="#">删除</a>
+											<a href="#" class="addCollect" value="${cwl.cartid }">收藏</a></br>
+											 <a href="#" class="removeCart">删除</a>
 										</div>
 									</div>
 								</div>
@@ -202,24 +210,23 @@
 			<!--总计结算开始-->
 			<div class="select-all">
 				<div class="checkbox settle-checkbox">
-					<input type="checkbox" name="item-check" class="allselect" value="All">
+					<input type="checkbox" name="item-allcheck" class="allselect"
+						value="All">
 				</div>
 				<div class="check-name settle-check-name">全选</div>
 			</div>
 			<div class="operation">
-				<a href="#" class="remove-batch">删除</a> <a href="#"
-					class="follow-batch">收藏</a>
+				<a href="#" class="remove-batch">删除</a> 
+				<a href="#" class="follow-batch">收藏</a>
 			</div>
 			<div class="item-sum-num">
 				已选择<span id="num-item">1</span>件商品
 			</div>
 			<div class="price-sum">
-				总价（不包括运费）：
-				<div id="num-price"></div>
+				总价（不包括运费）： <span id="num-price"></span>
 			</div>
 			<div class="points">
-				积分：
-				<div id="num-points"></div>
+				积分： <span id="num-points"></span>
 			</div>
 			<div class="settle">
 				<a href="#"><img
@@ -238,7 +245,7 @@
 				<div class="ads-img" style="margin-left: -70px;">
 					<img src="${pageContext.request.contextPath }/images/ad-img-1.png">
 				</div>
-				<div class="ads-img">
+				<div class="ads-img"> 
 					<img src="${pageContext.request.contextPath }/images/ad-img-2.png">
 				</div>
 				<div class="ads-img">
@@ -271,22 +278,108 @@
 	src="${pageContext.request.contextPath }/js/js-self/go-top-else.js"></script>
 <script src="${pageContext.request.contextPath }/js/js-self/scroll.js"></script>
 <script type="text/javascript">
-$(document).ready(function (){
-	$(".allselect").click(function(){
-		
-		$("input[name='item-check']").each(function(){
-			$(this).attr("checked",true);
+	$(document).ready(function() {
+		$(".allselect").click(function() {
+			//alert("什么鬼");
+		//	alert($(this).attr("checked"));
+			
+			
+			if($(this).attr("checked")){
+				$(".allselect").attr("checked", false);
+				$("input[name='item-check']").each(function() {
+					$(this).attr("checked", false);
+				});
+			//	alert("全部不选中");
+				GetCount();
+			}
+			
+			else if(!$(this).attr("checked")){
+				$(".allselect").attr("checked", true);
+			$("input[name='item-check']").each(function() {
+				$(this).attr("checked", true);
+			});
+		//	alert("全部选中");
+			GetCount();
+			}
 		});
-		alert("全部选中");
-	})
+		$("input[name='item-check']").click(function(){
+			if($(this).attr("checked")){
+				$(this).attr("checked", false);
+			//	alert("不选中");
+				GetCount();
+			}
+			else if(!$(this).attr("checked")){
+				$(this).attr("checked", true);
+		//	alert("选中");
+			GetCount();
+			}
+		});
+		
+		$(".addCollect").click(function(){
+			alert("点击了收藏");
+			//获取当前购物车项的cartid
+			var userid =$(this).parent().parent().find("#userid").val();
+			var bookid =$(this).parent().parent().find(".bookid").val();
+			
+			if(userid==""){
+				alert("请先登录");
+			}else{
+				alert(userid);
+				alert(bookid);
+				
+				var url ="${pageContext.request.contextPath}/addCollect";
+				var args ={"bookid":bookid,"userid":userid};
+				$.post(url,args,function(data){
+					alert(data);
+				})
+			}
+		
+		});
+	});
 	
+	$(".removeCart").click(function(){
+		alert("点击了删除")
+		var cartid =$(this).parent().parent().find(".itemcheck").val();
+		var userid =$(this).parent().parent().find("#userid").val();
+		var bookid =$(this).parent().parent().find(".bookid").val();
+		
+		if(userid==""){
+			alert("请先登录");
+		}else{
+			alert(cartid);
+			alert(userid);
+			alert(bookid);
+			var url = "${pageContext.request.contextPath}/removeCart";
+			var args={"cartid":cartid};
+			
+			$.post(url,args,function(data){
+				
+					alert(data);
+					 window.location.href='./shoppingCart';
+				
+			})
+		}
 	
-	
-	
-	
-});
-
+	});
+	//计算总价和总数量
+	function GetCount() {
+		var conts = 0;
+		var numitem = 0;
+		$(".item-list input[name='item-check']").each(function() {
+					if ($(this).attr("checked")) {
+						for (var i = 0; i < $(this).length; i++) {
+							conts += parseFloat($(this).parents(".item-item").find(".amount").text());
+							numitem += 1;
+						}
+					}
+				});
+	//	alert(numitem);
+		//alert(conts.toFixed(2));
+		$("#num-item").html(numitem);
+		$("#num-price").text((conts).toFixed(2));
+		$("#num-points").text((conts) * 10);
+		$("#num-price").css("color", "red");
+		$("#num-points").css("color", "red");
+	}
 </script>
-
-
 </html>

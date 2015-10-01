@@ -79,12 +79,26 @@ public class CartController {
 	}
 	@RequestMapping(value = "{userid}/shoppingCart")
 	public String shoppingCart(@PathVariable Integer userid ,Model model){
-		
 		List<CartWapper> cartwapperlist =	cartWapperService.selectCartListByUserId(userid);
-		
 		model.addAttribute("cartwapperlist", cartwapperlist);
-		
 		return "home/shoppingCart";
+	}
+	@RequestMapping(value = "/removeCart",method = RequestMethod.POST)
+	public void removeCart(@RequestParam("cartid") Integer cartid,
+			Model model,HttpServletResponse response){
+		int i =cartService.delCartByCartId(cartid);
+		response.setContentType("text/html;charset=UTF-8");
+		response.setCharacterEncoding("utf-8");
+		if(i>0){
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			out.println("删除成功");
+			out.close();	
+		}
 		
 	}
 	

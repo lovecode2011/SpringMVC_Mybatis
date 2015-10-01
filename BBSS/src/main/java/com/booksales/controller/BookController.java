@@ -37,11 +37,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.booksales.model.Book;
+import com.booksales.model.CartWapper;
 import com.booksales.model.Class;
 import com.booksales.model.Collect;
 import com.booksales.model.Comment;
 import com.booksales.model.CommentWapper;
+import com.booksales.model.User;
 import com.booksales.service.BookServiceI;
+import com.booksales.service.CartWapperServiceI;
 import com.booksales.service.ClassServiceI;
 import com.booksales.service.CollectServiceI;
 import com.booksales.service.CommentServiceI;
@@ -59,6 +62,8 @@ public class BookController {
 	CollectServiceI collectService;
 	@Autowired
 	CommentWapperServiceI commentWapperService;
+	@Autowired
+	CartWapperServiceI cartWapperService;
 	private static Log logger = LogFactory.getLog(BookController.class);
 
 	@InitBinder
@@ -398,7 +403,7 @@ public class BookController {
 	
 	
 	@RequestMapping(value = "/rank")
-	public String rankBook(Model model)
+	public String rankBook(Model model,HttpServletRequest request)
 			throws JsonGenerationException, JsonMappingException, IOException {
 		logger.info("-----查询图书排行-----");
 		List<Book> rankbook = bookService.BookRank();
@@ -413,6 +418,7 @@ public class BookController {
 		model.addAttribute("rankbook", rankbook);
 		
 		model.addAttribute("recommendbook", recommendbook);
+		
 		
 		return "home/home";
 	}

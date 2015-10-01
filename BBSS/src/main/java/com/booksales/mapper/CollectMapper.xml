@@ -40,7 +40,13 @@
   select CollectId, UserId, BookId
     from bscollect
     where UserId = #{userId,jdbcType=INTEGER}
+  </select>
   
+  <!-- 根据用户id和图书id查看该用户之前是否已经收藏过该图书 -->
+  <select id="selectCollectUserIdBookId" resultMap="BaseResultMap" parameterType="com.booksales.model.Collect">
+  select CollectId, UserId, BookId
+    from bscollect
+    where UserId = #{userid,jdbcType=INTEGER} and bookId = #{bookid,jdbcType=INTEGER}
   
   </select>
 </mapper>

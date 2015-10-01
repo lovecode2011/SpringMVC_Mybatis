@@ -90,4 +90,8 @@ public class CartServiceImpl implements CartServiceI {
 	public List<Cart> selectCartListByUserId(Integer userid) {
 		return cartMapper.selectCartListByUserId(userid);
 	}
+	@Override
+	public int delCartByCartId(Integer cartid) {
+		return cartMapper.deleteByPrimaryKey(cartid);
+	}
 }

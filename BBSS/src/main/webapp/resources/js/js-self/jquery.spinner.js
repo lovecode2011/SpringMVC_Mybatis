@@ -4,6 +4,8 @@
 ;(function ($) {
   $.fn.spinner = function (opts) {
     return this.each(function () {
+    	
+    	
       var defaults = {value:1, min:1}
       var options = $.extend(defaults, opts)
       var keyCodes = {up:38, down:40}

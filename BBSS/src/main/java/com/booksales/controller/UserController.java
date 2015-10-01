@@ -60,6 +60,9 @@ public class UserController {
 			return "forward:bookPage";
 		}
 		if(request.getSession().getAttribute("user")!=null){
+			User u = (User) request.getSession().getAttribute("user");
+			List<CartWapper> cartWapperlist =cartWapperService.selectCartListByUserId(u.getUserid());
+			request.setAttribute("cartwapperlist", cartWapperlist);
 			return "forward:/rank";
 		}
 		return "forward:/rank";
@@ -78,6 +81,9 @@ public class UserController {
 		}
 		//当session中有user时，跳转到前台数据处理加载的方法中
 		if(request.getSession().getAttribute("user")!=null){
+			User u = (User) request.getSession().getAttribute("user");
+			List<CartWapper> cartWapperlist =cartWapperService.selectCartListByUserId(u.getUserid());
+			request.setAttribute("cartwapperlist", cartWapperlist);
 			return "forward:/rank";
 		}
 		//当session中没有值时，跳转到登陆的页面进行登陆
@@ -153,8 +159,8 @@ public class UserController {
 				useridCookie.setMaxAge(60 * 60 * 24 * 3);
 				response.addCookie(useridCookie);
 				
+				logger.info("购物车中User："+mapper.writeValueAsString(u));
 				List<CartWapper> cartWapperlist =cartWapperService.selectCartListByUserId(u.getUserid());
-				
 				logger.info("购物车中的cart信息："+mapper.writeValueAsString(cartWapperlist));
 				request.setAttribute("cartwapperlist", cartWapperlist);
 				return "forward:/rank";

@@ -38,5 +38,11 @@ public interface CartServiceI {
 	 * @return
 	 */
 	List<Cart> selectCartListByUserId(Integer userid);
+	/**
+	 * 根据cartid删除cart
+	 * @param cartid
+	 * @return
+	 */
+	int delCartByCartId(Integer cartid);
 
 }
