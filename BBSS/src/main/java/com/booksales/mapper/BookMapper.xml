@@ -18,7 +18,14 @@
 		<result column="Intro" property="intro" jdbcType="LONGVARCHAR" />
 	</resultMap>
 
-
+	<!-- 根据bookclassfiyid查询book 得到bookList -->
+	<select id="selectBookListByClassifyId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture,
+		Repertory,
+		Price, Stock, Sales, BookClassId, IsRecommend, Intro
+		from bsbook
+		where BookClassId = #{bookclassid,jdbcType=INTEGER}
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from bsbook
 		where BookId = #{bookname,jdbcType=VARCHAR}

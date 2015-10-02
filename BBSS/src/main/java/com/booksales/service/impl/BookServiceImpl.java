@@ -99,4 +99,10 @@ public class BookServiceImpl implements BookServiceI {
 		return bookMapper.selectBookAmount();
 	}
 
+	@Override
+	public List<Book> selectBookListByClassifyId(Integer classifyid) {
+	
+		return 	bookMapper.selectBookListByClassifyId(classifyid);
+	}
+
 }

@@ -68,6 +68,12 @@ public interface BookServiceI {
 	 * @return
 	 */
 	int selectBookAmount();
+	/**
+	 * 根据bookclassid查询该分类的书
+	 * @param classifyid
+	 * @return
+	 */
+	List<Book> selectBookListByClassifyId(Integer classifyid);
 	
 	
 

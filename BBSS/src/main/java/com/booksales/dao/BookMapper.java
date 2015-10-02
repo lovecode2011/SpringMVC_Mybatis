@@ -45,4 +45,11 @@ public interface BookMapper {
 	 * @return
 	 */
 	int selectBookAmount();
+	
+	/**
+	 * 根据bookclassifyid查询该分类的图书list
+	 * @param classifyid
+	 * @return
+	 */
+	List<Book> selectBookListByClassifyId(Integer bookclassid);
 }

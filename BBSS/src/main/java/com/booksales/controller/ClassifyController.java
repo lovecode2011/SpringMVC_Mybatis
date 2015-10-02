@@ -26,7 +26,9 @@ import com.booksales.common.model.Node2;
 import com.booksales.common.model.S;
 import com.booksales.common.model.TreeJson;
 import com.booksales.common.model.ZTreejson;
+import com.booksales.model.Book;
 import com.booksales.model.Class;
+import com.booksales.service.BookServiceI;
 import com.booksales.service.ClassServiceI;
 
 @Controller
@@ -34,12 +36,26 @@ import com.booksales.service.ClassServiceI;
 public class ClassifyController {
 
 	private ClassServiceI classService;
-
+	@Autowired
+	private BookServiceI bookService;
 	private static Log logger = LogFactory.getLog(ClassifyController.class);
 
 	@Autowired
 	public void setClassService(ClassServiceI classService) {
 		this.classService = classService;
+	}
+	/**
+	 * 根据classfiyid查询booklist
+	 * @param classifyid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/classify/{classifyid}", method = RequestMethod.GET)
+	public String selectClassify(@PathVariable Integer classifyid,Model model){
+		
+		List<Book> bookList =bookService.selectBookListByClassifyId(classifyid);
+		model.addAttribute("bookList", bookList);
+		return "home/BookClass";
 	}
 	
 	@RequestMapping(value = "/addClassifyOne", method = RequestMethod.GET)
