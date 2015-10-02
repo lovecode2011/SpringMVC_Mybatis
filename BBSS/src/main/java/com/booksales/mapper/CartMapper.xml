@@ -11,6 +11,13 @@
     <result column="Amount" property="amount" jdbcType="DECIMAL" />
     <result column="OrderId" property="orderid" jdbcType="INTEGER" />
   </resultMap>
+  
+  <!-- 根据orderid查询cart集合 -->
+  <select id="selectCartListByOrderId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  SELECT bscart.CartId, bscart.UserId, bscart.UserName, bscart.BookId, bscart.BookName, bscart.BookNum,
+           bscart.Amount, bscart.OrderId FROM bscart WHERE
+		   bscart.OrderId =#{orderid,jdbcType=INTEGER} 
+  </select>
   <!-- 根据图书idlist 查询cart集合 -->
   <select id="selectListBookId" resultMap="BaseResultMap">
   	 select CartId, UserId, UserName, BookId, BookName, BookNum, Amount, OrderId

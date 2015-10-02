@@ -82,5 +82,23 @@ public class OrderServiceImpl implements OrderServiceI {
 		return result;
 	}
 
+	@Override
+	public List<Order> selectCartByUserid(Integer userid) {
+		return orderMapper.selectByUserId(userid);
+	}
+
+	/**
+	 * 先将该order中的cart的orderid都设置为null，然后将该orderid删除
+	 */
+	public int delOrderByOrderId(Integer orderid) {
+		List<Cart> cartlist =cartMapper.selectCartListByOrderId(orderid);
+		for(Cart c :cartlist){
+			c.setOrderid(null);
+			//TODO   -->修改update方法。。使其让orderid为null
+			cartMapper.updateCartOrderId(c);
+		}
+		return orderMapper.deleteByPrimaryKey(orderid);
+	}
+
 
 }

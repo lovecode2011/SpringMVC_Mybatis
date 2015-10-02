@@ -1,10 +1,12 @@
 package com.booksales.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,10 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.booksales.model.Cart;
 import com.booksales.model.CartWapper;
 import com.booksales.model.Order;
+import com.booksales.model.OrderWapper;
 import com.booksales.model.Receiver;
 import com.booksales.model.User;
 import com.booksales.service.CartWapperServiceI;
 import com.booksales.service.OrderServiceI;
+import com.booksales.service.OrderWapperServiceI;
 import com.booksales.service.ReceiverServiceI;
 
 @Controller
@@ -36,7 +40,25 @@ public class OrderController {
 	ReceiverServiceI receiverService;
 	@Autowired
 	CartWapperServiceI cartWapperService;
+	@Autowired
+	OrderWapperServiceI orderWapperService;
+	
 	private static Log logger = LogFactory.getLog(OrderController.class);
+	
+	@RequestMapping(value = "{userid}/personOrder")
+	public String personOrder(@PathVariable("userid") Integer userid,HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+		
+		List<OrderWapper> orderwapperlist=orderWapperService.selectCartByUserid(userid);
+		
+		logger.info("该用户的订单集合为："+mapper.writeValueAsString(orderwapperlist));
+		
+		request.setAttribute("orderwapperlist", orderwapperlist);
+		return "home/order_person";
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "{userid}/addOrder")
 	public String addOrder( @RequestParam Integer[] book_id, @RequestParam("userid") Integer userid,HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException{
@@ -83,7 +105,6 @@ public class OrderController {
 			@RequestParam("aorderAmount") Float aorderAmount,
 			HttpServletRequest request,@PathVariable Integer userid) throws JsonGenerationException, JsonMappingException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
-		
 		//创建order对象，并把值都set进入
 		Order order =new Order();
 		order.setOrdertime(aorderdate);
@@ -100,8 +121,24 @@ public class OrderController {
 		if(cartidSize == i){
 			return "home/userinfo";
 		}
-		
 		return "home/book";
 	}
-	
+	@RequestMapping(value = "removeOrder")
+	public void removeOrder(@RequestParam Integer orderid,HttpServletResponse response){
+		
+		int i =orderService.delOrderByOrderId(orderid);
+		response.setContentType("text/html;charset=UTF-8");
+		response.setCharacterEncoding("utf-8");
+		if(i>0){
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			out.println("已经删除该订单");
+			out.close();	
+		}
+		
+	}
 }

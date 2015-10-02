@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.booksales.dao.OrderWapperMapper">
+	<resultMap id="BaseResultMap" type="com.booksales.model.OrderWapper">
+		<id column="OrderId" property="orderid" jdbcType="INTEGER" />
+		<result column="UserId" property="userid" jdbcType="INTEGER" />
+		<result column="Sum" property="sum" jdbcType="DOUBLE" />
+		<result column="ReceiverId" property="receiverid" jdbcType="INTEGER" />
+		<result column="OrderStates" property="orderstates" jdbcType="CHAR" />
+		<result column="LogisticsStates" property="logisticsstates" jdbcType="CHAR" />
+		<result column="PayWay" property="payway" jdbcType="CHAR" />
+		<result column="OrderTime" property="ordertime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap type="com.booksales.model.OrderWapper" id="OrderWapperMap" extends="BaseResultMap">
+	
+	
+	
+	<collection property="cartWapperList" ofType="com.booksales.model.CartWapper">
+		
+		<id column="Cartid" property="cartid"/>
+		<result column="UserId" property="userid" jdbcType="INTEGER" />
+		<result column="UserName" property="username" jdbcType="VARCHAR" />
+		<result column="BookId" property="bookid" jdbcType="INTEGER" />
+		<result column="BookName" property="bookname" jdbcType="VARCHAR" />
+		<result column="BookNum" property="booknum" jdbcType="INTEGER" />
+		<result column="Amount" property="amount" jdbcType="DECIMAL" />
+		<result column="Author" property="author" jdbcType="VARCHAR" />
+		<result column="Publish" property="publish" jdbcType="VARCHAR" />
+		<result column="ISBN" property="isbn" jdbcType="VARCHAR" />
+		<result column="PublishDate" property="publishdate" jdbcType="VARCHAR" />
+		<result column="Picture" property="picture" jdbcType="VARCHAR" />
+		<result column="Repertory" property="repertory" jdbcType="CHAR" />
+		<result column="Price" property="price" jdbcType="DOUBLE" />
+		<result column="Stock" property="stock" jdbcType="INTEGER" />
+		<result column="Sales" property="sales" jdbcType="INTEGER" />
+		<result column="BookClassId" property="bookclassid" jdbcType="INTEGER" />
+		<result column="IsRecommend" property="isrecommend" jdbcType="CHAR" />
+		<result column="Intro" property="intro" jdbcType="LONGVARCHAR" />
+
+	</collection>
+	
+	
+	</resultMap>	
+	
+	<select id="selectCartByUserid" resultMap="OrderWapperMap"	parameterType="java.lang.Integer">
+		SELECT
+			bscart.CartId Cartid,
+			bscart.UserName,
+			bscart.BookId,
+			bscart.BookName,
+			bscart.BookNum,
+			bscart.Amount,
+	
+			bsorder.OrderId,
+			bsorder.UserId,
+			bsorder.Sum,
+			bsorder.ReceiverId,
+			bsorder.OrderStates,
+			bsorder.LogisticsStates,
+			bsorder.PayWay,
+			bsorder.OrderTime,
+	
+			bsbook.Author,
+			bsbook.Publish,
+			bsbook.ISBN,
+			bsbook.PublishDate,
+			bsbook.Picture,
+			bsbook.Intro,
+			bsbook.Repertory,
+			bsbook.Price,
+			bsbook.Stock,
+			bsbook.Sales,
+			bsbook.BookClassId,
+			bsbook.IsRecommend
+		FROM
+		bsorder
+		INNER JOIN bscart ON bscart.OrderId = bsorder.OrderId
+		INNER JOIN bsbook ON bscart.BookId = bsbook.BookId
+		WHERE bsorder.UserId =
+		#{userid,jdbcType=INTEGER}
+	</select>
+
+</mapper>

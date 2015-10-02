@@ -28,6 +28,7 @@ public class Book {
 	private Integer sales;
 
 	private Integer bookclassid;
+	
 	private String isrecommend;
 
 	private String intro;

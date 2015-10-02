@@ -8,6 +8,7 @@ import org.codehaus.jackson.map.JsonMappingException;
 
 import com.booksales.model.Cart;
 import com.booksales.model.Order;
+import com.booksales.model.OrderWapper;
 
 public interface OrderServiceI {
 	/**
@@ -34,5 +35,17 @@ public interface OrderServiceI {
 	 * @throws JsonGenerationException 
 	 */
 	int CreatOrder(Order order, Integer[] acartid) throws JsonGenerationException, JsonMappingException, IOException;
+	/**
+	 * 根据用户id查询改用户所有的订单  
+	 * @param userid
+	 * @return
+	 */
+	List<Order> selectCartByUserid(Integer userid);
+	/**
+	 * 根据orderid删除订单
+	 * @param orderid
+	 * @return
+	 */
+	int delOrderByOrderId(Integer orderid);
 
 }

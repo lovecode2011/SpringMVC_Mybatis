@@ -46,4 +46,10 @@ public interface CartMapper {
 	 * @return
 	 */
 	List<Cart> selectCartListByUserId(Integer userid);
+	/**
+	 * 根据orderid查询cart集合
+	 * @param orderid
+	 * @return
+	 */
+	List<Cart> selectCartListByOrderId(Integer orderid);
 }

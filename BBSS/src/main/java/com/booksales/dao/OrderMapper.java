@@ -1,6 +1,5 @@
 package com.booksales.dao;
 
-import com.booksales.model.Cart;
 import com.booksales.model.Order;
 
 import java.util.List;
@@ -15,5 +14,11 @@ public interface OrderMapper {
     List<Order> selectAll();
 
     int updateByPrimaryKey(Order record);
+    /**
+     * 根据用户id 查询该用户的订单
+     * @param userid
+     * @return
+     */
+	List<Order> selectByUserId(Integer userid);
     
 }
