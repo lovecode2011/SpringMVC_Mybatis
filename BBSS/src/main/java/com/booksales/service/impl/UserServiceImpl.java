@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserServiceI {
 		User user=userMapper.loginSelectPassword(email);
 		String pwd = user.getPassword();
 		ObjectMapper mapper = new ObjectMapper();
-		logger.info(mapper.writeValueAsString(user));
+		logger.info("loginUser==》"+mapper.writeValueAsString(user));
 		
 		String s = AESUtil.AESdecrypt(pwd);
 		

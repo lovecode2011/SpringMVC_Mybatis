@@ -13,5 +13,11 @@ public interface CartWapperMapper {
 	 * @return
 	 */
 	List<CartWapper> selectCartListByUserId(Integer userid);
+	/**
+	 * 根据cart集合查询cartwapper的集合
+	 * @param cartidlist
+	 * @return
+	 */
+	List<CartWapper> selectCartListByCartid(List<Integer> cartidlist);
 	
 }

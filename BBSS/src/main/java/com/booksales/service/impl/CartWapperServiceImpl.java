@@ -41,4 +41,9 @@ public class CartWapperServiceImpl implements CartWapperServiceI {
 	public List<CartWapper> selectCartListByUserId(Integer userid) {
 		return cartWapperMapper.selectCartListByUserId(userid);
 	}
+
+	public List<CartWapper> selectCartByCartId(Integer userid, Integer[] cart_Id) {
+		List<Integer> cartidlist = Arrays.asList(cart_Id);
+		return cartWapperMapper.selectCartListByCartid(cartidlist);
+	}
 }

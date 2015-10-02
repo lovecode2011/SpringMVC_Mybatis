@@ -26,5 +26,12 @@ public interface CartWapperServiceI {
 	 * @return
 	 */
 	List<CartWapper> selectCartListByUserId(Integer userid);
+	/**
+	 * 根据用户id和cartid查询cart中的cartWapper
+	 * @param userid
+	 * @param cart_Id
+	 * @return
+	 */
+	List<CartWapper> selectCartByCartId(Integer userid, Integer[] cart_Id);
 
 }

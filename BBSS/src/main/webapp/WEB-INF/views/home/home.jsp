@@ -48,7 +48,7 @@
 		<li class="nav-right"><a href="#" style="text-align:center;">联系我们</a></li>
 		<li class="nav-right"><a href="#" style="text-align:center;">积分商城</a></li>
 		<li class="nav-right"><a href="#" style="text-align:center;">我的订单</a></li>
-		<li class="nav-right"><a href="#" style="margin-left:1em;">个人中心</a>
+		<li class="nav-right"><a href="${user.userid}/info" style="margin-left:1em;">个人中心</a>
 			<ul>
 				<li class="nav-self" style="background-color:#6e6e6e;"><a href="#">我的收藏</a></li>
 				<li class="nav-self" style="background-color:#6e6e6e;"><a href="#">我的积分</a></li>

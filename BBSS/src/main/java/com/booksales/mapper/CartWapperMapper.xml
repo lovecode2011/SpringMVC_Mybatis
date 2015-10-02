@@ -26,14 +26,10 @@
 	</resultMap>
 
 	<select id="selectListBookId" resultMap="BaseResultMap">
-		SELECT bscart.CartId,bscart.UserId,bscart.UserName,bscart.BookName,bsbook.Repertory,bsbook.Price,
-		bscart.BookNum,bscart.AmountFROMbscart
-		INNER JOIN bsbook ON bscart.BookId = bsbook.BookId
-		where bscart.BookId in
-		<foreach collection="list" index="index" item="item" open="("
-			separator="," close=")">
-			#{item}
-		</foreach>
+	SELECT bsbook.BookId, bsbook.BookName,bsbook.Author,bsbook.Publish,bsbook.ISBN,bsbook.PublishDate,bsbook.Picture,bsbook.Intro,bsbook.Repertory,
+           bsbook.Price,bsbook.Stock,bsbook.Sales,bsbook.BookClassId,bsbook.IsRecommend,bscart.CartId,bscart.UserId,bscart.UserName,bscart.BookId,
+           bscart.BookName,bscart.BookNum,bscart.Amount,bscart.OrderId  FROM bsbook INNER JOIN bscart ON bscart.BookId = bsbook.BookId
+           WHERE bscart.BookId  in <foreach collection="list" index="index" item="item" open="(" separator="," close=")">  #{item}  </foreach>
 	</select>
 	<select id="selectCartListByUserId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
 	SELECT
@@ -45,7 +41,13 @@
 		WHERE
 		bscart.OrderId is null AND
 		bscart.UserId = #{userid,jdbcType=INTEGER}
+	</select>
 	
+	<select id="selectCartListByCartid" resultMap="BaseResultMap">
+		SELECT bsbook.BookId, bsbook.BookName,bsbook.Author,bsbook.Publish,bsbook.ISBN,bsbook.PublishDate,bsbook.Picture,bsbook.Intro,bsbook.Repertory,
+           bsbook.Price,bsbook.Stock,bsbook.Sales,bsbook.BookClassId,bsbook.IsRecommend,bscart.CartId,bscart.UserId,bscart.UserName,bscart.BookId,
+           bscart.BookName,bscart.BookNum,bscart.Amount,bscart.OrderId  FROM bsbook INNER JOIN bscart ON bscart.BookId = bsbook.BookId
+           WHERE bscart.CartId  in <foreach collection="list" index="index" item="item" open="(" separator="," close=")">  #{item}  </foreach>
 	
 	</select>
 </mapper>

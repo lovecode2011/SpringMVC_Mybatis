@@ -71,7 +71,7 @@ public class UserController {
 	 * 跳转到登陆页面：管理员和用户都可以通过这个页面进入
 	 * @param model
 	 * @return
-	 */
+	 */   
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request,Model model) {
 		logger.info("用户登录");
@@ -122,8 +122,11 @@ public class UserController {
 			//判断用户输入的用户名和密码是否正确
 			u = userService.login(email, password);
 			ObjectMapper mapper = new ObjectMapper();
-			logger.info(mapper.writeValueAsString(u));
+			logger.info("登陆用户为:"+mapper.writeValueAsString(u));
 			
+			if(u==null){
+				return "user/login";
+			}
 			///记住密码功能实现：将email和password放在cookie中
 			// 创建两个Cookie对象
 			Cookie nameCookie = new Cookie("email", email);

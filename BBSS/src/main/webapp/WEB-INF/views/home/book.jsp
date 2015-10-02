@@ -70,10 +70,8 @@
 		<!--页面主体-->
 		<div class="row head">
 			<div class="col-lg-12 hasMarginV">
-				<img id="headerLogo" class="col-lg-3" src="../images/logo_xy.png"
-					alt="页面logo图片-树塾书署">
-
-
+			<a href="${pageContext.request.contextPath}/">	<img id="headerLogo" class="col-lg-3" src="../images/logo_xy.png"
+					alt="页面logo图片-树塾书署"></a>
 			</div>
 		</div>
 		<ol class="breadcrumb">

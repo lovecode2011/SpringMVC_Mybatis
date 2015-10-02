@@ -39,23 +39,40 @@ public class OrderController {
 	private static Log logger = LogFactory.getLog(OrderController.class);
 	
 	@RequestMapping(value = "{userid}/addOrder")
-	public String addOrder( @RequestParam Integer[] book_id, @RequestParam("userid") Integer useriid,HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException{
+	public String addOrder( @RequestParam Integer[] book_id, @RequestParam("userid") Integer userid,HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
-		System.out.println(useriid);
+		System.out.println(userid);
 		System.out.println(book_id);
-		List<CartWapper> cwlist= cartWapperService.selectCartForOrder(useriid,book_id);
+		List<CartWapper> cwlist= cartWapperService.selectCartForOrder(userid,book_id);
 		
 		logger.info("选中的cart信息："+mapper.writeValueAsString(cwlist));
 		
 		//获取用户id---》获取收货地址
 		User user = (User) request.getSession().getAttribute("user");
-		int userid= user.getUserid();
+		int ruserid= user.getUserid();
+		List<Receiver> receiverlist= receiverService.SelectReceiverByUserId(ruserid);
+		request.setAttribute("receiverlist", receiverlist);
+		request.setAttribute("cartwapperlist", cwlist);
+		
+		return "home/order";
+	}
+	@RequestMapping(value = "{userid}/addorderToOrder")
+	public String addOrderToOrder( @RequestParam Integer[] Cart_Id, @PathVariable("userid") Integer userid,HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+		System.out.println(userid);
+		System.out.println(Cart_Id);
+		List<CartWapper> cwlist= cartWapperService.selectCartByCartId(userid,Cart_Id);
+		
+		logger.info("选中的cart信息："+mapper.writeValueAsString(cwlist));
+		
+//		//获取用户id---》获取收货地址
 		List<Receiver> receiverlist= receiverService.SelectReceiverByUserId(userid);
 		request.setAttribute("receiverlist", receiverlist);
 		request.setAttribute("cartwapperlist", cwlist);
 		
 		return "home/order";
 	}
+	
 	@RequestMapping(value = "/{userid}/AddorderTo")
 	public String addOrderTo( 
 			@RequestParam("acartid") Integer[] acartid, 
