@@ -62,21 +62,30 @@ public interface BookMapper {
 	 */
 	List<Book> selectBookListByClassIdList(List<Integer> classidlist);
 	/**
-	 * 根据bookname模糊查询
+	 * 根据search模糊匹配bookname ，author ，intro
 	 * @param search
 	 * @return
 	 */
-	List<Book> selectBookLikeBookName(String bookname);
+	List<Book> selectBookLike(String search);
 	/**
-	 * 根据bookauthor模糊查询
-	 * @param search
+	 * 根据classidlist查找booklist
+	 * @param classidlist
 	 * @return
 	 */
-	List<Book> selectBookLikeBookAuthor(String author);
+	List<Book> selectBookListByClassifyIdList(List<Integer> classidlist);
+	
+	
 	/**
-	 * 根据intro模糊查询
-	 * @param search
+	 * 根据classidlist查找booklist ，并根据sales排序
+	 * @param classidlist
 	 * @return
 	 */
-	List<Book> selectBookLikeBookIntro(String intro);
+	List<Book> selectBookListByClassifyIdOrderSales(List<Integer> classidlist);
+	/**
+	 * 根据classidlist查找booklist ，并根据出版时间排序
+	 * @param classidlist
+	 * @return
+	 */
+	
+	List<Book> selectBookListByClassifyIdOrderTime(List<Integer> classidlist);
 }

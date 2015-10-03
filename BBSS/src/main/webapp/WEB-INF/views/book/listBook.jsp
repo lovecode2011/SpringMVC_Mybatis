@@ -10,7 +10,7 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>图书列表</title>
 <!-- Bootstrap -->
-<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
@@ -58,8 +58,6 @@
                        	 <td>${b.intro}</td>
                        	  <td><a href="modifyBook/${b.bookid}">修改</a></td>
                           <td><a href="deleteBookById/${b.bookid}">删除</a></td>
-                       	 
-                       	 
                   	  </tr>
 							</c:forEach>
 						</c:if>
@@ -67,10 +65,10 @@
                 </tbody>
             </table>
 
-	 <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
+	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>   
 	
 	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+		src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	 
 	
 </body>

@@ -106,49 +106,97 @@ public class BookServiceImpl implements BookServiceI {
 
 	@Override
 	public List<Book> selectBookListByClassifyId(Integer classifyid) {
-		List<Book> result = new ArrayList<Book>(); 
-		//先获取该分类。
+		
+		
+		List<Integer> classidlist=new ArrayList<Integer>();
+		//先获取该分类list。
 	    Class c1 = classMapper.selectByPrimaryKey(classifyid);
 	    System.out.println("分类的父类"+c1.getClassfatherid());
 	    //判断该分类是不是一级分类
 	    if(c1.getClassfatherid()==0){
-	    	result.addAll(bookMapper.selectBookListByClassifyId(classifyid));
+	    	classidlist.add(classifyid);
 			//查询该分类的所有子类分类
 			List<Class> classlist= classMapper.selectSubClassByFatherId(classifyid);
-			List<Integer> classidlist =new ArrayList<Integer>();
 			for(Class c:classlist){
-				
-				result.addAll(bookMapper.selectBookListByClassifyId(c.getClassid()));
+				classidlist.add(c.getClassid());
 				List<Class> c2list= classMapper.selectSubClassByFatherId(c.getClassid());
 				for(Class cc :c2list){
-					result.addAll(bookMapper.selectBookListByClassifyId(cc.getClassid()));
+					classidlist.add(cc.getClassid());
 				}
 			}
-			return result;
-	    	
 	    }else{
-	    	result.addAll(bookMapper.selectBookListByClassifyId(classifyid));
+	    	classidlist.add(classifyid);
 			//查询该分类的所有子类分类
 			List<Class> classlist= classMapper.selectSubClassByFatherId(classifyid);
-			List<Integer> classidlist =new ArrayList<Integer>();
 			for(Class c:classlist){
-				result.addAll(bookMapper.selectBookListByClassifyId(c.getClassid()));
+				classidlist.add(c.getClassid());
 			}
-			return 	result;
 	    }
+		return bookMapper.selectBookListByClassifyIdList(classidlist);
 		
 	}
 
 	@Override
 	public List<Book> selectBookLike(String search) {
 		List<Book> booklist = new ArrayList<Book>();
-		//模糊查询bookname并加入booklist
-		booklist.addAll(bookMapper.selectBookLikeBookName(search));
-		//模糊查询author并加入booklist
-		booklist.addAll(bookMapper.selectBookLikeBookAuthor(search));
-		//模糊查询intro并加入booklist
-		booklist.addAll(bookMapper.selectBookLikeBookIntro(search));
+		booklist.addAll(bookMapper.selectBookLike(search));
 		return  booklist;
+	}
+
+	@Override
+	public List<Book> selectBookListByClassifyIdOrderSales(Integer classifyid) {
+		List<Integer> classidlist=new ArrayList<Integer>();
+		//先获取该分类list。
+	    Class c1 = classMapper.selectByPrimaryKey(classifyid);
+	    System.out.println("分类的父类"+c1.getClassfatherid());
+	    //判断该分类是不是一级分类
+	    if(c1.getClassfatherid()==0){
+	    	classidlist.add(classifyid);
+			//查询该分类的所有子类分类
+			List<Class> classlist= classMapper.selectSubClassByFatherId(classifyid);
+			for(Class c:classlist){
+				classidlist.add(c.getClassid());
+				List<Class> c2list= classMapper.selectSubClassByFatherId(c.getClassid());
+				for(Class cc :c2list){
+					classidlist.add(cc.getClassid());
+				}
+			}
+	    }else{
+	    	classidlist.add(classifyid);
+			//查询该分类的所有子类分类
+			List<Class> classlist= classMapper.selectSubClassByFatherId(classifyid);
+			for(Class c:classlist){
+				classidlist.add(c.getClassid());
+			}
+	    }
+		return bookMapper.selectBookListByClassifyIdOrderSales(classidlist);
+	}
+	public List<Book> selectBookListByClassifyIdOrderTime(Integer classifyid) {
+		List<Integer> classidlist=new ArrayList<Integer>();
+		//先获取该分类list。
+	    Class c1 = classMapper.selectByPrimaryKey(classifyid);
+	    System.out.println("分类的父类"+c1.getClassfatherid());
+	    //判断该分类是不是一级分类
+	    if(c1.getClassfatherid()==0){
+	    	classidlist.add(classifyid);
+			//查询该分类的所有子类分类
+			List<Class> classlist= classMapper.selectSubClassByFatherId(classifyid);
+			for(Class c:classlist){
+				classidlist.add(c.getClassid());
+				List<Class> c2list= classMapper.selectSubClassByFatherId(c.getClassid());
+				for(Class cc :c2list){
+					classidlist.add(cc.getClassid());
+				}
+			}
+	    }else{
+	    	classidlist.add(classifyid);
+			//查询该分类的所有子类分类
+			List<Class> classlist= classMapper.selectSubClassByFatherId(classifyid);
+			for(Class c:classlist){
+				classidlist.add(c.getClassid());
+			}
+	    }
+		return bookMapper.selectBookListByClassifyIdOrderTime(classidlist);
 	}
 
 }

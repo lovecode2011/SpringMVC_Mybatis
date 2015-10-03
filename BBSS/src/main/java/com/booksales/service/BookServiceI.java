@@ -80,6 +80,19 @@ public interface BookServiceI {
 	 * @return
 	 */
 	List<Book> selectBookLike(String search);
+	/**
+	 * 根据bookclassid查询该分类的书 ,并根据sales排序
+	 * @param classifyid
+	 * @return
+	 */
+	List<Book> selectBookListByClassifyIdOrderSales(Integer classifyid);
+	/**
+	 * 根据bookclassid查询该分类的书 ,并根据出版时间排序
+	 * @param classifyid
+	 * @return
+	 */
+	
+	List<Book> selectBookListByClassifyIdOrderTime(Integer classifyid);
 	
 	
 

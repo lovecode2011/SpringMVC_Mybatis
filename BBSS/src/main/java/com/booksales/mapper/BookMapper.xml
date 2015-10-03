@@ -17,6 +17,113 @@
 		<result column="IsRecommend" property="isrecommend" jdbcType="CHAR" />
 		<result column="Intro" property="intro" jdbcType="LONGVARCHAR" />
 	</resultMap>
+	
+	<!-- 根据classidlist查询booklist  ，并根据出版时间排序-->
+	<select id="selectBookListByClassifyIdOrderTime" resultMap="BaseResultMap">
+	SELECT
+		bsbook.BookId,
+		bsbook.BookName,
+		bsbook.Author,
+		bsbook.Publish,
+		bsbook.ISBN,
+		bsbook.PublishDate,
+		bsbook.Picture,
+		bsbook.Intro,
+		bsbook.Repertory,
+		bsbook.Price,
+		bsbook.Stock,
+		bsbook.Sales,
+		bsbook.BookClassId,
+		bsbook.IsRecommend
+		FROM
+		bsbook
+		WHERE
+		bsbook.BookClassId in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
+        #{item}  
+        </foreach>
+        ORDER BY
+		bsbook.PublishDate DESC
+        
+	</select>
+	<!-- 根据classidlist查询booklist  ，并根据sales排序-->
+	<select id="selectBookListByClassifyIdOrderSales" resultMap="BaseResultMap">
+	SELECT
+		bsbook.BookId,
+		bsbook.BookName,
+		bsbook.Author,
+		bsbook.Publish,
+		bsbook.ISBN,
+		bsbook.PublishDate,
+		bsbook.Picture,
+		bsbook.Intro,
+		bsbook.Repertory,
+		bsbook.Price,
+		bsbook.Stock,
+		bsbook.Sales,
+		bsbook.BookClassId,
+		bsbook.IsRecommend
+		FROM
+		bsbook
+		WHERE
+		bsbook.BookClassId in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
+        #{item}  
+        </foreach>
+        ORDER BY
+		bsbook.Sales DESC
+        
+	</select>
+	<!-- 根据classidlist查询booklist -->
+	<select id="selectBookListByClassifyIdList" resultMap="BaseResultMap">
+	SELECT
+		bsbook.BookId,
+		bsbook.BookName,
+		bsbook.Author,
+		bsbook.Publish,
+		bsbook.ISBN,
+		bsbook.PublishDate,
+		bsbook.Picture,
+		bsbook.Intro,
+		bsbook.Repertory,
+		bsbook.Price,
+		bsbook.Stock,
+		bsbook.Sales,
+		bsbook.BookClassId,
+		bsbook.IsRecommend
+		FROM
+		bsbook
+		WHERE
+		bsbook.BookClassId in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
+        #{item}  
+        </foreach>
+	</select>
+	<!-- 根据输入的Search模糊查询 -->
+	<select id="selectBookLike" resultMap="BaseResultMap">
+		SELECT
+		bsbook.BookId,
+		bsbook.BookName,
+		bsbook.Author,
+		bsbook.Publish,
+		bsbook.ISBN,
+		bsbook.PublishDate,
+		bsbook.Picture,
+		bsbook.Intro,
+		bsbook.Repertory,
+		bsbook.Price,
+		bsbook.Stock,
+		bsbook.Sales,
+		bsbook.BookClassId,
+		bsbook.IsRecommend
+		FROM
+		bsbook
+		WHERE
+		bsbook.BookName LIKE "%"#{search}"%" OR
+		bsbook.Author LIKE "%"#{search}"%" OR
+		bsbook.Intro LIKE "%"#{search}"%"
+	
+	</select>
 	<!-- 根据输入的String模糊查询 intro -->
 	<select id="selectBookLikeBookIntro" resultMap="BaseResultMap">
 	select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture,

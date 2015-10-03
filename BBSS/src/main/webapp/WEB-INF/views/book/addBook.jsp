@@ -9,8 +9,8 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>添加图书</title>
 <!-- Bootstrap -->
-<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/jquery.cxcalendar.css">
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.cxcalendar.css">
 
 </head>
 <style>
@@ -199,19 +199,19 @@ padding-top: 20px;
 		</fieldset>
 	</form>
 </div>
-	 <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>   
+	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>   
 	
-	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.min.js"></script>
-	 <script src="<%=request.getContextPath()%>/resources/js/jquery.cxcalendar.languages.js">
+	 <script src="<%=request.getContextPath()%>/js/jquery.cxcalendar.min.js"></script>
+	 <script src="<%=request.getContextPath()%>/js/jquery.cxcalendar.languages.js">
 	 </script>
 	 <script type="text/javascript">
 	 $('#publishdate').cxCalendar({language: 'zh-cn',});
 	 </script>
 
-	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-	 <script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	 <script src="<%=request.getContextPath()%>/js/jquery.validate.min.js"></script>
 		<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.cxselect.min.js"></script>
+		src="<%=request.getContextPath()%>/js/jquery.cxselect.min.js"></script>
 	<script>
 	
 		$('#classifyjson').cxSelect({

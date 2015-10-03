@@ -3,6 +3,7 @@ package com.booksales.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ import com.booksales.model.Book;
 import com.booksales.model.Class;
 import com.booksales.service.BookServiceI;
 import com.booksales.service.ClassServiceI;
+import com.booksales.util.SortListUtil;
 
 @Controller
 @RequestMapping()
@@ -46,16 +48,43 @@ public class ClassifyController {
 		this.classService = classService;
 	}
 	/**
-	 * 根据classfiyid查询booklist
+	 * 根据classfiyid查询booklist  之后，根据销量排序之后输出
 	 * @param classifyid
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/classify/{classifyid}", method = RequestMethod.GET)
-	public String selectClassify(@PathVariable Integer classifyid,Model model){
+	@RequestMapping(value = "/classify/{classifyid}/rankBySales", method = RequestMethod.GET)
+	public String selectClassifyRankBySales(@PathVariable Integer classifyid,Model model){
 		//获取该分类以及该分类子类的全部图书
-		List<Book> bookList =bookService.selectBookListByClassifyId(classifyid);
+		List<Book> bookList =bookService.selectBookListByClassifyIdOrderSales(classifyid);
+		
 		model.addAttribute("bookList", bookList);
+		model.addAttribute("classifyid", classifyid);
+		//面包屑导航
+		List<Class> classlist = new ArrayList<Class>();
+		 Class classify2 = new Class();
+		 while(classifyid!=0){
+			 classify2 = classService.SelectTwoClassify(classifyid);
+			 classifyid =classify2.getClassfatherid();
+			 classlist.add(classify2);
+		 }
+		 Collections.reverse(classlist);
+		
+		model.addAttribute("classlist", classlist);
+		return "home/BookClass";
+	}
+	/**
+	 * 根据classfiyid查询booklist  之后，根据时间排序之后输出
+	 * @param classifyid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/classify/{classifyid}/rankByTime", method = RequestMethod.GET)
+	public String selectClassifyRankByTime(@PathVariable Integer classifyid,Model model){
+		//获取该分类以及该分类子类的全部图书
+		List<Book> bookList =bookService.selectBookListByClassifyIdOrderTime(classifyid);
+		model.addAttribute("bookList", bookList);
+		 model.addAttribute("classifyid", classifyid);
 		//面包屑导航
 		List<Class> classlist = new ArrayList<Class>();
 		 Class classify2 = new Class();
@@ -70,6 +99,32 @@ public class ClassifyController {
 		return "home/BookClass";
 	}
 	
+	
+	/**
+	 * 根据classfiyid查询booklist
+	 * @param classifyid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/classify/{classifyid}", method = RequestMethod.GET)
+	public String selectClassify(@PathVariable Integer classifyid,Model model){
+		//获取该分类以及该分类子类的全部图书
+		List<Book> bookList =bookService.selectBookListByClassifyId(classifyid);
+		model.addAttribute("bookList", bookList);
+		 model.addAttribute("classifyid", classifyid);
+		//面包屑导航
+		List<Class> classlist = new ArrayList<Class>();
+		 Class classify2 = new Class();
+		 while(classifyid!=0){
+			 classify2 = classService.SelectTwoClassify(classifyid);
+			 classifyid =classify2.getClassfatherid();
+			 classlist.add(classify2);
+		 }
+		 Collections.reverse(classlist);
+		
+		model.addAttribute("classlist", classlist);
+		return "home/BookClass";
+	}
 	@RequestMapping(value = "/addClassifyOne", method = RequestMethod.GET)
 	public String addClassifyOne(Model model) throws JsonGenerationException,
 			JsonMappingException, IOException {

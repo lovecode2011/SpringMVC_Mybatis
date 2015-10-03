@@ -6,14 +6,14 @@
 <head>
 	<title>树塾书署</title>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/Book.ico">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/css-self/navbar.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/css-self/recomd.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/css-self/container.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/css-self/ad-state.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bookClass.css">
+	<link rel="shortcut icon" href="images/Book.ico">
+	<link rel="stylesheet" type="text/css" href="css/nav.css">
+	<link rel="stylesheet" type="text/css" href="css/css-self/navbar.css">
+	<link rel="stylesheet" type="text/css" href="css/css-self/recomd.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/css-self/container.css">
+	<link rel="stylesheet" type="text/css" href="css/css-self/ad-state.css">
+	<link rel="stylesheet" type="text/css" href="css/bookClass.css">
 </head>
 
 	<style type="text/css">
@@ -44,8 +44,8 @@
 		<li class="nav-left"><a href="userLogout" style="text-align:center;">注销</a></li>
 		</c:if>
 		<c:if test="${user.username==null}">
-		<li class="nav-left"><a href="${pageContext.request.contextPath}/login" style="text-align:center;">登录</a></li>
-		<li class="nav-left"><a href="${pageContext.request.contextPath}/register" style="text-align:center;">注册</a></li>
+		<li class="nav-left"><a href="login" style="text-align:center;">登录</a></li>
+		<li class="nav-left"><a href="register" style="text-align:center;">注册</a></li>
 		</c:if>
 		<li class="nav-right"><a href="#" style="text-align:center;">联系我们</a></li>
 		<li class="nav-right"><a href="#" style="text-align:center;">积分商城</a></li>
@@ -89,33 +89,18 @@
 	</ul>
 	<!--导航条-->
 
-	<!-- 页面主体开始 -->
+	<!--页面主体开始 -->
 		<div class="container"><!--除顶部以外整个容器-->
  		<div class="row head">
             <div class="col-lg-12">
-              <a href="${pageContext.request.contextPath }"><img id="headerLogo" class="col-lg-3"src="${pageContext.request.contextPath}/images/logo长.png" alt="页面logo图片-树塾书署"></a>
+              <a href="${pageContext.request.contextPath }"><img id="headerLogo" class="col-lg-3"src="images/logo长.png" alt="页面logo图片-树塾书署"></a>
 				<div class="col-lg-3">
                 </div>
             </div>
         </div>
-        <ol class="breadcrumb"><!--面包屑导航-->
-        	<li><a href="${ pageContext.request.contextPath}">全部</a></li>
-		<c:forEach var="cl" items="${classlist}" varStatus="clist">
-			<li><a href="${ pageContext.request.contextPath}/classify/${cl.classid }">${cl.classname}</a></li>
-			</c:forEach>
-		</ol>
-		<nav class="col-lg-12 navbar navbar-default" role="navigation"><!--排序方式选择-->
-		   <div class="navbar-header">
-		      <p class="navbar-brand">排序方式</p>
-		   </div>
-		   <div>
-		      <ul class="nav navbar-nav navbar-header">
-		         <li><a href="${pageContext.request.contextPath}/classify/${classifyid}/rankByTime">按时间</a></li>
-		         <li><a href="${pageContext.request.contextPath}/classify/${classifyid}/rankBySales">按销量</a></li>		      
-		      </ul>
-		   </div>
-		</nav>
-		<c:forEach var="bl" items="${bookList }">
+       
+       
+       	<c:forEach var="bl" items="${bookList }">
 		<div class="row bookshow">
             <div class="col-lg-12">
 				<img class="col-lg-2" src="http://wwhahapic.tunnel.mobi/${bl.picture}" alt="图书分类查看结果图书图片">
@@ -142,28 +127,15 @@
 			</div>
 		</div>
 		</c:forEach>
-		<%----  书籍太少。暂时不要这个分页功能
-		<div class="center">
-			<ul class="pagination pagination-lg">
-			  <li class="previous"><a href="#">&laquo;</a></li>
-			  <li class="active"><a href="#">1</a></li>
-			  <li><a href="#">2</a></li>
-			  <li><a href="#">3</a></li>
-			  <li><a href="#">4</a></li>
-			  <li><a href="#">5</a></li>
-			  <li class="next"><a href="#">&raquo;</a></li>
-			</ul>
-		</div>
-		--%>
 	<!-- 页面主体结束-->
 
 	<div class="state">
 		<div class="ads-bg">
 			<div class="ads">
-				<div class="ads-img" style="margin-left:-70px;"><img src="${pageContext.request.contextPath}/images/ad-img-1.png"></div>
-				<div class="ads-img"><img src="${pageContext.request.contextPath}/images/ad-img-2.png"></div>
-				<div class="ads-img"><img src="${pageContext.request.contextPath}/images/ad-img-3.png"></div>
-				<div class="ads-img" style="margin-right:-70px;"><img src="${pageContext.request.contextPath}/images/ad-img-4.png"></div>
+				<div class="ads-img" style="margin-left:-70px;"><img src="images/ad-img-1.png"></div>
+				<div class="ads-img"><img src="images/ad-img-2.png"></div>
+				<div class="ads-img"><img src="images/ad-img-3.png"></div>
+				<div class="ads-img" style="margin-right:-70px;"><img src="images/ad-img-4.png"></div>
 			</div>
 		</div>
 		<div class="copyright-bg">
@@ -180,9 +152,9 @@
 
 </body>
 
-    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-     <script src="${pageContext.request.contextPath}/js/nav.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+     <script src="js/nav.js"></script>
     <script type="text/javascript">
     
     $(".collectbook").click(function(){
@@ -199,8 +171,8 @@
 				alert(data);
 			})
     	}
+    	
     });
-    
     	$('.dropdown').mouseover(function() {
     		$(this).addClass('open');
     	}).mouseout(function() {        
