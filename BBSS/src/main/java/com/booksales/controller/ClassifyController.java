@@ -2,6 +2,7 @@ package com.booksales.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,9 +53,20 @@ public class ClassifyController {
 	 */
 	@RequestMapping(value = "/classify/{classifyid}", method = RequestMethod.GET)
 	public String selectClassify(@PathVariable Integer classifyid,Model model){
-		
+		//获取该分类以及该分类子类的全部图书
 		List<Book> bookList =bookService.selectBookListByClassifyId(classifyid);
 		model.addAttribute("bookList", bookList);
+		//面包屑导航
+		List<Class> classlist = new ArrayList<Class>();
+		 Class classify2 = new Class();
+		 while(classifyid!=0){
+			 classify2 = classService.SelectTwoClassify(classifyid);
+			 classifyid =classify2.getClassfatherid();
+			 classlist.add(classify2);
+		 }
+		 Collections.reverse(classlist);
+		
+		model.addAttribute("classlist", classlist);
 		return "home/BookClass";
 	}
 	

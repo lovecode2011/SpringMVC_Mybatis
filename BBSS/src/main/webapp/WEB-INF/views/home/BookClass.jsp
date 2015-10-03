@@ -6,7 +6,7 @@
 <head>
 	<title>树塾书署</title>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" href="images/Book.ico">
+	<link rel="shortcut icon" href="../images/Book.ico">
 	<link rel="stylesheet" type="text/css" href="../css/nav.css">
 	<link rel="stylesheet" type="text/css" href="../css/css-self/navbar.css">
 	<link rel="stylesheet" type="text/css" href="../css/css-self/recomd.css">
@@ -44,8 +44,8 @@
 		<li class="nav-left"><a href="userLogout" style="text-align:center;">注销</a></li>
 		</c:if>
 		<c:if test="${user.username==null}">
-		<li class="nav-left"><a href="login" style="text-align:center;">登录</a></li>
-		<li class="nav-left"><a href="register" style="text-align:center;">注册</a></li>
+		<li class="nav-left"><a href="${pageContext.request.contextPath}/login" style="text-align:center;">登录</a></li>
+		<li class="nav-left"><a href="${pageContext.request.contextPath}/register" style="text-align:center;">注册</a></li>
 		</c:if>
 		<li class="nav-right"><a href="#" style="text-align:center;">联系我们</a></li>
 		<li class="nav-right"><a href="#" style="text-align:center;">积分商城</a></li>
@@ -99,9 +99,10 @@
             </div>
         </div>
         <ol class="breadcrumb"><!--面包屑导航-->
-        	<li><a href="#">全部</a></li>
-		    <li><a href="#">科技</a></li>
-		    <li class="active">JAVA</li>
+        	<li><a href="${ pageContext.request.contextPath}">全部</a></li>
+		<c:forEach var="cl" items="${classlist}" varStatus="clist">
+			<li><a href="${ pageContext.request.contextPath}/classify/${cl.classid }">${cl.classname}</a></li>
+			</c:forEach>
 		</ol>
 		<nav class="col-lg-12 navbar navbar-default" role="navigation"><!--排序方式选择-->
 		   <div class="navbar-header">
@@ -114,46 +115,35 @@
 		      </ul>
 		   </div>
 		</nav>
+		
+		<c:forEach var="bl" items="${bookList }">
 		<div class="row bookshow">
             <div class="col-lg-12">
-				<img class="col-lg-2" src="img/bookclass/book1.jpg" alt="图书分类查看结果图书图片">
+				<img class="col-lg-2" src="http://wwhahapic.tunnel.mobi/${bl.picture}" alt="图书分类查看结果图书图片">
 				<div class="col-lg-7">
-					<a href="#">Java高级程序设计</a>
-					<p><a href="#">123</a>条评论</p>
-					<p>作者</p>
-					<p>出版社</p>
-					<p>价格</p>				
+					<a href="${pageContext.request.contextPath}/book/${bl.bookid}">${bl.bookname }</a>
+				<!--	
+					暂时没有评论。暂时不显示
+				<p><a href="#">123</a>条评论</p>  
+				-->
+					<p>作者:<span>${bl.author }</span></p>
+					<p>出版社:<span>${bl.publish }</span></p>
+					<p>价格:<span>${bl.price }</span></p>				
 				</div>
 				<div class="col-lg-3">
 					<div class="center bookclassButton">
-						<a href="#"><button type="button" class="btn btn-lg btn-success">收藏</button></a><!--alert("收藏成功")-->
+						<input type="hidden" name ="bookid" value="${bl.bookid }"> 
+						<input type="hidden" name ="userid" value="${user.userid }">
+						<a href="#"><button type="button" class="btn btn-lg btn-success collectbook" >收藏</button></a><!--alert("收藏成功")-->
 					</div>
 					<div class="center bookclassButton">
-						<a href="#"><button type="button" class="btn btn-lg btn-success">购买</button></a><!--应转入该图书图书详情页面-->
+						<a href="${pageContext.request.contextPath }/book/${bl.bookid}"><button type="button" class="btn btn-lg btn-success">购买</button></a><!--应转入该图书图书详情页面-->
 					</div>						
 				</div>
 			</div>
 		</div>
-		<div class="row bookshow">
-            <div class="col-lg-12">
-				<img class="col-lg-2" src="img/bookclass/book1.jpg" alt="图书分类查看结果图书图片">
-				<div class="col-lg-7">
-					<a href="#">Java高级程序设计</a>
-					<p><a href="#">123</a>条评论</p>
-					<p>作者</p>
-					<p>出版社</p>
-					<p>价格</p>				
-				</div>
-				<div class="col-lg-3">
-					<div class="center bookclassButton">
-						<a href="#"><button type="button" class="btn btn-lg btn-success">收藏</button></a>
-					</div>
-					<div class="center bookclassButton">
-						<a href="#"><button type="button" class="btn btn-lg btn-success">购买</button></a>
-					</div>						
-				</div>
-			</div>
-		</div>
+		</c:forEach>
+		<%----  书籍太少。暂时不要这个分页功能
 		<div class="center">
 			<ul class="pagination pagination-lg">
 			  <li class="previous"><a href="#">&laquo;</a></li>
@@ -165,7 +155,7 @@
 			  <li class="next"><a href="#">&raquo;</a></li>
 			</ul>
 		</div>
-		
+		--%>
 	<!-- 页面主体结束-->
 
 	<div class="state">
@@ -195,6 +185,23 @@
     <script src="../js/bootstrap.min.js"></script>
      <script src="../js/nav.js"></script>
     <script type="text/javascript">
+    
+    $(".collectbook").click(function(){
+    	
+    	alert("点击了收藏");
+    	var bookid=$(this).parent().prev().prev().val();
+    	var userid=$(this).parent().prev().val();
+    	if(userid==""){
+    		alert("请先登录");
+    	}else{
+    		var url = "${pageContext.request.contextPath}/addCollect";
+    		var args={"bookid":bookid,"userid":userid};
+    		$.post(url, args, function(data) {
+				alert(data);
+			})
+    	}
+    	
+    });
     	$('.dropdown').mouseover(function() {
     		$(this).addClass('open');
     	}).mouseout(function() {        

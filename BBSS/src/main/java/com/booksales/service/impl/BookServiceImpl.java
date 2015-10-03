@@ -1,6 +1,7 @@
 package com.booksales.service.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.booksales.dao.BookMapper;
+import com.booksales.dao.ClassMapper;
 import com.booksales.model.Book;
+import com.booksales.model.Class;
 import com.booksales.service.BookServiceI;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -24,6 +27,8 @@ import com.github.pagehelper.PageInfo;
 public class BookServiceImpl implements BookServiceI {
 	@Autowired
 	BookMapper bookMapper;
+	@Autowired
+	ClassMapper classMapper;
 	private static Log logger = LogFactory.getLog(BookServiceImpl.class);
 
 	public int addBook(Book book) {
@@ -101,8 +106,49 @@ public class BookServiceImpl implements BookServiceI {
 
 	@Override
 	public List<Book> selectBookListByClassifyId(Integer classifyid) {
-	
-		return 	bookMapper.selectBookListByClassifyId(classifyid);
+		List<Book> result = new ArrayList<Book>(); 
+		//先获取该分类。
+	    Class c1 = classMapper.selectByPrimaryKey(classifyid);
+	    System.out.println("分类的父类"+c1.getClassfatherid());
+	    //判断该分类是不是一级分类
+	    if(c1.getClassfatherid()==0){
+	    	result.addAll(bookMapper.selectBookListByClassifyId(classifyid));
+			//查询该分类的所有子类分类
+			List<Class> classlist= classMapper.selectSubClassByFatherId(classifyid);
+			List<Integer> classidlist =new ArrayList<Integer>();
+			for(Class c:classlist){
+				
+				result.addAll(bookMapper.selectBookListByClassifyId(c.getClassid()));
+				List<Class> c2list= classMapper.selectSubClassByFatherId(c.getClassid());
+				for(Class cc :c2list){
+					result.addAll(bookMapper.selectBookListByClassifyId(cc.getClassid()));
+				}
+			}
+			return result;
+	    	
+	    }else{
+	    	result.addAll(bookMapper.selectBookListByClassifyId(classifyid));
+			//查询该分类的所有子类分类
+			List<Class> classlist= classMapper.selectSubClassByFatherId(classifyid);
+			List<Integer> classidlist =new ArrayList<Integer>();
+			for(Class c:classlist){
+				result.addAll(bookMapper.selectBookListByClassifyId(c.getClassid()));
+			}
+			return 	result;
+	    }
+		
+	}
+
+	@Override
+	public List<Book> selectBookLike(String search) {
+		List<Book> booklist = new ArrayList<Book>();
+		//模糊查询bookname并加入booklist
+		booklist.addAll(bookMapper.selectBookLikeBookName(search));
+		//模糊查询author并加入booklist
+		booklist.addAll(bookMapper.selectBookLikeBookAuthor(search));
+		//模糊查询intro并加入booklist
+		booklist.addAll(bookMapper.selectBookLikeBookIntro(search));
+		return  booklist;
 	}
 
 }

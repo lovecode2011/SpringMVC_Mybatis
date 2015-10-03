@@ -226,9 +226,7 @@ public class UserController {
 			
 		ObjectMapper mapper = new ObjectMapper();
 		int PNum = Integer.parseInt(pageNum);
-			System.out.println(PNum);
 		int PSize =Integer.parseInt(pageSize);
-			System.out.println(PSize);
 		PageHelper.startPage(PNum,PSize);
 		PageInfo<Book> booklist = new PageInfo<Book>();
 			 booklist = bookService.bookpage();

@@ -74,6 +74,12 @@ public interface BookServiceI {
 	 * @return
 	 */
 	List<Book> selectBookListByClassifyId(Integer classifyid);
+	/**
+	 * 根据输入的search模糊查询booklist
+	 * @param search
+	 * @return
+	 */
+	List<Book> selectBookLike(String search);
 	
 	
 

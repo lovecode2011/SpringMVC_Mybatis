@@ -125,14 +125,13 @@
 									<input type="hidden" name ="bookname" value="${book.bookname}"/>
 								</div>
 								<button type="submit" class="btn btn-md btn-success"id="addCart">购买</button>
+									
 									<c:if test="${!valiCollect}">
 									<button type="submit" class="btn btn-md btn-success" id="addCollect">收藏</button>
 									</c:if>
 									<c:if test="${valiCollect}">
 									<button type="submit" class="btn btn-md btn-success" id="romoveCollect">已收藏</button>
 									</c:if>
-									
-								
 							</div>
 					</td>
 				</tr>

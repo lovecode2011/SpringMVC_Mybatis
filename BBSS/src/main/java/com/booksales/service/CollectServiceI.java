@@ -17,10 +17,10 @@ public interface CollectServiceI {
 	/**
 	 * 根据bookid 和userid判断该用户是否已经收藏了该书
 	 * @param bookid
-	 * @param userid
+	 * @param integer
 	 * @return true==》收藏 ；false===>没有收藏
 	 */
-	boolean selectCollect(Integer bookid, String userid);
+	boolean selectCollect(Integer bookid, Integer integer);
 	/**
 	 * 根据用户id和图书id删除该条收藏
 	 * @param userid

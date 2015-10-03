@@ -6,7 +6,7 @@
 <head>
 	<title>树塾书署</title>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" href="images/Book.ico">
+	<link rel="shortcut icon" href="../images/Book.ico">
 	<link rel="stylesheet" type="text/css" href="../css/css-self/navbar.css">
 	<link rel="stylesheet" type="text/css" href="../css/css-self/recomd.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">

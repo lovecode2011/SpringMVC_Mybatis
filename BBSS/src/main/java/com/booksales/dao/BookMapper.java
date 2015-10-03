@@ -1,7 +1,9 @@
 package com.booksales.dao;
 
 import com.booksales.model.Book;
+import com.booksales.model.Class;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -52,4 +54,29 @@ public interface BookMapper {
 	 * @return
 	 */
 	List<Book> selectBookListByClassifyId(Integer bookclassid);
+	
+	/**
+	 * 根据分类id集合查询该分类集合中所有图书集合
+	 * @param classlist
+	 * @return
+	 */
+	List<Book> selectBookListByClassIdList(List<Integer> classidlist);
+	/**
+	 * 根据bookname模糊查询
+	 * @param search
+	 * @return
+	 */
+	List<Book> selectBookLikeBookName(String bookname);
+	/**
+	 * 根据bookauthor模糊查询
+	 * @param search
+	 * @return
+	 */
+	List<Book> selectBookLikeBookAuthor(String author);
+	/**
+	 * 根据intro模糊查询
+	 * @param search
+	 * @return
+	 */
+	List<Book> selectBookLikeBookIntro(String intro);
 }

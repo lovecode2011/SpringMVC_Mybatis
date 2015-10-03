@@ -17,7 +17,43 @@
 		<result column="IsRecommend" property="isrecommend" jdbcType="CHAR" />
 		<result column="Intro" property="intro" jdbcType="LONGVARCHAR" />
 	</resultMap>
-
+	<!-- 根据输入的String模糊查询 intro -->
+	<select id="selectBookLikeBookIntro" resultMap="BaseResultMap">
+	select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture,
+		Repertory,
+		Price, Stock, Sales, BookClassId, IsRecommend, Intro
+		from bsbook where  
+        Intro like "%"#{intro}"%"
+	
+	</select>
+	<!-- 根据输入的string模糊查询bookauthor -->
+	<select id="selectBookLikeBookAuthor" resultMap="BaseResultMap">
+	select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture,
+		Repertory,
+		Price, Stock, Sales, BookClassId, IsRecommend, Intro
+		from bsbook where  
+        Author like "%"#{author}"%"
+	
+	</select>
+	<!-- 根据输入的String模糊查询bookname -->
+	<select id="selectBookLikeBookName" resultMap="BaseResultMap">
+	select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture,
+		Repertory,
+		Price, Stock, Sales, BookClassId, IsRecommend, Intro
+		from bsbook where  
+        BookName like "%"#{bookname}"%"
+	</select>
+	<!-- 根据ClassList查询该分类集合中的所有的图书集合 -->
+	<select id="selectBookListByClassIdList" resultMap="BaseResultMap" >
+	select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture,
+		Repertory,
+		Price, Stock, Sales, BookClassId, IsRecommend, Intro
+		from bsbook
+		where BookClassId  in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
+        #{item}  
+        </foreach>
+	</select>
 	<!-- 根据bookclassfiyid查询book 得到bookList -->
 	<select id="selectBookListByClassifyId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 	select BookId, BookName, Author, Publish, ISBN, PublishDate, Picture,

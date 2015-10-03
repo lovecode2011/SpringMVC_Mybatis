@@ -90,7 +90,17 @@ public class BookController {
 			setValue(date);
 		}
 	}
-	
+	@RequestMapping(value = "/search")
+	public String Search(@RequestParam String search,Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		//根据输入的search ，模糊查询匹配book
+		List<Book> booklist = bookService.selectBookLike(search);
+		ObjectMapper mapper = new ObjectMapper();
+		 logger.info("查询的结果为"+mapper.writeValueAsString(booklist));
+		 model.addAttribute("bookList", booklist);
+		return "home/search";
+		
+		
+	}
 	@RequestMapping(value = "/book/{bookid}", method = RequestMethod.GET)
 	public String BookInfo(@PathVariable Integer bookid,Model model,HttpServletRequest request) throws JsonGenerationException, JsonMappingException, IOException {
 		
@@ -107,17 +117,22 @@ public class BookController {
 			 classlist.add(classify2);
 		 }
 		 //获取bookid和userid 判断用户之前是否已经收藏过该书
-		 String userid=new String();
-		 Cookie[]  cookies=  request.getCookies();
-		 for(Cookie c:cookies){
-			 if(c.getName().equals("userid")){
-				 userid= c.getValue();
-			 }
-		 }
-		 System.out.println(userid);
-		 if(!userid.isEmpty()){
-			 boolean valiCollect = collectService.selectCollect(bookid,userid);
+//		 String userid=new String();
+//		 Cookie[]  cookies=  request.getCookies();
+//		 for(Cookie c:cookies){
+//			 if(c.getName().equals("userid")){
+//				 userid= c.getValue();
+//			 }
+//		 }
+		 
+		 User user = (User) request.getSession().getAttribute("user");
+		 System.out.println(user);
+		 if(user!=null){
+			 boolean valiCollect = collectService.selectCollect(bookid,user.getUserid());
+			 System.out.println(valiCollect);
 			 model.addAttribute("valiCollect", valiCollect);
+		 }else{
+			 model.addAttribute("valiCollect",null);
 		 }
 		 
 		 
@@ -125,6 +140,7 @@ public class BookController {
 		 List<CommentWapper> commentlist= commentWapperService.selectCommentByBookId(bookid);
 		 ObjectMapper mapper = new ObjectMapper();
 		 logger.info(mapper.writeValueAsString(classlist));
+		 //反序
 		 Collections.reverse(classlist);
 		 logger.info(mapper.writeValueAsString(classlist));
 		 System.out.println("commentlist"+commentlist);

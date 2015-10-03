@@ -97,9 +97,9 @@
 				</a>
 			</div>
 			<div class="search" style="/*line-height:63px*/">
-				<form class="navbar-form navbar-left" role="search">
+				<form class="navbar-form navbar-left" role="search"  action="${pageContext.request.contextPath}/search">
 					<div class="form-group" style="width:174px;height:100%;">
-						<input type="text" class="form-control" placeholder="Search" style="display:block;width:174px;height:100%;">
+						<input type="text" class="form-control" placeholder="Search" style="display:block;width:174px;height:100%;" name="search">
 					</div>
 					<button type="submit" class="btn btn-default m-btn" style="width:54px;height:100%;float:right;margin-left:7px;">搜索</button>
 				</form>
