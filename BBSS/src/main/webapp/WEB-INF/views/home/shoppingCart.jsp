@@ -285,6 +285,32 @@
 <script src="${pageContext.request.contextPath }/js/js-self/scroll.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		//链接的检验：检验用户是否登陆
+	    $("#nav-cart-turn").click(function(){
+	    	var userid=$("input[name='userid']").val();
+	   	 	if(userid ==""){
+	   	 		alert("请先登录");
+	   	 	}else{
+	   	 	$(this).attr("href"," ${pageContext.request.contextPath}/${user.userid }/shoppingCart");
+	   	 	}
+	    });
+	    $("#myOrder").click(function(){
+	    	var userid=$("input[name='userid']").val();
+	   	 	if(userid ==""){
+	   	 		alert("请先登录");
+	   	 	}else{
+	   	 	$(this).attr("href","${pageContext.request.contextPath}/${user.userid}/personOrder");
+	   	 	}
+	    });
+	    $("#myInfo").click(function(){
+	    	var userid=$("input[name='userid']").val();
+	   	 	if(userid ==""){
+	   	 		alert("请先登录");
+	   	 	}else{
+	   	 	$(this).attr("href","${pageContext.request.contextPath}/${user.userid}/info");
+	   	 	}
+	    	
+	    });
 		
 		$("#doform").click(function(){
 		//	alert("点击结算");

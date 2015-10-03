@@ -1,11 +1,12 @@
 header{
 	margin-bottom: 20px;
 }
-
+/*8
 ul li{
 	list-style: none;
 	display: inline;
 }
+8*/
 .navbar-header p{
 	font-weight: bold;
 }

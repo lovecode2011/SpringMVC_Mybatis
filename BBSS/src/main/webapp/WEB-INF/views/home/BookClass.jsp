@@ -44,13 +44,13 @@
 		<li class="nav-left"><a href="userLogout" style="text-align:center;">注销</a></li>
 		</c:if>
 		<c:if test="${user.username==null}">
-		<li class="nav-left"><a href="${pageContext.request.contextPath}/login" style="text-align:center;">登录</a></li>
-		<li class="nav-left"><a href="${pageContext.request.contextPath}/register" style="text-align:center;">注册</a></li>
+		<li class="nav-left"><a href="${pageContext.request.contextPath }/login" style="text-align:center;">登录</a></li>
+		<li class="nav-left"><a href="${pageContext.request.contextPath }/register" style="text-align:center;">注册</a></li>
 		</c:if>
 		<li class="nav-right"><a href="#" style="text-align:center;">联系我们</a></li>
 		<li class="nav-right"><a href="#" style="text-align:center;">积分商城</a></li>
-		<li class="nav-right"><a href="${user.userid}/personOrder" style="text-align:center;">我的订单</a></li>
-		<li class="nav-right"><a href="${user.userid}/info" style="margin-left:1em;">个人中心</a>
+		<li class="nav-right"><a href="#" style="text-align:center;" id="myOrder">我的订单</a></li>
+		<li class="nav-right"><a href="#" style="margin-left:1em;" id="myInfo">个人中心</a>
 			<ul>
 				<li class="nav-self" style="background-color:#6e6e6e;"><a href="#">我的收藏</a></li>
 				<li class="nav-self" style="background-color:#6e6e6e;"><a href="#">我的积分</a></li>
@@ -82,7 +82,7 @@
 						</c:if>
 						</ul>
 					</li>
-					<li class="nav-cart nav-cart-welcome" style=""><span id="nav-cart-title">欢迎使用购物车</span><a href="${user.userid }/shoppingCart" id="nav-cart-turn" style="color:#6e6e6e;">去购物车</a></li>
+					<li class="nav-cart nav-cart-welcome" style=""><span id="nav-cart-title">欢迎使用购物车</span><a href="#" id="nav-cart-turn" style="color:#6e6e6e;" >去购物车</a></li>
 				</ul>
 			</div>
 		</li>
@@ -184,6 +184,35 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
      <script src="${pageContext.request.contextPath}/js/nav.js"></script>
     <script type="text/javascript">
+  //链接的检验：检验用户是否登陆
+    $("#nav-cart-turn").click(function(){
+    	var userid=$("input[name='userid']").val();
+   	 	if(userid ==""){
+   	 		alert("请先登录");
+   	 	}else{
+   	 	$(this).attr("href"," ${pageContext.request.contextPath }/${user.userid }/shoppingCart");
+   	 	}
+    });
+    $("#myOrder").click(function(){
+    	var userid=$("input[name='userid']").val();
+   	 	if(userid ==""){
+   	 		alert("请先登录");
+   	 	}else{
+   	 	$(this).attr("href","${pageContext.request.contextPath }/${user.userid}/personOrder");
+   	 	}
+    });
+    $("#myInfo").click(function(){
+    	var userid=$("input[name='userid']").val();
+   	 	if(userid ==""){
+   	 		alert("请先登录");
+   	 	}else{
+   	 	$(this).attr("href","${pageContext.request.contextPath }/${user.userid}/info");
+   	 	}
+    	
+    });
+    
+    
+    
     
     $(".collectbook").click(function(){
     	

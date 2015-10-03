@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +10,8 @@
 <link rel="stylesheet" type="text/css" href="../css/css-self/navbar.css">
 <link rel="stylesheet" type="text/css" href="../css/css-self/recomd.css">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="../css/css-self/container.css">
-<link rel="stylesheet" type="text/css"
-	href="../css/css-self/ad-state.css">
+<link rel="stylesheet" type="text/css" href="../css/css-self/container.css">
+<link rel="stylesheet" type="text/css" href="../css/css-self/ad-state.css">
 <link rel="stylesheet" type="text/css" href="../css/book_xy.css">
 </head>
 
@@ -41,31 +39,55 @@
 <body style="margin: auto;">
 	<ul id="nav">
 		<c:if test="${user.username!=null}">
-			<li class="nav-left"><a href="#" style="text-align: center;">${user.username}</a></li>
-			
-			<li class="nav-left"><a href="${pageContext.request.contextPath }/userLogout"
-				style="text-align: center;">注销</a></li>
+		<li class="nav-left"><a href="#" style="text-align:center;">${user.username}</a></li>
+		<li class="nav-left"><a href="userLogout" style="text-align:center;">注销</a></li>
 		</c:if>
 		<c:if test="${user.username==null}">
-			<li class="nav-left"><a href="${pageContext.request.contextPath }/login" style="text-align: center;">登录</a></li>
-			<li class="nav-left"><a href="${pageContext.request.contextPath }/register"
-				style="text-align: center;">注册</a></li>
+		<li class="nav-left"><a href="login" style="text-align:center;">登录</a></li>
+		<li class="nav-left"><a href="register" style="text-align:center;">注册</a></li>
 		</c:if>
-		<li class="nav-right"><a href="#" style="text-align: center;">联系我们</a></li>
-		<li class="nav-right"><a href="#" style="text-align: center;">积分商城</a></li>
-		<li class="nav-right"><a href="#" style="text-align: center;">我的订单</a></li>
-		<li class="nav-right"><a href="${user.userid }/info"
-			style="margin-left: 1em;">个人中心</a>
+		<li class="nav-right"><a href="#" style="text-align:center;">联系我们</a></li>
+		<li class="nav-right"><a href="#" style="text-align:center;">积分商城</a></li>
+		<li class="nav-right"><a href="#" style="text-align:center;" id="myOrder">我的订单</a></li>
+		<li class="nav-right"><a href="#" style="margin-left:1em;" id="myInfo">个人中心</a>
 			<ul>
-				<li class="nav-self"><a href="#">我的收藏</a></li>
-				<li class="nav-self"><a href="#">我的积分</a></li>
-				<li class="nav-self"><a href="#">收货地址</a></li>
-			</ul></li>
-		<li class="nav-right"><a href="#" style="margin-left: 1.5em;">购物车</a>
-			<ul>
-				<li class="nav-cart"><a href="#">货物1</a></li>
-			</ul></li>
+				<li class="nav-self" style="background-color:#6e6e6e;"><a href="#">我的收藏</a></li>
+				<li class="nav-self" style="background-color:#6e6e6e;"><a href="#">我的积分</a></li>
+				<li class="nav-self" style="border-bottom:none;background-color:#6e6e6e;"><a href="#">收货地址</a></li>
+			</ul>
+		</li>
+		<li class="nav-right">
+			<a href="#" style="margin-left:1.5em;">购物车</a>
+			<a href="#" class="nav-cart-logo"><em>${fn:length(cartwapperlist)}</em></a>
+			<div class="nav-cart-content">
+				<ul style="box-shadow: 1px 1px 10px #6e6e6e;">
+					<li class="nav-cart-item">
+						<ul id="nav-cart-list">
+						
+						<c:if test="${cartwapperlist!=null }">
+						<c:forEach var="cwl" items="${cartwapperlist}" varStatus="cwllist">
+						<li class="nav-cart">
+								<div class="nav-cart-img"><a href="#"><img src="http://wwhahapic.tunnel.mobi/${cwl.picture }" width="54px" height="54px"></a></div>
+								<div class="nav-cart-name"><a href="#" style="color:#6e6e6e;">${cwl.bookname }</a></div>
+								<div class="nav-cart-action">
+									<span>${cwl.price }</span>×<span>${cwl.booknum }</span>
+									<a href="#"  style="color:#6e6e6e;text-align:right;">删除</a>
+								</div>
+							</li>
+						</c:forEach>
+						</c:if>
+						<c:if test="${cartwapperlist==null }">
+								<div class="nav-cart-name"><a href="#" style="color:#6e6e6e;">购物车为空！</a></div>
+						</c:if>
+						</ul>
+					</li>
+					<li class="nav-cart nav-cart-welcome" style=""><span id="nav-cart-title">欢迎使用购物车</span><a href="#" id="nav-cart-turn" style="color:#6e6e6e;" >去购物车</a></li>
+				</ul>
+			</div>
+		</li>
 	</ul>
+	<!--导航条-->
+	
 	<div class="container">
 		<!--页面主体-->
 		<div class="row head">
@@ -220,6 +242,32 @@
 </body>
 
 <script type="text/javascript">
+//链接的检验：检验用户是否登陆
+$("#nav-cart-turn").click(function(){
+	var userid=$("input[name='userid']").val();
+	 	if(userid ==""){
+	 		alert("请先登录");
+	 	}else{
+	 	$(this).attr("href"," ${pageContext.request.contextPath}/${user.userid }/shoppingCart");
+	 	}
+});
+$("#myOrder").click(function(){
+	var userid=$("input[name='userid']").val();
+	 	if(userid ==""){
+	 		alert("请先登录");
+	 	}else{
+	 	$(this).attr("href","${pageContext.request.contextPath}/${user.userid}/personOrder");
+	 	}
+});
+$("#myInfo").click(function(){
+	var userid=$("input[name='userid']").val();
+	 	if(userid ==""){
+	 		alert("请先登录");
+	 	}else{
+	 	$(this).attr("href","${pageContext.request.contextPath}/${user.userid}/info");
+	 	}
+	
+});
 	
 	$("#romoveCollect").click(function(){
 		alert("已收藏，取消收藏");

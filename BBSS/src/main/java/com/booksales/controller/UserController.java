@@ -62,7 +62,7 @@ public class UserController {
 		if(request.getSession().getAttribute("user")!=null){
 			User u = (User) request.getSession().getAttribute("user");
 			List<CartWapper> cartWapperlist =cartWapperService.selectCartListByUserId(u.getUserid());
-			request.setAttribute("cartwapperlist", cartWapperlist);
+			request.getSession().setAttribute("cartwapperlist", cartWapperlist);
 			return "forward:/rank";
 		}
 		return "forward:/rank";
@@ -83,7 +83,7 @@ public class UserController {
 		if(request.getSession().getAttribute("user")!=null){
 			User u = (User) request.getSession().getAttribute("user");
 			List<CartWapper> cartWapperlist =cartWapperService.selectCartListByUserId(u.getUserid());
-			request.setAttribute("cartwapperlist", cartWapperlist);
+			request.getSession().setAttribute("cartwapperlist", cartWapperlist);
 			return "forward:/rank";
 		}
 		//当session中没有值时，跳转到登陆的页面进行登陆
@@ -165,7 +165,7 @@ public class UserController {
 				logger.info("购物车中User："+mapper.writeValueAsString(u));
 				List<CartWapper> cartWapperlist =cartWapperService.selectCartListByUserId(u.getUserid());
 				logger.info("购物车中的cart信息："+mapper.writeValueAsString(cartWapperlist));
-				request.setAttribute("cartwapperlist", cartWapperlist);
+				request.getSession().setAttribute("cartwapperlist", cartWapperlist);
 				return "forward:/rank";
 			}
 		}

@@ -80,7 +80,7 @@
 						</c:if>
 						</ul>
 					</li>
-					<li class="nav-cart nav-cart-welcome" style=""><span id="nav-cart-title">欢迎使用购物车</span><a href="#" id="nav-cart-turn" style="color:#6e6e6e;"id="myCart">去购物车</a></li>
+					<li class="nav-cart nav-cart-welcome" style=""><span id="nav-cart-title">欢迎使用购物车</span><a href="#" id="nav-cart-turn" style="color:#6e6e6e;" >去购物车</a></li>
 				</ul>
 			</div>
 		</li>
@@ -618,14 +618,13 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
-   
-    $("#myCart").click(function(){
-    	alert("点击了购物车");
+   //链接的检验：检验用户是否登陆
+    $("#nav-cart-turn").click(function(){
     	var userid=$("input[name='userid']").val();
    	 	if(userid ==""){
    	 		alert("请先登录");
    	 	}else{
-   	 	$(this).attr("href"," ${user.userid }/shoppingCart");
+   	 	$(this).attr("href"," ${pageContext.request.contextPath}/${user.userid }/shoppingCart");
    	 	}
     });
     $("#myOrder").click(function(){
@@ -633,7 +632,7 @@
    	 	if(userid ==""){
    	 		alert("请先登录");
    	 	}else{
-   	 	$(this).attr("href","${user.userid}/personOrder");
+   	 	$(this).attr("href","${pageContext.request.contextPath}/${user.userid}/personOrder");
    	 	}
     });
     $("#myInfo").click(function(){
@@ -641,10 +640,12 @@
    	 	if(userid ==""){
    	 		alert("请先登录");
    	 	}else{
-   	 	$(this).attr("href","${user.userid}/info");
+   	 	$(this).attr("href","${pageContext.request.contextPath}/${user.userid}/info");
    	 	}
     	
     });
+    
+    
     	$('.dropdown').mouseover(function() {
     		$(this).addClass('open');
     	}).mouseout(function() {        

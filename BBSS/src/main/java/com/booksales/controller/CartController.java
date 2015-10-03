@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
@@ -61,9 +62,12 @@ public class CartController {
 			@RequestParam("bookid") Integer bookid,
 			@RequestParam("bookname") String bookname,
 			@RequestParam("bookNum") Integer bookNum
-			,Model model,HttpServletResponse response){
+			,Model model,HttpServletResponse response,HttpServletRequest request){
 		logger.info("---异步请求添加图书到购物车----");		
 		int i =cartService.addCart(userid, bookid,username,bookname,bookNum);
+		
+		List<CartWapper> cartWapperlist =cartWapperService.selectCartListByUserId(userid);
+		request.getSession().setAttribute("cartwapperlist", cartWapperlist);
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
 		
